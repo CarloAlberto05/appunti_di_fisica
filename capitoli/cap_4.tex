@@ -1,0 +1,457 @@
+%!TEX root = ../dispense_QP.tex
+
+\chapter{Gli spazi di Hilbert}
+In questo capitolo tenteremo di dare una caratterizzazione più matematicamente esaustiva dello spazio delle funzioni a quadrato sommabile $\mathcal{L}^2$, identificandolo a tutti gli effetti come uno \textbf{spazio di Hilbert}. Discuteremo quindi quali sono le peculiarità di uno spazio del genere e capiremo \emph{perché} ci serve che le funzioni d'onda vivano proprio in $\mathcal{L}^2$. 
+
+Introduciamo preliminarmente la notazione di Dirac, con il fine di rendere più agevole la trattazione.
+
+\section{Alcune nozioni basilari di algebra}
+Iniziamo rispolverando rapidamente alcune nozioni fondamentali di algebra che saranno necessarie ai fini della comprensione dei concetti discussi. 
+
+\begin{definizione}[Spazio vettoriale]
+    Sia $\mathbb{K}$ un campo. Si definisce \emph{spazio vettoriale} $V$ su $\mathbb{K}$ un insieme di elementi, detti vettori:
+    \[
+        \ket{a}, \quad \ket{b}, \quad \ket{c}, \quad \dots
+    \]
+    su cui sono definite le operazioni di \textbf{somma} e \textbf{prodotto per scalare}. È inoltre necessario che siano rispettate le seguenti caratteristiche: $(1)$ commutatività e chiusura rispetto alla somma; $(2)$ associatività rispetto alla somma; $(3)$ associatività rispetto al prodotto; $(4)$ distributività rispetto al prodotto; $(5)$ chiusura rispetto al prodotto per scalare; $(6)$ esistenza dell'elemento nullo; $(7)$ esistenza dell'inverso nel senso della somma.
+\end{definizione}
+Nel nostro caso e nelle trattazioni di base, il campo $\mathbb{K}$ coincide con il campo complesso o quello reale $\mathbb{K} \in \{ \mathbb{R}, \mathbb{C} \}$. Abbiamo bisogno ora della nozione di base di uno spazio vettoriale.
+
+\begin{definizione}[Base di uno spazio vettoriale]
+    Sia $V$ uno spazio vettoriale su campo $\mathbb{K}$ e $\mathcal{B} \coloneq \{ \ket{\bm{w}_i} \in V : i \in \mathbb{N}^+ \} $ un insieme di vettori\footnote{Si denota con $\mathbb{N}^+$ l'insieme dei numeri naturali strettamente maggiori di zero.}. Si dice che $\mathcal{B}$ è una base di $V$ se: $(1)$ $\mathcal{B}$ è \textbf{libero} (ovvero è formato da elementi linearmente indipendenti); $(2)$ qualsiasi vettore dello spazio in questione può essere scritto come combinazione lineare degli elementi di $\mathcal{B}$. 
+
+    Equivalentemente, si dice che $\mathcal{B}$ è un insieme \textbf{completo}.
+\end{definizione}
+Dal momento che abbiamo già introdotto la nozione di prodotto scalare (tanto nello spazio euclideo $\mathbb{E}^n$ quanto in $\mathcal{L}^2$ come forma sesquilineare), ci limitiamo a segnalare che la notazione di Dirac permette di scrivere in maniera compatta:
+\[
+    \bm{a} \cdot \bm{b} = \bra{\bm{a}} \ket{\bm{b}} = (\bm{a}, \bm{b}) \quad.
+\]
+In questo senso, le componenti dei due vettori si scrivono come:
+\[
+    \ket{\bm{b}} = \sum_i b_i \ket{\bm{e}_i}, \quad \bra{\bm{a}} = \sum_j a_j^* \bra{\bm{e}_j},
+\]
+dove abbiamo indicato con $\bm{e}_i$ l'$i$-esimo versore di base. Mettendo tutto insieme, otteniamo nella nuova scrittura del prodotto scalare:
+\[
+    \bra{\bm{a}} \ket{\bm{b}} = \sum_i \sum_j a_j^*b_i \bra{\bm{e}_j}\ket{\bm{e}_i}. 
+\]
+Una caratteristica fondamentale del prodotto scalare è il fatto che induce una particolare nozione di metrica, detta \textbf{norma} (il cui corrispondente negli spazi euclidei è il \emph{modulo} del vettore in questione). 
+
+\begin{definizione}[Norma di un vettore]
+    Sia $\ket{\bm{v}} = \sum_j v_j \ket{\bm{e}_j}$ un vettore. Si definisce \emph{norma} di $\ket{\bm{v}}$ la radice quadrata del prodotto scalare del vettore per se stesso:
+    \[
+        \norm{\bm{v}} \coloneq \sqrt{\bra{\bm{v}} \ket{\bm{v}}} = \sqrt{\sum_j \sum_i v_i^* v_j \bra{\bm{e}_i}\ket{\bm{e}_j}} \quad.
+    \]
+\end{definizione}
+Un qualsiasi spazio vettoriale in cui è definita una {norma} e che risulta \emph{completo}\footnote{Si ricorda che uno spazio è completo se e solo se qualsiasi successione di elementi che stanno al suo interno converge ad un elemento dello spazio di partenza.} viene detto \textbf{spazio di Banach}. Ancora, se uno spazio è dotato di prodotto scalare si dice invece \textbf{spazio pre-hilbertiano}. Uno spazio pre-hilbertiano che è anche di Banach viene detto di \textbf{Hilbert}.
+
+Per definire, almeno operativamente, questa fantomatica entità, dobbiamo ancora iquadrare una base ortonormale.
+
+\begin{definizione}[Base ortonormale]
+    Sia $V$ uno spazio vettoriale su campo $\mathbb{K}$ e $\mathcal{B} \coloneq \{ \ket{\bm{w}_i} \in V : i \in \mathbb{N}^+ \}$ una base in $V$. Si dice che $\mathcal{B}$ è una \emph{base ortonormale} se vale:
+    \[
+        \bra{\bm{w}_i} \ket{\bm{w}_j} = \delta_{ij} \quad \forall i,j \in \mathbb{N} \quad.
+    \]
+\end{definizione}
+In questi casi, la norma di un vettore si semplifica in:
+\[
+    \norm{\bm{v}} = \left(\sum_j |v_j|^2 \right)^{\frac{1}{2}} \quad.
+\]
+Siamo pronti per dare la definizione di spazio di Hilbert. 
+\begin{definizione}[Spazio di Hilbert]
+    Sia $H$ uno spazio vettoriale infinitamente generato su campo complesso $\mathbb{C}$. $H$ è uno \textit{spazio di Hilbert} se: $(1)$ $H$ è uno spazio normato; $(2)$ $H$ è uno spazio completo; $(3)$ in $H$ esiste una nozione di prodotto scalare. Se queste condizioni sono soddisfatte, vale:
+    \[
+        \ket{\bm{v}} = \sum_{i = 0}^\infty v_i \ket{\bm{e}_i}, \quad \bra{\bm{v}}\ket{\bm{v}} = \sum_i |v_i|^2 < \infty \quad.
+    \]
+    In questo senso, uno spazio di Banach in cui la nozione di metrica metrica è garantita da una norma indotta da un prodotto scalare è detto di Hilbert.
+\end{definizione}
+Si noti come la seconda proprietà sia di vitale importanza per assicurare che il prodotto scalare fra due generici vettori non diverga. Infatti possiamo scrivere:
+\[
+    \left|\bra{\bm{a}}\ket{\bm{b}}\right|^2 = \left| \sum_i a_i^* b_i \right|^2 \overset{(1)}{\leq} \left( \sum_i |a_i|^2 \right) \left( \sum_i |b_i|^2 \right) = \norm{\bm{a}}^2 \norm{\bm{b}}^2 < \infty \quad,
+\]
+dove in $(1)$ abbiamo utilizzato la disuguaglianza di Cauchy-Schwarz e, alla fine, il fatto che qualsiasi vettore abbia norma $\in \mathbb{R}$.
+
+\section{Un interessante spazio di Hilbert}
+Detto tutto questo, a cosa ci è servito? La grande verità a cui ci stiamo per esporre è che la meccanica quantistica esiste solo grazie alla nozione matematica dello spazio di Hilbert. L'occhio attento avrà già notato, infatti, che lo spazio delle funzioni a quadrato sommabile $\mathcal{L}^2$ è \textbf{isomorfo} all'$H$ appena definito e, dunque, ne eredita tutte le proprietà. In questa sezione dimostreremo l'intuizione in questione. 
+
+\subsection{Caratteristiche di \texorpdfstring{$\bm{\mathcal{L}^2}$}{L2}}
+È immediato verificare che gli assiomi che caratterizzano uno spazio vettoriale valgono per $\mathcal{L}^2$: lo spazio delle funzioni a quadrato sommabile è dunque uno spazio vettoriale. In particolare, vale la nozione di combinazione lineare che garantisce che, in un certo volume $\Omega$:
+\[
+    \Psi = \sum_i c_i \psi_i \in \mathcal{L}^2(\Omega), \quad \psi \in \mathcal{L}^2, \quad c \in \mathbb{C} 
+\]
+suggerendo, in qualche modo, il già sfruttato \textbf{principio di sovrapposizione}. 
+Abbiamo inoltre definito un prodotto scalare in $\mathcal{L}^2$ per due funzioni a quadrato sommabile $\psi, \phi$:
+\[
+    \bra{\psi}\ket{\phi} = (\psi,\phi) = \int_{\Omega \subseteq \mathbb{R}^3} \dd^3{\bm{r}} \, \psi^*\phi \quad.
+\]
+In particolare, gli stati quantistici soddisfano la \emph{condizione di normalizzazione} $\bra{\psi}\ket{\psi} = (\psi,\psi) = 1$, la cui validità è ciò su cui si fonda l'interpretazione probabilistica della teoria ed è dunque fondamentale. 
+
+Della prossima affermazione bisognerà "fidarsi", anche se verranno presentati esempi che renderanno l'atto di fede meno astratto. Tra le funzioni d'onda $\psi \in \mathcal{L}^2$, possiamo \emph{sempre} estrarre un set che forma una base ortonormale per lo spazio delle funzioni a quadrato sommabile. Sosteniamo quindi che, esiste sempre almeno un insieme $\mathcal{B} \coloneq \{ \psi_i \in \mathcal{L}^2(\Omega) : i \in \mathbb{N}^+, \bra{\psi_i}\ket{\psi_j} = \delta_{ij} \}$. Si noti che la normalità è garantita dalla condizione di normalizzazione, infatti $\bra{\psi_i}\ket{\psi_i} = 1$. Diciamo che $\mathcal{B}$ è \textbf{completo} se possiamo esprimere un qualsiasi stato quantistico $\Psi$ come combinazione lineare degli elementi della base:
+\begin{equation}
+    \Psi = \sum_i c_i{\psi_i}, \quad c_i \overset{(1)}{=} \bra{\psi_i}\ket{\Psi} \in \mathbb{C} \quad.
+    \label{eq:psi_vec}
+\end{equation}
+Questa rappresentazione corrisponde a una generalizzazione della \textbf{serie di Fourier} e ci riferiremo dunque ad essa in tal senso. Sfruttando la nozione di base ortonormale, poi, possiamo giustificare $(1)$, infatti:
+\[
+    \bra{\psi_i}\ket{\Psi} = \int_{\mathbb{R}^3} \dd^3{\bm{r}} \, \psi_i^* \Psi = \int_{\mathbb{R}^3} \dd^3{\bm{r}} \,\psi_i^* \sum_j c_j \psi_j = \sum_j c_j \int_{\mathbb{R}^3} \dd^3{\bm{r}} \, \psi_i^* \psi_j = \sum_j c_j \underbrace{\bra{\psi_i}\ket{\psi_j}}_{\delta_{ij}} = c_i \quad,
+\]
+con i vari coefficienti di combinazione che prendono il nome di \textbf{ampiezze}. L'interpetazione fisica associata al concetto di "ampiezza di una funzione" di base risiede nell'ideologia di Born: $|c_i|^2$ corrisponde infatti ad una probabilità, in particolare quella di ottenere lo stato $\psi_i$ associato a $c_i$ eseguendo una misura di qualche tipo su $\Psi$\footnote{Se quest'ultima considerazione non risulta chiara non c'è da preoccuparsi. La motivazione dell'assunzione è infatti da ricercarsi in argomenti più avanzati, trattati nell'ambito della teoria della misura.}
+
+La \eqref{eq:psi_vec} ha un'interpretazione peculiare: ad ogni stato $\Psi$ è associata un'\textit{unica} $n$-upla di valori complessi $c_i$ che possono essere interpretati come le componenti dello stato stesso. Questo fatto suggerisce che esiste una corrispondenza 1:1 fra funzione d'onda in $\mathcal{L}^2$ e vettore dello spazio di Hilbert $\ket{c} = [c_1, c_2, \dots, c_1, \dots]^T$:
+\[
+    \psi = \sum_i c_i \psi_i \iff \ket{c} = \sum_j c_j\ket{j} \quad,
+\]
+con la nuova nozione di "versori di base" $\ket{j}$ per indicare la $j$-esima componente\footnote{Si noti come non si usa più il grassetto entro le "bra" e le "ket della notazione di Dirac per indicare i vettori. Questo, seppur inusuale sino ad ora, non è un errore e sarà prassi per snellire la notazione.}. La formula che definisce la \textbf{norma} quadra di una funzione d'ondarende ancora più evidente questa corrispondenza:
+\[
+    \begin{aligned}
+        \bra{\Psi}\ket{\Psi} &= \int_{\mathbb{R}^3} \dd^3{\bm{r}} \, \Psi^* \Psi = \int_{\mathbb{R}^3} \dd^3{\bm{r}} \, \left(\sum_i c_i \psi_i \right)^*\sum_j c_j \psi_j \\
+        &= \sum_i \sum_j c_i^* c_j \int_{\mathbb{R}^3} \dd^3{\bm{r}} \, \psi_i^* \psi_j = \sum_i \sum_j c_i^* c_j \bra{\psi_i}\ket{\psi_j} \overset{(1)}{=} \sum_i \sum_j c_i^* c_j \delta_{ij} = \sum_i |c_i|^2 \quad,
+    \end{aligned}
+\] 
+dove in $(1)$ abbiamo sfruttato l'ortonormalità della base tramite cui abbiamo \emph{rappresentato} $\Psi$. Quanto ottenuto corrisponde alla cosiddetta \textbf{identità di Parseval} che rispecchia in tutto e per tutto la formulazione della norma quadra di un vettore nello spazio di Hilbert. 
+
+\begin{approfondimento}[title={Limiti di validità dell'identità di Parseval}]
+    \noindent
+    Si può dimostrare che l'identità di Parseval è un'uguaglianza se e solo se la base tramite cui si rappresenta lo stato $\Psi$ di cui si calcola la norma è \textbf{completa}. Altrimenti vale la cosiddetta \emph{disuguaglianza di Bessel}:
+    \[
+        \norm{\Psi}^2 \geq \sum_i |c_i|^2 \quad.
+    \]
+\end{approfondimento}
+Abbiamo sino ad ora mostrato che $\mathcal{L}^2$ è uno spazio dotato di norma (normato) in cui è possibile definire una base ortonormale completa di funzioni d'onda. Per attribuire però allo spazio delle funzioni a quadrato sommabile la caratteristica di essere uno spazio di Hilbert dobbiamo ancora dimostrare il fatto che la norma di una generica funzione d'onda sia strettamente convergente, qualsiasi essa sia. Enunciamo a tal fine una formulazione operativa del \textbf{Teorema di Fisher-Riesz}, del quale non sarà proposta la dimostrazione in quanto eccessivamente complicata.
+
+\begin{teorema}[Fisher-Riesz - formulazione operativa]
+    Sia $\Omega \subseteq \mathbb{R}^3$ e $\mathcal{B} \coloneq \{ \psi_i \in \mathcal{L}^2(\Omega) : i \in \mathbb{N}^+ \}$ una base per lo spazio delle funzioni a quadrato sommabile $\mathcal{L}^2(\Omega)$. Allora disuguaglianza:
+    \[
+        \sum_{i = 1}^\infty |c_i|^2 < \infty, \quad c_i \in \mathbb{C} \quad,
+    \]
+    con i coefficienti $c_i$ scelti arbitrariamente, è \textbf{condizione necessaria e sufficiente} perché esista una funzione d'onda $\phi \in \mathcal{L}^2(\Omega)$ la cui espansione di Fourier risulti:  
+    \[
+        \phi = \sum_{i= 1}^\infty c_i \psi_i \quad.
+    \]
+\end{teorema}
+Cosa ci sta comunicando il teorema? Essenzialmente, abbiamo che ad ogni successione di numeri complessi tali che la serie dei loro moduli quadrati converge è associata una e una sola funzione d'onda in $\mathcal{L}^2$. Abbiamo quindi costruito una corrispondenza biunivoca tra lo spazio delle funzioni a quadrato sommabile e quello delle successioni a quadrato sommabile: $\mathcal{L}^2 \iff l^2$. In particolare, dal momento che qualsiasi successione a quadrato sommabile converge a un elemento di $\mathbb{C}$, evidentemente a quadrato sommabile, lo spazio vettoriale $l^2$ è \textbf{completo}. L'isomorfismo con $\mathcal{L}^2$ ci permette allora di attribuire anche a quest'ultimo la nozione di completezza, soddisfando una volta per tutte le nostre richieste.
+
+\begin{approfondimento}[title={Il vero Teorema di Fisher-Riesz}]
+    \noindent
+    Il Teorema di Fisher-Riesz, enunciato come sui libri di analisi funzionale, recita:
+    \begin{teorema}[Fisher-Riesz]
+        Tutti gli spazi $\mathcal{L}^p$ sono \textbf{metricamente completi}.
+    \end{teorema}
+    Questo risultato è potentissimo se colto nella sua immensa profondità. Ricordiamo innanzitutto che la nozione di integrale usata negli spazi $\mathcal{L}^p$ è quella data da Lebesgue (da cui la "L"), così come quella di misura (in luogo dell'integrale di Riemann e della misura di Peano-Jordan). L'integrale di Lebesgue ci permette di trattare un set di funzioni che si comportano meno bene di quelle integrabili secondo Riemann (si pensi alla funzione di Dirichlet oppure a tutte quelle funzioni che differiscono da una continua quasi-ovunque), risultando perfetto ai fini della meccanica quantistica. Nel nostro caso, la completezza garantita dal teorema è proprio quanto serviva per dimostrare che $\mathcal{L}^2$ non è solo uno spazio pre-hilbertiano ma anche di Banach. 
+\end{approfondimento}
+
+\subsubsection{Riassunto delle proprietà di $\bm{\mathcal{L}^2}$}
+Abbiamo appena ottenuto le seguenti, fondamentali, caratterizzazioni per lo spazio delle funzioni a quadrato sommabile:
+\begin{enumerate}
+    \item È possibile definire una nozione di norma.
+    \item La norma in questione è indotta da un prodotto scalare.
+    \item La nozione di completezza è garantita da Fisher-Riesz.
+\end{enumerate}
+Combinando tutte queste proprietà abbiamo quanto desideravamo: possiamo finalmente trattare $\mathcal{L}^2$ a tutti gli effetti come uno spazio di Hilbert!
+
+\subsection{La relazione di completezza}
+Continuiamo con un po' di matematica. In spazi vettoriali finitamente generati (o, più in generale, per basi a \emph{spettro discreto}), la conoscenza di una base permette di esprimere l'operatore identità $\mathds{1}$ in maniera "speciale". Sfruttando il fatto che $\bra{i}\ket{v} = \sum_j v_j \bra{i}\ket{j} = \sum_j v_j \delta_{ij} = v_i$, abbiamo:
+\[
+    \ket{v} = \sum_i v_i \ket{i} = \sum_i \bra{i}\ket{v} \ket{i} = \underbrace{\left( \sum_i \ket{i} \bra{i} \right)}_{\mathds{1}} \ket{v} = \ket{v} \quad.
+\]
+L'equazione che rappresenta l'operatore identità in funzione della base a nostra disposizione:
+\begin{equation}
+    \mathds{1} =  \sum_i \ket{i} \bra{i}  
+\end{equation}
+prende il nome di \textbf{relazione di completezza} (per lo spettro discreto) ed è di fondamentale utilità quando si cerca, ad esempio, di eseguire un cambiamento di base. Il nome si deve al fatto che è proprio la completezza della base che permette di scrivere l'operatore identità tramite i suoi proiettori elementari. 
+
+Una grande domanda può sovvenire a questo punto: è possibile formulare un'analoga relazione di completezza quando passiamo a una base caratterizzata da uno \emph{spettro continuo} (come la base delle posizioni per studiare le funzioni in $\mathcal{L}^2$)? La risposta è sì e, per farlo, sfruttiamo la definizione di prodotto scalare. Sia $\mathcal{B} = \{ \phi_i \in \mathcal{L}^2 \}$ una base ortonormale discreta per $\mathcal{L}^2$; il generico stato $\psi$ si può espandere come:
+\[
+\begin{aligned}
+    \psi(\bm{r}) = \sum_i c_i \phi_i(\bm{r}) &= \sum_i \bra{\phi_i}\ket{\psi} \phi_i(\bm{r}) \\
+    &= \sum_i \phi_i(\bm{r}) \int_\Omega \dd^3{\bm{s}} \, \phi_i(\bm{s})^* \psi(\bm{s}) = \int_\Omega \dd^3{\bm{s}} \, \underbrace{\left(\sum_i  \phi_i(\bm{s})^* \phi_i(\bm{r})\right)}_{f} \psi(\bm{s}) \quad.
+\end{aligned}
+\]
+Perché l'ultimo integrale restituisca $\psi(\bm{r})$, serve che $f$ svolga il ruolo della Delta di Dirac centrata in $\bm{r}$. Così effettivamente fa. Abbiamo infatti:
+\[
+    \psi(\bm{r}) = \int_\Omega \dd^3{\bm{s}} \, \underbrace{\left(\sum_i  \phi_i(\bm{s})^* \phi_i(\bm{r})\right)}_{\delta^{(3)}(\bm{r}-\bm{s})} \psi(\bm{s}) \quad.
+\]
+Definiamo in questo senso una \textbf{relazione di completezza spaziale} per le funzioni a quadrato sommabile:
+\begin{equation}
+    \delta^{(3)}(\bm{r}-\bm{s}) = \sum_i  \phi_i(\bm{s})^* \phi_i(\bm{r}) \quad.
+    \label{eq:tua_equazione_sopra}
+\end{equation}
+È fondamentale notare la differenza concettuale con il caso discreto: la Delta di Dirac \emph{non} è l'operatore identità, bensì ne costituisce il nucleo integrale (o \emph{kernel}) quando questo viene proiettato nella rappresentazione delle coordinate\footnote{Per gli amanti del rigore matematico, si noti che la Delta di Dirac è una distribuzione a supporto compatto (un singolo punto) e, per definire la sua azione come funzionale lineare, le basta applicarsi a funzioni semplicemente continue in quel punto. Tuttavia, in meccanica quantistica, per garantire che l'applicazione iterata di operatori differenziali (come $\hat{\bm{p}}$) o moltiplicativi (come $\hat{\bm{r}}$) non ci porti mai fuori dallo spazio funzionale di lavoro, si è soliti restringere il dominio e richiedere che $\psi(\bm{r}) \in \mathcal{S}(\mathbb{R}^3)$, dove $\mathcal{S}$ è lo spazio di Schwartz delle funzioni test a decrescita rapida.}.
+
+\begin{approfondimento}[title={La completezza nel continuo e la Delta di Dirac}]
+    \noindent
+    L'eleganza della notazione di Dirac permette di ricavare la relazione \eqref{eq:tua_equazione_sopra} in modo estremamente naturale, chiarendo definitivamente il ruolo della Delta di Dirac non come "operatore", ma come elemento di matrice. 
+    
+    Per uno spettro continuo come quello delle posizioni, l'operatore identità si scrive promuovendo la sommatoria a integrale:
+    \[
+        \mathds{1} = \int_{\mathbb{R}^3} \dd^3{\bm{r}} \, \ket{\bm{r}}\bra{\bm{r}} \quad.
+    \]
+    Se applichiamo questo operatore a una generica funzione di base, dobbiamo per definizione riottenere $\ket{\bm{s}}$ stesso:
+    \[
+        \ket{\bm{s}} = \mathds{1}\ket{\bm{s}} = \left( \int_{\mathbb{R}^3} \dd^3{\bm{r}} \, \ket{\bm{r}}\bra{\bm{r}} \right) \ket{\bm{s}} = \int_{\mathbb{R}^3} \dd^3{\bm{r}} \, \ket{\bm{r}} \braket{\bm{r}}{\bm{s}} \quad.
+    \]
+    Affinché l'integrale restituisca esattamente il vettore $\ket{\bm{s}}$, per le proprietà formali delle distribuzioni, il prodotto scalare al suo interno deve essere necessariamente la Delta di Dirac:
+    \[
+        \braket{\bm{r}}{\bm{s}} = \delta^{(3)}(\bm{r}-\bm{s}) \quad.
+    \]
+    A questo punto, l'espansione della Delta nella base discreta $\mathcal{B} = \{ \ket{i} \}$ diventa una banale applicazione dell'identità $\mathds{1} = \sum_i \ket{i}\bra{i}$. Calcoliamo infatti l'elemento di matrice inserendo l'identità discreta "in mezzo" al prodotto scalare:
+    \[
+        \delta^{(3)}(\bm{r}-\bm{s}) = \braket{\bm{r}}{\bm{s}} = \bra{\bm{r}} \mathds{1} \ket{\bm{s}} = \bra{\bm{r}} \left( \sum_i \ket{i}\bra{i} \right) \ket{\bm{s}} = \sum_i \braket{\bm{r}}{i}\braket{i}{\bm{s}} \quad.
+    \]
+    Ricordando infine che la funzione d'onda associata allo stato $\ket{i}$ valutata nel punto $\bm{r}$ è proprio definita come la proiezione $\braket{\bm{r}}{i} = \phi_i(\bm{r})$ (e analogamente $\braket{i}{\bm{s}} = \braket{\bm{s}}{i}^* = \phi_i(\bm{s})^*$), si ritrova esattamente la formula:
+    \[
+        \delta^{(3)}(\bm{r}-\bm{s}) = \sum_i \phi_i(\bm{r}) \phi_i(\bm{s})^* \quad.
+    \]
+    Una conseguenza interessante della relazione appena trovata è il fatto che, potendo costruire in linea di principio infinite basi ortonormali per $\mathcal{L}^2$, è possibile esprimere la delta di Dirac in \emph{infiniti modi diversi}.
+\end{approfondimento}
+
+\section{Alcuni esempi di basi fondamentali}
+Il paragrafo che si accinge a cominciare mira a fornire alcuni esempi più concreti della discussione, sin'ora molto astratta, sugli spazi di Hilbert. Analizzeremo a tal fine alcuni semplici esempi di basi per lo spazio $\mathcal{L}^2$ e tenteremo di darne una caratterizzazione il più completa possibile. Seguono la base delle già analizzate \textbf{onde piane} in una \emph{scatola} e nel generico \emph{spazio tridimensionale}.
+
+\subsection{Base delle onde piane in una scatola}
+Definiamo innanzitutto una scatola \emph{cubica} di lato $L$ come il sottoinsieme di $\mathbb{R}^3$ così caratterizzato: $\mathbb{R}^3 \supseteq \Omega \coloneq \{ \bm{r} = (x_1,x_2,x_3) \in \mathbb{R}^3 : 0 \leq x_i \leq L \}$. Passiamo ora alla ricerca della base... ma cosa stiamo \emph{effettivamente} facendo? L'idea è quella di trovare un set di funzioni d'onda tramite cui sia possibile esprimere un \textbf{qualunque} stato $\Psi$. Riprendiamo quanto fatto risolvendo la S.E. per il caso della particella libera: la soluzione ci ha portato a trovare gli autostati dell'hamiltoniana che, composti con la parte temporale per l'ansatz dellam separazione delle variabili, ci hanno permesso di definire il generico stato $\Psi$. L'insieme degli autostati di $\h{H}$ è stato per noi, quindi, una base per $\mathcal{L}^2$. Procediamo allora con l'analisi della S.E. in una scatola. 
+
+\subsubsection{Il caso della scatola}
+Per una particella descritta dallo stato $\psi$ che vive in $\Omega$, non sottoposta a campi di forze, l'equazione di Schrödinger stazionaria si scrive:
+\[
+    \h{K} \psi(\bm{r}) = -\frac{\hbar^2}{2m} \nabla^2 \psi(\bm{r}) = \frac{\hbar^2 k^2}{2m} \psi(\bm{r}) \quad.
+\]
+Imponendo ora che il generico stato sia scomponibile come prodotto di funzioni d'onda indipendenti associate ai tre assi $\psi(\bm{r}) = \prod_j \psi(x_j)$, procediamo a risolvere l'equazione in termini monodimensionali:
+\[
+    \pdv[2]{\psi(x)}{x} = -k^2 \psi(x) \quad,
+\]
+dove abbiamo sott'inteso il pedice $x_j$ per la coordinata coinvolta nella derivazione. La soluzione dell'equazione è data dalla combinazione lineare di due onde piane, una progressiva e una regressiva:
+\[
+    \psi(x) = Ae^{ikx} + Be^{-ikx} \quad.
+\]
+Si noti che, fino ad ora, non abbiamo menzionato il fatto che la particella è confinata in una scatola o, declinandolo al caso monodimensionale studiato, che deve valere $0 \leq x \leq L$. Poiché il corpuscolo si trova \emph{entro} $\Omega$, serve che $\psi(\Omega^c) = 0$\footnote{Con $\Omega^c$ si è indicato il complementare di $\Omega$.}. Per la continuità quindi, $\psi(0) = \psi(L) = 0$, da cui:
+\[
+    \begin{cases}
+        \psi(0) = A + B = 0 \\
+        \psi(L) = Ae^{ikL} + Be^{-ikL} = 0
+    \end{cases}
+    \implies
+    \begin{cases}
+        B = -A \\
+        A(e^{ikL} - e^{-ikL}) = 2i A \sin(kL) = 0 \quad.
+    \end{cases}
+\] 
+Poiché il fattore $2iA$ è costante, affinché l'ultima uguaglianza sia verificata serve che il seno si annulli:
+\[
+\begin{aligned}
+    kL &= n \pi \\
+    k &= \frac{\pi}{L} n, \quad n \in \mathbb{Z} \implies \psi(x) = 2iA \sin(kx) \quad.
+\end{aligned}
+\]
+Il numero d'onda non può assumere valori continui, bensì discreti: $k$ risulta \textbf{quantizzato}! Prima di ricostruire la generica soluzione tridimensionale, dobbiamo ricavare la costante $A$ e, per farlo, imponiamo la normalizzazione:
+\[
+\begin{aligned}
+    1 &= \int_0^L \dd{x} |\psi(x)|^2 = \int_0^{L} \dd{x} 4|A|^2 \sin^2(kx)  \\
+    1 &= 2L|A|^2 \\
+    A &= \frac{1}{\sqrt{2L}} e^{i\theta}, \quad \theta \in [0, 2\pi] \quad.
+\end{aligned}
+\]
+Imponendo per comodità il fattore di fase pari a $\theta = \frac{3}{2}\pi \implies e^{i\theta} = -i$, otteniamo che 
+\[
+    \psi(x) = \sqrt{\frac{2}{L}}\sin(kx) \quad,
+\]
+da cui la funzione tridimensionale risulta:
+\begin{equation}
+    \psi_{\bm{n}}(\bm{r}) = \left( \frac{2}{L} \right)^{3/2} \prod_{j=1}^3 \sin\left( \frac{n_j \pi x_j}{L} \right) \quad,
+\end{equation}
+dove si è introdotto il vettore dei numeri quantici $\bm{n} = (n_1, n_2, n_3)$ con $n_j \in \mathbb{N}^+$ per le tre direzioni spaziali. 
+
+\subsubsection{Ortonormalità della base}
+Verifichiamo ora rigorosamente che gli autostati trovati formino una base ortonormale per $\mathcal{L}^2(\Omega)$. Per farlo, calcoliamo il prodotto scalare tra due generici stati caratterizzati dai vettori quantici $\bm{n}$ e $\bm{m}$. Sfruttando la separabilità degli integrali lungo i tre assi, abbiamo:
+\[
+\begin{aligned}
+    \braket{\psi_{\bm{n}}}{\psi_{\bm{m}}} &= \int_{\Omega} \dd^3{\bm{r}} \, \psi_{\bm{n}}(\bm{r})^* \psi_{\bm{m}}(\bm{r}) \\
+    &= \prod_{j=1}^3 \underbrace{\left[ \frac{2}{L} \int_0^L \dd{x_j} \sin\left( \frac{n_j \pi x_j}{L} \right) \sin\left( \frac{m_j \pi x_j}{L} \right) \right]}_{I_j} \quad.
+\end{aligned}
+\]
+Risolviamo l'integrale monodimensionale $I_j$ utilizzando le formule di prostaferesi per trasformare il prodotto in somma:
+\[
+    I_j = \frac{1}{L} \int_0^L \dd{x} \left[ \cos\left( \frac{(n_j - m_j)\pi x}{L} \right) - \cos\left( \frac{(n_j + m_j)\pi x}{L} \right) \right] \quad.
+\]
+Si presentano ora due casi distinti:
+\begin{itemize}
+    \item Se $n_j \neq m_j$, l'integrazione di funzioni puramente armoniche su un numero intero di periodi restituisce banalmente zero.
+    \item Se $n_j = m_j$, il primo termine dell'integranda diventa $\cos(0) = 1$. L'integrale si riduce quindi a:
+    \[
+        I_j = \frac{1}{L} \int_0^L \dd{x} \left[ 1 - \cos\left( \frac{2n_j\pi x}{L} \right) \right] = \frac{1}{L} \left[ x - \frac{L}{2n_j\pi}\sin\left( \frac{2n_j\pi x}{L} \right) \right]_0^L = \frac{1}{L} [L - 0] = 1 \quad.
+    \]
+\end{itemize}
+Essendo questo risultato valido e indipendente per ogni asse $j$, possiamo ricombinare i termini per ottenere la condizione di ortonormalità globale:
+\begin{equation}
+    \braket{\psi_{\bm{n}}}{\psi_{\bm{m}}} = \delta_{n_1, m_1} \delta_{n_2, m_2} \delta_{n_3, m_3} \equiv \delta_{\bm{n},\bm{m}} \quad.
+\end{equation}
+Il fatto che questo set ortonormale costituisca anche un sistema \emph{completo} (e sia dunque una base per $\mathcal{L}^2(\Omega)$) è garantito dal Teorema di Sturm-Liouville per i problemi agli autovalori con condizioni al contorno di Dirichlet.  
+
+\begin{approfondimento}[title={Il Teorema di Sturm-Liouville e la Meccanica Quantistica}]
+    \noindent
+    Nel discutere la completezza degli autostati dell'Hamiltoniana, abbiamo dato per scontato che le soluzioni dell'equazione differenziale formassero una base per $\mathcal{L}^2$. La solida giustificazione matematica a questa assunzione risiede nel \textbf{Teorema di Sturm-Liouville}.
+
+    Un problema di Sturm-Liouville regolare è definito da un'equazione differenziale lineare del secondo ordine della forma:
+    \[
+        -\dv{x} \left[ p(x) \dv{y(x)}{x} \right] + q(x)y(x) = \lambda w(x) y(x) \quad,
+    \]
+    definita su un intervallo $[a,b]$, con opportune condizioni al contorno omogenee (come quelle di Dirichlet $y(a)=y(b)=0$ della nostra scatola).
+    
+    L'equazione di Schrödinger stazionaria monodimensionale rientra esattamente in questa immensa classe di problemi. Riscrivendola come:
+    \[
+        -\frac{\hbar^2}{2m} \dv[2]{\psi(x)}{x} + U(x)\psi(x) = E \psi(x) \quad,
+    \]
+    identifichiamo immediatamente i termini: il coefficiente $p(x) = \frac{\hbar^2}{2m}$ (costante), la funzione $q(x) = U(x)$ (il potenziale), la funzione peso $w(x) = 1$ e il parametro $\lambda = E$ (l'autovalore dell'energia).
+
+    La teoria di Sturm-Liouville assicura tre risultati analitici di portata enorme, che tradotti in fisica si leggono così:
+    \begin{enumerate}
+        \item \textbf{Spettro reale e limitato inferiormente:} Gli autovalori $\lambda_n$ (ovvero le energie $E_n$) ammessi dal sistema sono puramente reali, numerabili (poiché il dominio è confinato) e ammettono un limite inferiore (esiste sempre uno stato fondamentale), ma non un limite superiore.
+        \item \textbf{Ortonormalità degli autostati:} Le autofunzioni $\psi_n(x)$ corrispondenti ad autovalori distinti sono intrinsecamente ortogonali rispetto alla funzione peso $w(x)$. Essendo $w(x)=1$ nel caso di Schrödinger, si ritrova esattamente la definizione del prodotto scalare standard in $\mathcal{L}^2$: 
+        \[ \int_a^b \psi_n(x)^* \psi_m(x) \dd{x} = \delta_{nm} \quad. \]
+        \item \textbf{Completezza della base:} È il risultato cardine. L'insieme delle autofunzioni costituisce una \emph{base completa} per lo spazio delle funzioni a quadrato sommabile nel dominio considerato. Qualsiasi stato fisico $\Psi(x)$, purché sufficientemente regolare e rispettoso delle condizioni al contorno, può essere espanso in serie in modo unico.
+    \end{enumerate}
+    Ecco perché, ogni volta che confiniamo una particella quantistica, l'equazione differenziale ci fornisce "gratuitamente" lo spazio vettoriale perfetto in cui far operare la meccanica matriciale.
+\end{approfondimento}
+
+\subsubsection{Relazione di completezza}
+Avendo stabilito che $\mathcal{B}_{box} = \{ \psi_{\bm{n}} \}$ è una base ortonormale, possiamo scriverne esplicitamente la relazione di completezza spaziale. Richiamando la formula generale discussa in precedenza, ovvero $\sum_i \phi_i(\bm{r}) \phi_i(\bm{r}')^* = \delta^{(3)}(\bm{r}-\bm{r}')$, e sostituendovi i nostri autostati (notando che gli indici corrono ora sulle terne di interi positivi), otteniamo:
+\begin{equation}
+    \sum_{n_1=1}^\infty \sum_{n_2=1}^\infty \sum_{n_3=1}^\infty \left( \frac{2}{L} \right)^3 \prod_{j=1}^3 \sin\left( \frac{n_j \pi x_j}{L} \right) \sin\left( \frac{n_j \pi x'_j}{L} \right) = \delta^{(3)}(\bm{r}-\bm{r}') \quad.
+\end{equation}
+Questa espressione analitica asserisce un concetto fisicamente potentissimo: sommando tutte le infinite onde stazionarie quantizzate della scatola, opportunamente pesate sulle posizioni, si ricostruisce esattamente l'operatore identità (sotto forma di distribuzione Delta di Dirac) per ogni punto confinato nel dominio $\Omega$.
+
+\subsubsection{Espansione di Fourier}
+Come conseguenza del fatto che abbiamo identificato nello spettro delle autofunzioni di $\h{K}$ una base completa e ortonormale per $\mathcal{L}^2(\Omega)$, possiamo esprimere una qualsiasi funzione d'onda $\Psi$ come combinazione lineare degli elementi di base. Sfruttando la relazione di completezza, abbiamo:
+\[
+\begin{aligned}
+    \Psi(\bm{r}) &= \int_{\Omega} \dd^3{\bm{s}} \, \delta^{(3)}(\bm{s}-\bm{r}) \Psi(\bm{s}) \\
+    &= \int_{\Omega} \dd^3{\bm{s}} \, \sum_{\bm{n}} \psi_{\bm{n}}^*(\bm{s}) \psi_{\bm{n}}(\bm{r}) \Psi(\bm{s}) \\
+    &= \sum_{\bm{n}} \psi_{\bm{n}}(\bm{r}) \int_{\Omega} \dd^3{\bm{s}} \, \psi_{\bm{n}}^*(\bm{s}) \Psi(\bm{s}) = \sum_{\bm{n}} \psi_{\bm{n}}(\bm{r}) \braket{\psi_{\bm{n}}}{\Psi} = \sum_{\bm{n}} a_{\bm{n}} \psi_{\bm{n}}(\bm{r}) \quad,
+\end{aligned}
+\]
+con $a_{\bm{n}}$ i coefficienti dello sviluppo di Fourier della funzione, definiti come di consueto. Possiamo ancora verificare l'identità di Parseval, essendo la base ortonormale:
+\[
+    \begin{aligned}
+    \norm{\Psi}^2 = \braket{\Psi}{\Psi} &= \int_{\Omega} \dd^3{\bm{r}} \, \Psi(\bm{r})^* \Psi(\bm{r}) = \int_{\Omega} \dd^3{\bm{r}} \, \Psi(\bm{r})^* \sum_{\bm{n}} a_{\bm{n}} \psi_{\bm{n}}(\bm{r})\\
+    &= \sum_{\bm{n}} a_{\bm{n}} \int_{\Omega} \dd^3{\bm{r}} \, \Psi(\bm{r})^*  \psi_{\bm{n}}(\bm{r}) = \sum_{\bm{n}} a_{\bm{n}} \braket{\Psi}{\psi_{\bm{n}}} = \sum_{\bm{n}} |a_{\bm{n}}|^2 \quad.
+    \end{aligned}
+\]
+
+A livello formale, è necessario notare che tramnite la base delle onde piane stazionarie è possibile costruire qualsiasi stato $\Psi$ tramite serie di Fourier, anche se definito \emph{al di fuori} di $\Omega$. Questo ci porta a chiederci se la base in questione è effettivamente \emph{la migliore} per rappresentare una generica funzione d'onda. La risposta, abbastanza controintuitivamente, risiede nella geometria specifica del sistema e, per rendere ciò il più evidente possibile, analizzeremo nel paragrafo che segue un particolare caso in cui la base delle onde piane è quanto mai problematica. 
+
+\subsection{Il caso della particella libera}
+Benché la soluzione del caso della particella libera sia già stata proposta, è assolutamente istruttivo analizzare la base formata dagli autostati dell'hamiltoniana:
+\[
+    \mathcal{B}_{free} = \left\{ \phi_{\bm{k}}(\bm{r}) : \h{K}\phi_{\bm{k}}(\bm{r}) = \frac{\hbar^2k^2}{2m} \phi_{\bm{k}}(\bm{r}) \right\}, \quad \phi_{\bm{k}}(\bm{r}) = \frac{e^{i\bm{k}\cdot \bm{r}}}{(2\pi)^{\frac{3}{2}}}, \quad \bm{k} \in \mathbb{R}^3 \quad.
+\]
+Questa base corrisponde a quanto si troverebbe nel caso della scatola con $L \to \infty$ e dunque $\Omega \to \mathbb{R}^3$. Si noti che in questo caso non abbiamo più a che fare con onde puramente \emph{sinusoidali} bensì contiene anche una componente coseno... Chissà se questo fatto ci creerà problemi.
+
+\subsubsection{Relazione di completezza}
+Iniziamo questa volta con la valutazione della relazione di completezza perché ci tornerà utile in breve. Come nel caso della scatola, ricaviamo la relazione di completezza ricordando che, trattandosi di uno spettro intrinsecamente vettoriale, stiamo cercando una delta di Dirac tridimensionale:
+\begin{equation}
+        \delta^{(3)}(\bm{r}-\bm{s}) = \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, \phi_{\bm{k}}(\bm{s})^* \phi_{\bm{k}}(\bm{r}) = \frac{1}{(2\pi)^{3}} \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, e^{i\bm{k}\cdot (\bm{s}-\bm{r})} \quad,
+        \label{eq:com_rel}
+\end{equation} 
+dove abbiamo integrato dato lo spettro continuo dei possibili valori di $\bm{k}$.
+
+\subsubsection{Ortonormalità della base}
+Questa condizione ci è in realtà garantita \emph{a priori} dal Teorema di Sturm-Liouville. Presentiamo comunque un calcolo concreto per covincere anche i più miscredenti:
+\[
+    \braket{\phi_{\bm{k}}}{\phi_{\bm{q}}} = \int_{\mathbb{R}^3} \dd^3{\bm{r}} \, \frac{e^{-i\bm{k}\cdot\bm{r}}}{(2\pi)^{\frac{3}{2}}} \frac{e^{i\bm{q}\cdot\bm{r}}}{(2\pi)^{\frac{3}{2}}} = \frac{1}{(2\pi)^3} \int_{\mathbb{R}^3} \dd^3{\bm{r}} \, e^{i\bm{k}\cdot (\bm{q}-\bm{k})} \overset{(1)}{=} \delta^{(3)}(\bm{k}-\bm{q}) \quad,
+\]
+dove in $(1)$ abbiamo riconosciuto la $\eqref{eq:com_rel}$. Questo "inusuale" risultato appena trovato, benché risponda correttamente alla condizione di ortogonalità quando $\bm{k} \neq \bm{q}$, esplode nel \emph{banale} caso della norma quadra:
+\[
+    \braket{\phi_{\bm{k}}}{\phi_{\bm{k}}} = \int_{\mathbb{R}^3} \frac{\dd^3{\bm{r}}}{(2\pi)^3} \to \infty \quad.
+\]
+Le onde piane, come avevamo già scoperto, \textbf{non sono normalizzabili} in $\mathbb{R}^3$! La base $\mathcal{B}_{free}$ non è dunque ortonormale. In ogni caso, questo caso patologico non dovrebbe apparire "strano", essendo $|\phi_{\bm{k}}|^2 = (2\pi)^{-3}$, quindi costante in ogni punto di $\mathbb{R}^3$. 
+
+Questo, apparente, enorme problema non deve però essere visto come una limitazione della teoria vista sin'ora, bensì come una conseguenza intrinseca della scelta di ambientare la nostra particella in uno spazio \emph{illimitato}. In questo contesto ritorna quanto accennato nel caso della scatola riguardo come geometria del sistema influenzi, enormemente, la comodità della base scelta per rappresentari gli stati. Addirittura siamo riusciti a "trasformare" una comoda e semplice base ortonormale, in una mostruosità \emph{ortogonale nel senso della delta di Dirac}, con elementi neppure normalizzabili. 
+
+\subsubsection{Interpretazione probabilistica}
+L'interpretazione di Copenhagen è ancora valida: è semplicemente necessario rivederla. Date due funzioni d'onda normalizzate $\phi_1(\bm{r})$ e $\phi_2(\bm{r})$, definiamo la probabilità di trovare la particella entro i due volumi $\Omega_1, \Omega_2 \in \mathbb{R}^3$ come di consueto:
+\[
+\begin{aligned}
+    \mathcal{P}(\Omega_1) &= \int_{\Omega_1} \dd^3{\bm{r}} \, |\phi_1|^2 = \frac{\text{Volume}\,(\Omega_1)}{(2\pi)^3} \\
+    \mathcal{P}(\Omega_2) &= \int_{\Omega_2} \dd^3{\bm{r}} \, |\phi_2|^2 = \frac{\text{Volume}\,(\Omega_2)}{(2\pi)^3}
+\end{aligned}
+\implies
+\frac{\mathcal{P}(\Omega_1)}{\mathcal{P}(\Omega_2)} = \frac{\text{Volume}\,(\Omega_1)}{\text{Volume}\,(\Omega_2)} \quad,
+\]
+dove abbiamo infine suggerito una nozione di \textbf{densità relativa di probabilità}.
+
+\subsubsection{Espansione di Fourier}
+Il fatto che $\mathcal{B}_{free}$ sia una base per $\mathcal{L}^2$ garantisce che una qualsiasi funzione d'onda possa essere espressa tramite gli elementi della base stessa. Sfruttando la notazione integrale essendo lo spettro dei vari $\bm{k}$ continuo:
+\[
+    \Phi(\bm{r}) = \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, a(\bm{k})\phi_{\bm{k}}(\bm{r})
+\]
+e, sfruttando la relazione di completezza, otteniamo l'espressione per i coefficienti $a(\bm{k})$:
+\[
+    \begin{aligned}
+        \Phi(\bm{r}) = \int_{\mathbb{R}^3} \dd^3{\bm{s}} \, \Phi(\bm{s}) \delta^{(3)}{(\bm{s}-\bm{r})} &= \int_{\mathbb{R}^3} \dd^3{\bm{s}} \, \Phi(\bm{s}) \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, \phi_{\bm{k}}(\bm{s})^*\phi_{\bm{k}}(\bm{r}) \\
+        &= \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, \phi_{\bm{k}}(\bm{r}) \underbrace{\int_{\mathbb{R}^3} \dd^3{\bm{s}} \, \Phi(\bm{s}) \phi_{\bm{k}}(\bm{s})^*}_{a(\bm{k})} \quad.
+        \end{aligned}
+\]
+Possiamo, in utltimo, verificare se l'identità di Parseval regge anche in questo caso, nonostante la base analizzata non sia ortonormale\footnote{Attenzione! L'identità di Parseval vale solo quando si tratta con basi \emph{ortonormali}, condizione evidentemente non soddisfatta da $\mathcal{B}_{free}$. Come però si vede dal calcolo, è rigorosamente consentito estendere l'identità al continuo tramite il \textbf{Teorema di Plancherel}.}:
+\[
+\begin{aligned}
+    \braket{\phi_{\bm{k}}}{\phi_{\bm{k}}} &= \int_{\mathbb{R}^3} \dd^3{\bm{r}} \, \phi_{\bm{k}}(\bm{r})^*\phi_{\bm{k}}(\bm{r}) \\
+    &= \int_{\mathbb{R}^3} \dd^3{\bm{r}} \, \underbrace{\left(\int_{\mathbb{R}^3} \dd^3{\bm{k}} \, a(\bm{k})\phi_{\bm{k}}(\bm{r})\right)^*}_{\phi_{\bm{k}}(\bm{r})^*} \underbrace{\int_{\mathbb{R}^3} \dd^3{\bm{q}} \, a(\bm{q})\phi_{\bm{q}}(\bm{r})}_{\phi_{\bm{k}}(\bm{r})} \\
+    &= \underbrace{\int_{\mathbb{R}^3} \dd^3{\bm{r}} \, \phi_{\bm{k}}(\bm{r})^* \phi_{\bm{q}}(\bm{r})}_{\delta^{(3)}({\bm{k}-\bm{q}})} \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, a(\bm{k})^* \int_{\mathbb{R}^3} \dd^3{\bm{q}} \, a(\bm{q}) = \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, |a(\bm{k})|^2 \quad. \\
+\end{aligned}
+\]
+
+\section{Alcuni valori di aspettazione}
+Siamo pronti per immergerci nella computazione di alcuni valori di aspettazione basilari. Quando abbiamo definito cosa significasse la notazione $ \langle \h{A} \rangle $, abbiamo proposto come unico esempio fondamentale per convincerci del fatto che \emph{ha un significato sufficientemente classico}: quello dell'operatore posizione. La conoscenza delle basi e dell'espansione in Fourier di un generico stato $\psi$ ci permette ora di fare conti più complessi come, ad esempio, il calcolo del valore di aspettazione della quantità di moto, dell'energia cinetica e dell'hamiltoniano. 
+
+\subsection{Valore di aspettazione dell'operatore quantità di moto}
+Immergiamoci nell'algebra. Preso un corpuscolo in un volume $\Omega \in \mathbb{R}^3$ descritto dalla funzione d'onda $\psi(\bm{r})$\footnote{Per semplicità trascuriamo la parte temporale in quanto contribuisce unicamente in un termine di fase $e^{-i\frac{E}{\hbar}t}$} espressa nella base delle onde piane che diagonalizzano $\hb{p}$ ($\mathcal{B}_{\hb{p}}$), abbiamo dalla definizione:
+\[
+    \begin{aligned}
+        \avg{\hat{\bm{p}}} = (\psi, \hat{\bm{p}} \psi) = \braket{\psi}{\hb{p}\psi} &= \int_\Omega \dd^3{\bm{r}} \, \psi(\bm{r})^*\hb{p}\psi(\bm{r}) \\
+        &\overset{(1)}{=} \int_\Omega \dd^3{\bm{r}} \, \psi(\bm{r})^* \hb{p} \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, a(\bm{k}) \phi_{\bm{k}}(\bm{r}) = \int_\Omega \dd^3{\bm{r}} \, \psi(\bm{r})^* \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, a(\bm{k}) \hb{p} \phi_{\bm{k}}(\bm{r}) \\
+        &\overset{(2)}{=} \int_\Omega \dd^3{\bm{r}} \, \psi(\bm{r})^* \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, a(\bm{k}) \hbar \bm{k} \phi_{\bm{k}}(\bm{r}) \\
+        &= \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, a(\bm{k}) \hbar \bm{k} \underbrace{\int_\Omega \dd^3{\bm{r}} \, \psi(\bm{r})^* \phi_{\bm{k}}(\bm{r})}_{\braket{\psi}{\phi_{\bm{k}}}^* = a(\bm{k})^*} = \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, |a(\bm{k})|^2 \hbar \bm{k} \quad,
+    \end{aligned}
+\]
+dove in $(1)$ abbiamo espanso $\psi$ in Fourier e in $(2)$ abbiamo commuatto l'operatore quantità di moto, agente sulle coordinate spaziali, con l'integrale sugli impulsi. 
+
+Specifichiamo che la base in questione è quelle delle onde piane \emph{progressive}:
+\[
+   \mathcal{B}_{\hb{p}} = \left\{ \phi_{\bm{k}}(\bm{r}) = \frac{e^{i\bm{k}\cdot\bm{r}}}{(2\pi)^{\frac{3}{2}}} \right\} \quad.
+\]
+
+\subsubsection{Interpretazione fisica del risultato}
+Si ricordi quanto avevamo trovato nel caso dell'operatore posizione: la perfetta corrispondenza quantomeccanica del concetto di centro di massa, ovvero la somma ponderata di tutte le possibili posizioni $\bm{r}_i$ assumibili dalla particella soppesate dalla probabilità di trovarla effettivamente in $\bm{r}_i$. Nel precedente calcolo rivediamo lo stesso schema: il valore di aspettazione di $\hb{p}$ corrisponde alla "media" dei possibili momenti $\bm{p}_i = \hbar \bm{k}_i$ associati al corpuscolo pesata dalla probabilità che, all'atto della misurazione, $\psi$ si trovi nello stato $\phi_{\bm{k}}$\footnote{Il concetto appena introdotto, meglio noto come \textbf{collasso della funzione d'onda}, verrà ripreso nel discutere la teoria della misura.}. 
+
+In questo senso $|a(\bm{k})^2|$ è uguale alla probabilità che $\psi$ assuma come momento $\bm{p}_i$.
+
+\subsection{Valore di aspettazione dell'operatore energia cinetica}
+Nelle stesse ipotesi di prima (base derivante dalla diagonalizzazione di $\h{K}$ ($\mathcal{B}_{\h{K}}$), volume $\Omega \in \mathbb{R}^3$, trascuriamo la parte temporale), calcoliamo:
+\[
+    \begin{aligned}
+        \avg{\h{K}} = (\psi, \h{K} \psi) = \braket{\psi}{\h{K}\psi} &= \int_\Omega \dd^3{\bm{r}} \, \psi(\bm{r})^*\h{K}\psi(\bm{r}) \\
+        &= \int_\Omega \dd^3{\bm{r}} \, \psi(\bm{r})^* \h{K} \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, a(\bm{k}) \phi_{\bm{k}}(\bm{r}) \\
+        &= \int_\Omega \dd^3{\bm{r}} \, \psi(\bm{r})^* \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, a(\bm{k}) \h{K} \phi_{\bm{k}}(\bm{r}) \\
+        &= \int_\Omega \dd^3{\bm{r}} \, \psi(\bm{r})^* \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, a(\bm{k}) \underbrace{\frac{\hbar^2 k^2}{2m}}_{E_{\mathcal{K}}} \phi_{\bm{k}}(\bm{r}) \\
+        &= \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, a(\bm{k}) E_{\mathcal{K}} \int_\Omega \dd^3{\bm{r}} \, \psi(\bm{r})^* \phi_{\bm{k}}(\bm{r}) = \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, |a(\bm{k})|^2 E_{\mathcal{K}} \quad,
+    \end{aligned}
+\]
+nella base delle onde piane (qualsiasi combinazione lineare sarebbe ammessa ma si scelgono unicamente le onde progressive, così come per la quantità di moto):
+\[
+   \mathcal{B}_{\h{K}} = \left\{ \phi_{\bm{k}}(\bm{r}) = \frac{e^{i\bm{k}\cdot\bm{r}}}{(2\pi)^{\frac{3}{2}}} \right\} \quad.
+\]
+L'interpretazione è in questo contesto la medesima di quella proposta nel caso della quantità di moto.
+
+\subsection{Valore di aspettazione dell'operatore hamiltoniano}
+In questo caso dobbiamo prestare più attenzione alla definizione di "autofunzioni" per l'operatore $\h{H}$. Nella soluzione della S.E. stazionaria, ci eravamo ritrovati a risolvere l'equazione agli autovalori per l'operatore hamiltoniano, ottenendo un'insieme di funzioni d'onda che ora sappiamo essere una base per $\mathcal{L}^2$. Supponendo lo spettro di energia come discreto, abbiamo $\mathcal{B}_{\h{H}} = \{ \psi_{E_n} \}$ e possiamo finalmente portare a termine il conto:
+\[
+    \begin{aligned}
+        \avg{\h{H}} = (\Psi, \h{H} \Psi) = \braket{\Psi}{\h{H}\Psi} &= \int_\Omega \dd^3{\bm{r}} \, \Psi(\bm{r})^*\h{H}\Psi(\bm{r}) \\
+        &= \int_\Omega \dd^3{\bm{r}} \, \Psi(\bm{r})^* \h{H} \sum_j C(E_n) \psi_{E_n}(\bm{r}) \\
+        &= \sum_n C(E_n)\int_\Omega \dd^3{\bm{r}} \, \Psi(\bm{r})^* \h{H} \psi_{E_n}(\bm{r}) \\
+        &= \sum_n C(E_n)\int_\Omega \dd^3{\bm{r}} \, \Psi(\bm{r})^* E_n \psi_{E_n}(\bm{r}) \\
+        &= \sum_nC(E_n) E_n \underbrace{\int_\Omega \dd^3{\bm{r}} \, \Psi(\bm{r})^* \psi_{E_n}(\bm{r})}_{\braket{\Psi}{\psi_{E_n}}^* = C(E_n)^*} = \sum_n|C(E_n)|^2 E_n \quad.
+    \end{aligned}
+\]
+Anche in questo caso, abbiamo implicitamente sfruttato il fatto che le autofunzioni dell'operatore hamiltoniano formano una base completa per $\mathcal{L}^2$. Benché una giustficazione possa venire dal teorema di Sturm-Liouville, dimostreremo questo fatto nella prossima sezione in maniera più dettagliata. L'importante da notare è quanto ottenuto è ancora una volta la media ponderata, \emph{quantistica}, dei possibili valori di energia del sistema. 
+
+Si noti che, anche considerando l'evoluzione temporale del generico sistema $\Psi (\bm{r},t)$, il risultato sarebbe stato indipendente dal tempo, mimando la stessa indipendenza classica della funzione di Hamilton.

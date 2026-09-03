@@ -1,0 +1,168 @@
+%!TEX root = ../dispense_QP.tex
+
+\chapter{Proprietà degli operatori hermitiani e equazioni agli autovalori}
+Come intuito nel precedente capito, non abbiamo ancora tutte le necessarie informazioni sugli operatori hermitiani per riuscire a rispondere a dovere ad alcune domande sorte nel corso della discussione come, ad esempio, perché l'insieme formato dagli autostati di un operatore hermitiano sia una \emph{base completa} per $\mathcal{L}^2$. Daremo ora altre informazioni sui nostri tanto amati (e odiati) operatori e, sperabilmente, riusciremo a venire a capo dei nostri problemi.
+
+\section{Proprietà dello spettro di un operatore hermitiano}
+Partiamo ora da un presupposto ormai appurato e deriviamo alcune considerazioni. Gli operatori fisici \emph{devono} essere hermitiani... ma quali sono le proprietà algebriche di questi fantomatici operatori autoaggiunti? Beh, due fra tutte, sono contraddistinti da autovalori \textbf{reali} e autostati (autofunzioni) \textbf{ortogonali} fra loro. 
+
+\begin{teorema}[Proprietà degli autovalori di un operatore hermitiano]
+    Sia $\h{A}$ un operatore hermitiano (ovvero per cui vale $\h{A} = \h{A}^\dagger$). Allora lo spettro degli autovalori $\alpha_m$ di $\h{A}$ è reale: 
+    \[
+        \alpha_m \in \mathbb{R}, \quad \forall m \quad.
+    \]
+\end{teorema}
+\begin{proof}
+    L'equazione agli autovalori per l'operatore $\h{A}$, dette $\psi_m$ le sue autofunzioni e $\alpha_m$ gli autovalori, risulta:
+    \[
+        \h{A}\psi_m = \alpha_m \psi_m \quad.
+    \]
+    Calcoliamo ora il prodotto scalare tra $\psi_m$ e $\h{A}\psi_m$:
+    \[
+        (\psi_m, \h{A}\psi_m) = (\psi_m, \alpha_m\psi_m) \overset{(1)}{=} \alpha_m(\psi_m,\psi_m)
+    \]
+    dove in $(1)$ abbiamo usato il fatto che il prodotto scalare in $\mathcal{L}^2$ è sesquilineare. Essendo $\h{A}$, hermitiano, possiamo ancora scrivere:
+    \[
+    \begin{aligned}
+        (\psi_m, \h{A}\psi_m) &= (\h{A}\psi_m, \psi_m) \\
+        &= \alpha_m^*(\psi_m, \psi_m) \quad.
+    \end{aligned}
+    \]
+    Sottraendo memebro a membro le due diferse formulazioni di $(\psi_m, \h{A}\psi_m)$ otteniamo infine:
+    \[
+    \begin{aligned}
+        (\psi_m, \h{A}\psi_m) - (\psi_m, \h{A}\psi_m) &= \alpha_m(\psi_m, \psi_m) - \alpha_m^*(\psi_m, \psi_m) \\ &= (\alpha_m -\alpha_m^*)(\psi_m, \psi_m) =(\alpha_m -\alpha_m^*) \norm{\psi_m}^2 = 0 \quad.
+    \end{aligned}
+    \]
+    Dalla legge di annullamento del prodotto abbiamo due possibili soluzioni all'ultima equazione:
+    \begin{itemize}
+        \item $\norm{\psi_m}^2 = 0$: essendo la norma una funzione definita positiva, resitutisce zero se e solo se il suo argomento è la funzione nulla stessa. Il vettore nullo non può però essere un autovettore, da cui serve escludere il caso $\psi_m = 0$. 
+        \item $\alpha_m = \alpha_m^*$: unica possibile soluzione che implica che $\alpha_m \in \mathbb{R}$.
+    \end{itemize} 
+\end{proof}
+
+Derivata questa fondamentale nozione, possiamo finalmente approcciarci all'analisi del prossimo risultato. 
+\begin{teorema}[Proprietà degli autofunzioni di un operatore hermitiano]
+    Sia $\h{A}$ un operatore hermitiano (ovvero per cui vale $\h{A} = \h{A}^\dagger$). Allora $\h{A}$ ammette uno spettro di autostati $\psi_m$ ortogonali fra loro: 
+    \[
+        (\psi_m,\psi_n) = 0, \quad \forall \, m,n \quad.
+    \]
+\end{teorema}
+Prima di dimostrare il teorema, serve però distinguere due casi. Detti $\alpha_m$ gli autovalori di $\h{A}$ possiamo infatti avere: $(1)$ $\alpha_m \neq \alpha_n \, \forall\,  m,n$ (\textbf{caso non degenere}); $(2)$ $\exists \, m,n : \alpha_m = \alpha_n$ (\textbf{caso degenere}). Dimostreremo per primo il caso non degenere per poi addentrarci nella discussione quello degenere.
+
+\begin{proof}
+    (\textbf{1. Caso non degenere}). Assumiamo di avere uno spettro di autovalori tutti diveri fra loro. Allora, dette $\psi_m$ e $\psi_n$ due autofunzioni di $\h{A}$, abbiamo le seguenti equazioni agli autovalori:
+    \[
+        \begin{aligned}
+            &\h{A} \psi_m = \alpha_m\psi_m \\
+            &\h{A} \psi_n = \alpha_n\psi_n \quad.
+        \end{aligned}
+    \]
+    Continuiamo calcolando i seguenti prodotti scalari:
+    \[
+    \begin{aligned}
+        &(\psi_m, \h{A}\psi_n) = \alpha_n (\psi_m,\psi_n) \\
+        &(\psi_m, \h{A}\psi_n) = (\h{A}\psi_m, \psi_n) = \alpha_m^*(\psi_m, \psi_n) \overset{(1)}{=} \alpha_m(\psi_m, \psi_n)
+    \end{aligned}
+    \]
+    dove in $(1)$ abbiamo sfruttato il fatto che gli autovalori dell'operatore sono reali. Abbiamo quindi la seguente uguaglianza:
+    \[
+        \alpha_m(\psi_m, \psi_n) = \alpha_n(\psi_m, \psi_n) \implies (\alpha_m - \alpha_n) (\psi_m, \psi_n) = 0 \quad.
+    \]  
+    Avendo assunto autovalori distinti e quindi $\alpha_m \neq \alpha_m$, serve che il prodotto scalare sia identicamente nullo e che quindi $\psi_m$ sia ortogonale a $\psi_n$.  
+\end{proof}
+
+\begin{proof}
+    (\textbf{2. Caso degenere}). Sappiamo adesso che, per ipotesi, esistono autovalori uguali associati ad autostati diversi. Senza perdita di generalità, assumiamo che $\alpha_1 = \alpha_2 = \dots = \alpha_m \neq \alpha_{m+1} \dots$, ovvero che i primi $m$ autovalori siano uguali fra loro e diversi dai successivi. Definiamo l'insieme $\tilde{\mathcal{B}}$ come il contenente delle $m$ autofunzioni associati ai suddetti $m$ autovalori:
+    \[
+        \tilde{\mathcal{B}} \coloneq \left\{ \psi_i \in \mathcal{L}^2, i \in [1, m] : \h{A}\psi_i = \alpha_i\psi_i \right\} \quad.
+    \]
+    Chiamiamo ora $c_{ab}$ il prodotto scalare fra due elementi di $\tilde{\mathcal{B}}$:
+    \[
+    c_{ab} = (\psi_a, \psi_b), \quad \psi_a, \psi_b \in \tilde{\mathcal{B}} \quad.
+    \]
+    Per costruzione, deve valere $c_{ab} = c_{ba}^*$, infatti abbiamo che $(\psi_a, \psi_b) = (\psi_b, \psi_a)^*$. Se raggruppiamo i cavi $c_{ab}$ in una matrice $\mathcal{C}$, quest'ultima risulta essere quadrata ($\mathcal{C} \in \mathbb{M}^{m\times m}$) e \emph{simmetrica nel senso hermitiano} (o banalmente hermitiana), infatti:
+    \[
+    \begin{aligned}
+        \mathcal{C} &= \mathcal{C}^\dagger \\
+        \implies ({\mathcal{C}})_a^b = c_{ab} &= c_{ba}^* = ({\mathcal{C}^\dagger})_b^a \quad.
+    \end{aligned}
+    \]  
+    Il \textbf{Teorema spettrale} ci garantisce che le matrici hermitiane sono sempre diagonalizzabili in campo reale e ammettono matrici diagonalizzanti ortogonali $\mathcal{O}$ e $\mathcal{O}^{\dagger}$: 
+    \[
+        \mathcal{D} = \mathcal{O}^\dagger \mathcal{C} \mathcal{O} 
+    \]
+    con $\mathcal{D}$ diagonale. In componenti, l'uguaglianza assume la forma di:
+    \[
+        \alpha_i \delta_{ij} = \sum_a \sum_b (\mathcal{O}^\dagger)_i^a (\mathcal{C})_a^b (\mathcal{O})_b^j \quad.
+    \]
+    Data la definizione del termine $[a,b]$ di $\mathcal{C}$, riarrangiamo i termini e calcoliamo:
+    \[
+        \begin{aligned}
+            \alpha_i \delta_{ij} &= \sum_a \sum_b (\mathcal{O}^\dagger)_i^a (\psi_a,\psi_b) (\mathcal{O})_b^j \overset{(1)}{=} \sum_a \sum_b [(\mathcal{O})_i^a]^* (\psi_a,\psi_b) (\mathcal{O})_b^j \\
+            &= \sum_a \sum_b ((\mathcal{O})_i^a\psi_a,(\mathcal{O})_b^j\psi_b) = \left( \sum_a(\mathcal{O})_i^a\psi_a, \sum_b (\mathcal{O})_b^j\psi_b \right) = (\phi'_i, \phi'_j) \quad. \\
+        \end{aligned}
+    \]
+    dove in $(1)$ abbiamo sfruttato la proprietà di simmetria hermitiana della matrie diagonalizzante mentre i nuovi stati $\psi'_{i,j}$ sono stati costruiti come \emph{combinazione lineare} degli elementi di $\tilde{\mathcal{B}}$. Dividendo per $\alpha_i$ ottendiamo una utile relazione di ortonormalità:
+    \[
+       \frac{(\phi'_i, \phi'_j)}{\alpha_i} = \left( \frac{\phi'_i}{\sqrt{\alpha_i}}, \frac{\phi'_j}{\sqrt{\alpha_i}} \right) = (\phi_i, \phi_j) = \delta_{ij}, \quad
+       \begin{dcases}
+            \phi'_i \to \phi_i = \frac{\phi'_i}{\sqrt{\alpha_i}} \\
+            \phi'_j \to \phi_j = \frac{\phi'_j}{\sqrt{\alpha_i}} \quad.
+       \end{dcases}
+    \]
+    Possiamo ora costruire l'insieme:
+    \[
+        \mathcal{B} \coloneq \left\{ \phi_j, j \in [1, m]; \psi_i, i \in [m+1, \infty) \right\}
+    \]
+    che risulta evidentemente formato da elementi ortogonali fra loro\footnote{Si noti infatti che i vari $\phi_j$ sono costruiti a partire dagli autostati $\psi_j$ che condividevano gli stessi autovalori. Dal momento che i $\psi_i, i \in [m+1, \infty)$ hanno per ipotesi autovalori diversi rispeti agli $\psi_j, j \in [1, m]$, per la dimostrazione del caso non degenere abbiamo $\psi_i \perp \psi_j \implies \psi_i \perp \phi_j$.}.
+\end{proof}
+
+In generale, quindi, è possibile dimostrare che un insieme formato da autostati ortogonali associati ad un dato operatore hermitiano rappresenta una \emph{base} per $\mathcal{L}^2(\Omega)$ (per un determinato volume $\Omega$) e, pertanto, è un set \emph{completo}. 
+
+\subsection{Interpretazione geometrica di alcuni risultati fisici}
+Il secondo teorema visto ci permette di far evolvere in senso \emph{geometrico} un'intuizione derivante dalla discussione della soluzione generale della S.E.: un qualsiasi stato $\Psi$ può essere espresso sfruttando il Principio di sovrapposizione applicato alle infinite soluzione dell'equazione di Schrödinger, gli \emph{stati stazionari} $\psi_{E_n}$, modulate per un fattore di fase associato all'evoluzione temporale. Adesso capiamo che gli stati stazionari non sono altro che gli autostati dell'operatore hamiltoniano\footnote{Infatti avevamo assunto che fossero le funzioni d'onda che diagonalizzano $\h{H}$.} che, in quanto tali, formano una base \emph{discreta} per $\mathcal{L}^2(\Omega)$ tramite cui è così possibile descrivere una generica $\Psi$ tramite serie di Fourier. 
+
+\subsubsection{Il principio di sovrapposizione}
+Per un generico operatore $\h{A}$ agente su $\mathcal{L}^2(\Omega)$, con spettro discreto, abbiamo che una qualsiasi $\Psi \in \mathcal{L}^2(\Omega)$ può essere scritta come:
+\[
+    \Psi = \sum_n \beta_n\psi_n, \quad \beta_n = \braket{\psi_n}{\Psi}, \quad  \h{A} \psi_n = \alpha_n \psi_n \quad.
+\]
+Ancora, essendo $\h{A}$ hermitiano e quindi la base dei suoi autostati ortonormale, abbiamo l'identità di Parseval:
+\[
+    \braket{\Psi}{\Psi} = \sum_n |\beta_n|^2 = 1 \quad,
+\]
+giustificata dalla condizione di normalizzazione. In questo senso, vale la \textbf{regola di Born generalizzata} e $|\beta_n|^2$ rappresenta la probabilità che il sistema si trovi nello stato $\beta_n \to \psi_n$.
+
+\subsubsection{Il valore di aspettazione di un operatore}
+Cerchiamo ora di capire cosa significa trovare il valore di aspettazione di un operatore $\h{A}$. Supponendo inizialmente che abbia uno spettro discreto di autostati $\psi_n$ e autovalori $\alpha_n$, otteniamo dalla definizione:
+\[
+\begin{aligned}
+    \avg{\h{A}} = \braket{\Psi}{\h{A}\Psi} = \braket{\sum_n \beta_n\psi_n}{\h{A}\sum_m \beta_m\psi_m} &= \sum_n \sum_m \beta_n^* \beta_m \braket{\psi_n}{\h{A}\psi_m} \\
+    &= \sum_n \sum_m \beta_n^* \beta_m \braket{\psi_n}{\alpha_m\psi_m}\\
+    &= \sum_n \sum_m \beta_n^* \beta_m \alpha_m \delta_{mn} = \sum_n |\beta_n|^2 \alpha_n \quad.
+\end{aligned}
+\]
+Il valore di aspettazione di un operatore, che non è altro che il valore atteso a seguito di una misura effettuata sulla grandezza fisica associata ad $\h{A}$, è dunque la somma ponderata degli autovalori dell'operatore stesso pesata dalla probabilità che il generico stato misurato si trovi nello stato $\psi_n$. Si presti ben attenzione che il valore atteso di una misura $\neq$ il risultato di una misurazione che assumeremo corrispondere a \emph{uno degli autovalori dell'operatore}!
+
+Ancora, abbiamo dal primo teorema discusso in precedenza, il fatto che necessariamente $\avg{\h{A}} \in \mathbb{R}$, in piena coerenza con l'interpretazione \emph{misurista} suggerita in precedenza. In ultimo, la relazione di completezza risulta:
+\[
+    \delta^{(3)}(\bm{s}-\bm{r}) = \sum_n \psi_n(\bm{s})^*\psi_n(\bm{r}) \quad.
+\]
+La discussione riguardo operatori con spettro continuo è assolutmente affine e non sarà condotta dettagliatamente.
+
+\section{Gli assiomi della teoria quantistica}
+Siamo adesso pronti a enumerare gli assiomi su cui si basa la teoria quantistica. 
+\begin{enumerate}[label=\roman*.]
+    \item Gli stati fisici di un sistema sono descritti da \textbf{funzioni d'onda} $\psi(\bm{r},t)$ e vale  $ \psi: \mathbb{R} \to \mathbb{C}$.
+    \item Le osservabili fisiche (grandezze) corrispondono a operatori hermitiani.
+    \item Il valore di aspettazione di un generico operatore $\h{A}$ è dato da:
+        \[
+            \avg{\h{A}} = \braket{\psi}{\h{A}\psi} = \int_\Omega \dd^3{\bm{r}} \psi(\bm{r})^*\h{A}\psi(\bm{r}) \quad.
+        \]
+    \item L'evoluzione temporale degli stati fisici è governata dall'equazione di Schrödinger:
+    \[
+        i\hbar \pdv{\psi(\bm{r},t)}{t} = \h{H}\psi(\bm{r},t) \quad.
+    \]
+    \item (\textbf{Principio del collasso di una funzione d'onda}). La misurazione di una grandezza fisica $\mathcal{A}$ a cui è associato un operatore hermitiano $\h{A}$ di autovalori $\alpha_m$ ha come risultato un $\alpha_m$. A seguito della misura, lo stato fisico si trova nell'autostato associato all'autovalore misurato $\psi \to \psi_m$.
+\end{enumerate}

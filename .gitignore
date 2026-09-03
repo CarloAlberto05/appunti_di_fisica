@@ -1,0 +1,21 @@
+# LaTeX auxiliary files
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+
+# macOS
+.DS_Store
+
+# TeXShop
+*.bak
+

@@ -1,0 +1,562 @@
+\chapter{L'evoluzione dell'informazione quantistica}
+Nei capitoli precedenti abbiamo eretto le fondamenta assiomatiche e algebriche della teoria quantistica. Abbiamo compreso come la massima informazione accessibile su un sistema sia codificata all'interno di una funzione d'onda e come le grandezze fisiche della meccanica analitica debbano essere promosse a operatori hermitiani, governati dalle stringenti regole della quantizzazione canonica e dalla non-commutatività. 
+
+Tuttavia, il formalismo finora sviluppato definisce unicamente la bsae cinematica della teoria. Per descrivere un sistema fisico concreto ed estrarre previsioni quantitative misurabili in laboratorio, è necessario concentrare l'attenzione sull'operatore principe che governa l'intero sistema: l'\textbf{operatore Hamiltoniano} $\hat{\m{H}}$.
+
+L'equazione di Schrödinger, discussa in precedenza nelle sue vesti fenomenologiche, assume ora il suo ruolo strutturale definitivo. Riducendo la trattazione ai sistemi conservativi, lo studio della dinamica si trasformerà in un \emph{problema agli autovalori} per l'energia. Risolvere l'equazione di Schrödinger equivale, in un certo senso, a "diagonalizzare" l'Hamiltoniana e al ricercare quindi i suoi \textbf{autovalori} e i suoi \emph{autovettori} che, nel mondo quantistico, diventano \textbf{autostati}.
+
+Questo capitolo segna dunque il passaggio dall'astrazione algebrica alla prassi differenziale. Analizzeremo l'equazione di Schrödinger per diverse configurazioni spaziali dell'energia potenziale $V(\bm{r})$, partendo dai casi unidimensionali analiticamente risolubili: la particella libera, i gradini, le barriere e le buche di potenziale.
+
+Il risultato concettualmente più profondo che emergerà da questa trattazione è la natura stessa del concetto di "quanto". Come vedremo, la \textbf{quantizzazione dell'energia} - storicamente introdotta tramite postulati \emph{ad hoc} nei modelli semiclassici - scaturirà qui in modo del tutto spontaneo e rigoroso. Essa non sarà un assioma imposto a priori, bensì una diretta e inevitabile conseguenza analitica della richiesta che le funzioni d'onda siano fisicamente ammissibili e che rispettino le \emph{condizioni al contorno} topologiche e di regolarità imposte dai vari potenziali fisici.
+
+\section{L'evoluzione temporale della funzione d'onda}
+In un sistema conservativo, nel quale l'hamiltoniana si conserva\footnote{Si ricordi che $H = E$.} e l'energia potenziale è tempo-indipendente, è possibile risolvere la S.E. assumendo che $\Psi(\bm{r},t)$ che descrive lo stato analizzato sia scomponibile nel prodotto di una funzione dipendente \textbf{esclusivamente dal tempo} $f(t)$ e di una dipendente \textbf{esclusivamente dallo spazio} $\psi(\bm{r})$:
+\begin{equation}
+    \Psi(\bm{r},t) = f(t)\psi(\bm{r}) \quad.
+    \label{eq:disaccop}
+\end{equation}
+Scriviamo la S.E.:
+\[
+\begin{aligned}
+    i\hbar \pdv{\Psi(\bm{r},t)}{t} = \hat{\m{H}}\Psi(\bm{r},t) \implies
+    i\hbar \pdv{f(t)\psi(\bm{r})}{t} &= \hat{\m{H}}\big(f(t)\psi(\bm{r})\big) \\
+    i\hbar \psi(\bm{r})\dv{f(t)}{t} &= f(t)\hat{\m{H}}\psi(\bm{r}) \quad.
+\end{aligned}
+\]
+Isolando i termini dipendenti da spazio e tempo rispettivamente a membro destro e sinistro dell'uguaglianza, otteniamo:
+\[
+\frac{i\hbar}{f(t)}\dv{f(t)}{t} = \frac{\hat{\m{H}}\psi(\bm{r})}{\psi{(\bm{r})}} \quad.
+\] 
+Abbiamo \emph{disaccoppiato} la S.E., trasformandola in un'equazione che presenta ai suoi membri oggetti dipendenti da variabili fra loro indipendenti. In questo senso possiamo giustificare, almeno euristicamente, l'ansatz formalizzato nella \eqref{eq:disaccop}: i due membri della S.E. appena riformulata dipendono da variabili \textbf{indipendenti} quali, appunto, spazio $\bm{r}$ e tempo $t$. L'unico modo che abbiamo per risolvere l'equazione è pertanto quello di imporre un'ulteriore uguaglianza ad una costante comune $E$: 
+\[
+\frac{i\hbar}{f(t)}\dv{f(t)}{t} = \frac{\hat{\m{H}}\psi(\bm{r})}{\psi{(\bm{r})}} = E \implies 
+\begin{dcases}
+    \frac{i\hbar}{f(t)}\dv{f(t)}{t} = E \\
+    {\hat{\m{H}}\psi(\bm{r})} = E{\psi{(\bm{r})}} \quad.
+\end{dcases}
+\] 
+La soluzione della parte temporale porta a:
+\begin{equation}
+    f(t) = Ce^{-i\frac{t}{\hbar}E}, \quad C \in \mathbb{C} \quad.
+\end{equation}
+La parte spaziale, invece, corrisponde ad una - non tanto classica\footnote{Si noti che la presenza dell'operatore differenziale energia cinetica in $\hat{\m{H}}$, costringe a identificare l'equazione agli autovalori in questione come un'equazione differenziale del secondo ordine alle derivate parziali.} - equazione agli autovalori per l'operatore $\hat{\m{H}}$ in cui, famosa ai più come \textbf{equazione di Schrödinger stazionaria}. In piena analogia con l'algebra matriciale, si cerca una $\psi(\bm{r})$ (\emph{autostato} dell'hamiltoniana) che viene lasciata invariata dall'applicazione di $\hat{\m{H}}$, a meno di uno scalamento dato da un fattore costante $E$, che in questo contesto assume il significato di \textbf{autovalore dell'energia}. 
+
+La generica soluzione dell'equazione è quindi data da:
+\begin{equation}
+    \Psi_E(\bm{r},t) = f(t)\psi(\bm{r}) = Ce^{-i\frac{t}{\hbar}E}\psi_E(\bm{r}) 
+\end{equation} 
+dove è stato aggiunto il pedice $E$ per evidenziare che l'autostato $\psi(\bm{r})$ è proprio quello associato all'autovalore $E$ e dare così coerenza alla notazione. Si noti che $\Psi$ è conosciuta come \textbf{stato stazionario} o \emph{soluzione stazionaria} della S.E. 
+L'aggettivo \emph{stazionario} deriva dal fatto che la norma quadra di $\Psi_E$, ovvero la densità di probabilità $\rho$, è indipendente dal tempo. Infatti:
+\[
+    |\Psi_E(\bm{r},t)|^2 = |C|^2|\psi(\bm{r})|^2 = \rho \quad,
+\]
+essendo unitario il modulo quadro di un esponenziale complesso.
+
+\subsection{Soluzione generica tramite principio di sovrapposizione}
+La linearità della S.E. consente, come visto, di sfruttare il principio di sovrapposizione e ottenere che la più generica soluzione dell'equazione prende la forma di:
+\begin{equation}
+    \Psi(\bm{r},t) = \sum_n \Psi_{E_n}(\bm{r},t) = \sum_n C(E_n)e^{-i\frac{t}{\hbar}E_n}\psi_{E_n}(\bm{r}) \quad,
+    \label{eq:sovrapp_discr}
+\end{equation}
+nel caso di una distribuzione discreta dei livelli energetici, oppure di:
+\begin{equation}
+    \Psi(\bm{r},t) = \int_\Omega \dd{E} \Psi_{E}(\bm{r},t) = \int_\Omega \dd{E} C(E)e^{-i\frac{t}{\hbar}E}\psi_{E}(\bm{r}) \quad,
+\end{equation}
+nel caso di distribuzioni continue di energia. Con $\Omega$ abbiamo indicato il dominio di definizione di $\psi$.
+
+Abbiamo così, in maniera relativamente semplice, scoperto un fatto fondamentale: un generico stato che descrive un sistema non è altro che la combinazione lineare del prodotto di "stati elementari" del sistema stesso, dipendenti dagli autostati dell'hamiltoniana e da una parte temporale. Chissà che non si possa definire una sorta di \emph{base} tramite cui scrivere un qualsiasi stato $\psi$...
+
+\subsubsection{Check della soluzione generale}
+Controlliamo, per rigore formale, che la soluzione generale trovata risponda effettivamente ai requeisiti della S.E. Calcoliamo innanzitutto la derivata parziale rispetto al tempo e moltiplichiamola per il fattore $i\hbar$:
+\[
+i\hbar\pdv{\Psi(\bm{r},t)}{t} \overset{(1)}{=} i\hbar\sum_n C(E_n) \pdv{\bigg(e^{-i\frac{t}{\hbar}E_n}\bigg)}{t} \psi_{E_n}(\bm{r}) = \sum_n C(E_n) E_n e^{-i\frac{t}{\hbar}E_n}\psi_{E_n}(\bm{r}) \quad,
+\]
+dove in $(1)$ abbiamo sfruttato la linearità della derivata. Il membro destro della S.E. lo otteniamo invece da:
+\[
+\begin{aligned}
+    \hat{\m{H}} \Psi(\bm{r},t) = \hat{\m{H}}\bigg[ \sum_n C(E_n) {e^{-i\frac{t}{\hbar}E_n}} \psi_{E_n}(\bm{r}) \bigg] &= \sum_n C(E_n) {e^{-i\frac{t}{\hbar}E_n}} \hat{\m{H}}\psi_{E_n}(\bm{r}) \\
+    &=  \sum_n C(E_n)E_n {e^{-i\frac{t}{\hbar}E_n}} \psi_{E_n}(\bm{r}) \quad,
+\end{aligned}
+\]
+evidentemente uguale a quanto ottenuto per la derivata temporale. Questo chiude il nostro check confermando che la soluzione generica trovata è assolutamente valida.
+
+Non viene proposto il conto per distribuzioni continue di energia essendo formalmente identico.
+
+\subsection{La rappresentazione di Feynman: l'operatore di evoluzione temporale}
+Possiamo stabilire un ennesimo ponte con la meccanica classica. Nella formulazione di Hamilton, l'\emph{operatore di evoluzione temporale} è legato all'hamiltoniana del sistema essendo quest'ultima la funzione \emph{generatrice di traslazioni nel tempo}. Supponiamo ora che in meccanica quantistica valga lo stesso e definiamo, in piena analogia con la teoria classica, l'\textbf{operatore di evoluzione temporale}
+\begin{equation}
+    \hat{\m{U}}(t) = e^{-i\frac{\hat{\m{H}}}{\hbar}t} \quad.
+\end{equation} 
+Tramitev $\hat{\m{U}}$ possiamo scoprire l'evoluzione temporale del generico stato $\Psi$ conoscendo \emph{unicamente} $\Psi(\bm{r}, t = 0)$. 
+
+Per comprendere come sia possibile, valutiamo innanzitutto $\Psi(\bm{r}, 0)$ nel caso di una distribuzione discreta di energia:
+\[
+    \Psi(\bm{r},0) = \sum_n C(E_n)e^{-i\frac{t = 0}{\hbar}E_n}\psi_{E_n}(\bm{r}) = \sum_n C(E_n)\psi_{E_n}\psi_{E_n}(\bm{r}) \quad.
+\]
+Sappiamo inoltre che, con sufficienti condizioni di regolarità, una funzione che prende in argomento un operatore $f(\hat{\m{A}})$, può essere espansa tramite \emph{serie Taylor}. Espandiamo quindi $\hat{\m{U}}$\footnote{Ricordando che $e^z = \sum_{s = 0}^{\infty} \frac{z^s}{s!}, \quad z \in \mathbb{C}$.}:
+\[
+    e^{-i\frac{\hat{\m{H}}}{\hbar}t} = \sum_{s=0}^{\infty} \frac{1}{s!}\left(-i\frac{\hat{\m{H}}}{\hbar}t\right)^s = \sum_{s=0}^{\infty} \frac{1}{s!}\left(\frac{-it}{\hbar}\right)^s \hat{\m{H}}^s
+\]
+e applichiamolo a $\Psi(\bm{r},0)$:
+\[
+\begin{aligned}
+    \hat{\m{U}}\Psi(\bm{r},0) = \hat{\m{U}}\sum_n C(E_n)\psi_{E_n}(\bm{r}) &\overset{(1)}{=} \sum_n C(E_n) \hat{\m{U}} \psi_{E_n}(\bm{r}) \\
+    &= \sum_n C(E_n) \sum_{s} \frac{1}{s!}\left(\frac{-it}{\hbar}\right)^s \underbrace{\hat{\m{H}}^s \psi_{E_n}(\bm{r})}_{(a)} \quad,
+\end{aligned}
+\]
+dove in $(1)$ abbiamo sfruttato la linearità dell'operatore $\hat{\m{U}}$ evidente dall'espansione in Taylor. Ci rimane da calcolare il termine $(a)$ e, per farlo, iteriamo ripetutamente l'applicazione dell'operatore hamiltoniano su $\psi_{E_n}$:
+\[
+\begin{aligned}
+    &\hat{\m{H}}\psi_{E_n}(\bm{r}) = E_n\psi_{E_n}(\bm{r}) \\
+    &\hat{\m{H}}^2\psi_{E_n}(\bm{r}) = \hat{\m{H}}(\hat{\m{H}}\psi_{E_n}(\bm{r})) = E_n\hat{H}\psi_{E_n}(\bm{r}) = E_n^2\psi_{E_n}(\bm{r}) \\
+    &\hat{\m{H}}^3\psi_{E_n}(\bm{r}) = \hat{\m{H}}(\hat{\m{H}}^2\psi_{E_n}(\bm{r})) = E_n^2\hat{\m{H}}\psi_{E_n}(\bm{r}) = E_n^3 \psi_{E_n}(\bm{r}) \\
+    &  \quad \vdots \\
+    & \hat{\m{H}}^s \psi_{E_n}(\bm{r}) = E_n^s\psi_{E_n}(\bm{r}) \quad.
+\end{aligned}
+\]
+Sostituendo nell'espressione per $\hat{\m{U}}\Psi(\bm{r},0)$,
+\[
+\begin{aligned}
+    \hat{\m{U}}\Psi(\bm{r},0) &= \sum_n C(E_n) \sum_{s} \frac{1}{s!}\left(\frac{-it}{\hbar}\right)^s E_n^s\psi_{E_n}(\bm{r}) = \sum_n C(E_n) \underbrace{\sum_{s} \frac{1}{s!}\left(-i\frac{E_n}{\hbar}t\right)^s}_{e^{-i\frac{E_n}{\hbar}t}}\psi_{E_n}(\bm{r}) \\
+    \hat{\m{U}}\Psi(\bm{r},0) &= \sum_n C(E_n)e^{-i\frac{t}{\hbar}E_n}\psi_{E_n}(\bm{r}) = \Psi(\bm{r}, t)\quad,
+\end{aligned}
+\]
+otteniamo la stessa espressione della \eqref{eq:sovrapp_discr}, confermando la bontà del metodo e dell'analogia classica. 
+
+\begin{approfondimento}[title={Altro sull'operatore di evoluzione temporale}]
+    \noindent
+    Sino ad ora ci siamo concentrati sul valutare cosa restituisse l'applicazione di $\hat{\m{U}}$ sul generico stato $\Psi$ valutato per $t = 0$. 
+
+    Se però applicassimo l'operatore di evoluzione temporale a un generico \emph{autostato}? Facciamo il calcolo.
+    \[
+    \begin{aligned}
+        \hat{\m{U}}\psi_{E_n}(\bm{r}) = e^{-i\frac{\hat{\m{H}}}{\hbar}t}\psi_{E_n}(\bm{r}) &= \sum_s \frac{1}{s!}\left(-i\frac{\hat{\m{H}}}{\hbar}t\right)^s \psi_{E_n}(\bm{r}) = \sum_s \frac{1}{s!}\left(\frac{-it}{\hbar}\right)^s \hat{\m{H}}^s\psi_{E_n}(\bm{r})\\
+        &= \sum_s \frac{1}{s!}\left(-i\frac{{E_n}}{\hbar}t\right)^s \psi_{E_n}(\bm{r}) = e^{-i\frac{E_n}{\hbar}t}\psi_{E_n}(\bm{r}) \quad.
+    \end{aligned}
+    \]
+    Come si poteva prevdere dal conto condotto in precedenza, l'applicazione dell'operatore di evoluzione temporale a un generico autostato restituisce lo \textbf{stato stazionario} associato all'autostato stesso.
+\end{approfondimento}
+
+\section{Il caso della particella libera}
+
+\subsubsection{Una breve introduzione}
+Siamo finalmente pronti a vedere la prima concreta applicazione della teoria vista sino ad ora: il caso della \emph{particella libera}. Classicamente, lo studio dell'argomento in esame è semplice e la meccanica newtoniana è sufficiente per avere abbastanza informazioni sul sistema. Ancor prima di complicarsi la vita con equazioni di Lagrange, Eulero-Lagrange, Hamilton \& Co., il \emph{secondo principio di Newton} ci permette di codificare tutto in maniera elegantissima: detta infatti $m$ la massa del corpuscolo, abbiamo la monolitica
+\[
+    \bm{F} = \dot{\bm{p}} = m\bm{a} \quad.
+\]
+Si presti attenzione a non sottovalutare la teoria newtoniana in quanto nasconde un sistema di equazioni differenziali del secondo ordine da cui si può estrarre tutto lo scibile sul sistema:
+\[
+    \bm{F} = m\bm{a} \implies 
+    \begin{cases}
+        m\ddot{x}_1 = \dot{\bm{p}} \cdot \bm{u}_{x_1} \\
+        m\ddot{x}_2 = \dot{\bm{p}} \cdot \bm{u}_{x_2} \\
+        m\ddot{x}_3 = \dot{\bm{p}} \cdot \bm{u}_{x_3} \quad,
+    \end{cases}
+\]
+che si riducono a 
+\[
+\bm{p} = \text{costante}
+\]
+nel caso in cui $\bm{F} = \bm{0}$, ovvero nella situazione in cui la particella è \emph{libera}. Con il termine "libera" si intende infatti l'assenza di campi di forze nel sistema analizzato.
+
+\subsection{La quantistica entra in gioco}
+Quantisticamente, la situazione è assai più complessa. Innanzitutto, se la perdita di determinazione che discutevamo poc'anzi è vera, dovremmo avere la possibilità di constatarla anche in questo contesto. È così sarà. Facciamo però un passo alla volta. 
+
+L'assenza di campi di forze che influenzano la particella impone per l'hamiltoniana la forma $\hat{\mathcal{H}} = \hat{\mathcal{K}}$. L'equazione di Schrödinger si scrive:
+\[
+    i\hbar\pdv{\psi(\bm{r},t)}{t} = \hat{\m{H}}\psi(\bm{r},t) = \hat{\m{K}}\psi(\bm{r},t) = \frac{\hat{\bm{p}}^2}{2m}\psi(\bm{r},t) = -\frac{\hbar^2}{2m}\nabla^2\psi(\bm{r},t) \quad.
+\]
+Per risolvere l'equazione, riproponiamo lo stesso schema risolutivo utilizzato in precedenza per risolvere la S.E. in un caso generale. Ipotizziamo per la generica soluzione $\Phi(\bm{r},t)$ la forma:
+\[
+    \Phi(\bm{r},t) = f(t)\phi(\bm{r}) \quad. 
+\]
+Sostituendo nell'equazione otteniamo ancora una forma esponenziale complessa per la parte temporale, $f(t) = e^{-i\frac{E}{\hbar}t}$, e la solita equazione agli autovalori, questa volta per l'operatore $\h{K}$:
+\begin{equation}
+    \h{K}\phi(\bm{r}) = E\phi(\bm{r}) \quad.
+    \label{eq:eigen_K}
+\end{equation}
+Per dare forma agli autostati dell'operatore energia cinetica, lo riscriviamo nella forma più conveniente:
+\[
+    \h{K}\phi(\bm{r}) = -\frac{\hbar^2}{2m}\nabla^2\phi(\bm{r}) = E\phi(\bm{r}) \quad.
+\]
+Data la simmetria del problema, possiamo semplificare i calcoli e ricondurci a un'equazione differenziale del secondo ordine \emph{unidimensionale}, per poi estendere il risultato a procedimento ultimato. La S.E. stazionaria diventa:
+\[
+    \dv[2]{\phi(x_1)}{x_1} = -\frac{2mE}{\hbar^2}\phi(x_1) \quad.
+\]
+Le radici del polinomio caratteristico associato sono:
+\[
+    \lambda_{1,2} = \pm i\sqrt{\frac{2mE}{\hbar^2}}
+\]
+e la generica soluzione dell'equazione è:
+\[
+    \phi(x_1) = Ae^{x_1\lambda_1} + Be^{x_1\lambda_2}, \quad A,B \in \mathbb{C} \quad.
+\]
+Conviene a questo punto introdurre una grandezza fondamentale che snellirà la notazione e ci fornirà un'interpretazione fisica immediata. Definiamo il \textbf{numero d'onda} $k$ a partire dalla relazione classica fra energia cinetica e quantità di moto ($E = p^2/2m$), sfruttando la relazione di De Broglie $p = \hbar k$:
+\begin{equation}
+    k = \frac{p}{\hbar} = \sqrt{\frac{2mE}{\hbar^2}} \quad.
+\end{equation}
+
+Si noti che l'energia $E$ deve essere necessariamente non negativa ($E \ge 0$). Un'energia negativa porterebbe infatti a un $k$ immaginario puro e, conseguentemente, a soluzioni esponenziali reali divergenti per $x_1 \to \pm\infty$, fisicamente inaccettabili in quanto non normalizzabili in alcun senso.
+
+Sostituendo $k$ ed eliminando per comodità tipografica il pedice $1$ dalla coordinata spaziale (ponendo $x_1 = x$), gli autostati dell'operatore $\h{K}$ assumono la forma:
+\[
+    \phi_k(x) = A e^{ikx} + B e^{-ikx} \quad.
+\]
+Imponendo per semplicità $B = 0$ e estendendo il risultato a tre dimensioni, otteniamo il generico autostato dell'operatore energia cinetica:
+\[
+    \phi_{\bm{k}}(\bm{r}) = Ae^{i\bm{k}\cdot \bm{r}}\quad,
+\]
+con $\bm{k}$ vettore d'onda. Per quanto riguarda gli autovalori, la computazione è semplice e richiede unicamente di applicare $\h{K}$ all'autostato appena trovato:
+\[
+    \h{K} \phi_{\bm{k}}(\bm{r}) = -\frac{\hbar^2}{2m}\nabla^2 \big(Ae^{i\bm{k}\cdot \bm{r}}\big) = -\frac{\hbar^2}{2m}  (i\bm{k})\cdot(i\bm{k})Ae^{i\bm{k}\cdot \bm{r}} = \underbrace{\frac{\hbar^2k^2}{2m}}_{\text{autovalori}}\phi_{\bm{k}}(\bm{r}) \quad.
+\]
+
+\subsubsection{La costante d'integrazione $\bm{A}$}
+Comunque sia fatta $A$, siamo di fronte ad un apparente disastro matematico: gli autostati trovati non appartengono allo spazio delle funzioni a quadrato sommabile! Infatti:
+\[
+    \int_{\mathbb{R}^3} \dd^3{\bm{r}}\, |\phi_{\bm{k}}(\bm{r})|^2 =  \int_{\mathbb{R}^3} \dd^3{\bm{r}}\, |A|^2 \to \infty \quad.
+\] 
+La motivazione per questo bizzarro ritrovamento sarà chiara più avanti, ma nel mentre dobbiamo concentrarci sul tentare di dare una nuova nozione di normalizzazione per trovare $A$, perché quella "classica" evidentemente non funziona. 
+
+L'idea geniale è da attribuirsi a Dirac: dalla discussione sulle proprietà degli operatori fisici, come $\h{K}$, abbiamo scoperto che gli operatori hermitiani ammettono un set di autostati ortogonali. Se per gli spettri discreti l'ortonormalità è garantita dalla Delta di Kronecker (ovvero $(\phi_i, \phi_j) = \delta_{ij}$), per uno \emph{spettro continuo} come quello del vettore d'onda $\bm{k}$, questa condizione si generalizza utilizzando la \textbf{Delta di Dirac}. Proviamo a imporre questa condizione, detta \emph{normalizzazione nel senso delle distribuzioni}, su due generici autostati $\phi_{\bm{k}}$ e $\phi_{\bm{k}'}$:
+\[
+    (\phi_{\bm{k}}, \phi_{\bm{k}'}) = \delta^{(3)}(\bm{k} - \bm{k}') \quad.
+\]
+Sostituendo le espressioni delle onde piane e sviluppando il prodotto scalare:
+\[
+    (\phi_{\bm{k}}, \phi_{\bm{k}'}) = \int_{\mathbb{R}^3} \dd^3{\bm{r}}\, \phi_{\bm{k}}^* \phi_{\bm{k}'} = \int_{\mathbb{R}^3} \dd^3{\bm{r}}\, |A|^2 e^{-i\bm{k}\cdot \bm{r}} e^{i\bm{k}'\cdot \bm{r}} = |A|^2 \int_{\mathbb{R}^3} \dd^3{\bm{r}}\, e^{i(\bm{k}'-\bm{k})\cdot \bm{r}} \quad.
+\]
+Dall'analisi matematica e dalla teoria delle trasformate di Fourier, riconosciamo immediatamente che l'ultimo integrale coincide con la rappresentazione integrale esatta della Delta di Dirac tridimensionale, a meno di un fattore moltiplicativo. Abbiamo infatti:
+\[
+    \int_{\mathbb{R}^3} \dd^3{\bm{r}}\, e^{i(\bm{k}'-\bm{k})\cdot \bm{r}} = (2\pi)^3 \delta^{(3)}(\bm{k}' - \bm{k}) = (2\pi)^3 \delta^{(3)}(\bm{k} - \bm{k}') \quad,
+\]
+avendo sfruttato la parità della funzione Delta. Uguagliando questo risultato alla condizione di normalizzazione iniziale, otteniamo:
+\[
+    |A|^2 (2\pi)^3 \delta^{(3)}(\bm{k} - \bm{k}') = \delta^{(3)}(\bm{k} - \bm{k}') \quad.
+\]
+Da cui ricaviamo il valore del modulo quadro della costante:
+\[
+    |A|^2 = \frac{1}{(2\pi)^3} \implies A = \frac{1}{(2\pi)^{3/2}} e^{i\gamma} \quad.
+\]
+Scegliendo convenzionalmente nulla la fase globale ($\gamma = 0$), giungiamo all'espressione definitiva per le autofunzioni normalizzate nello spazio tridimensionale:
+\begin{equation}
+    \phi_{\bm{k}}(\bm{r}) = \frac{1}{(2\pi)^{3/2}} e^{i\bm{k}\cdot \bm{r}} \quad.
+\end{equation}
+
+\subsection{Il generico stato stazionario}
+Componendo il generico stato stazionario mediante moltiplicazione della parte temporale e spaziale appena trovate si ottiene:
+\begin{equation}
+    \Phi_{\bm{k}}(\bm{r},t) = \phi_{\bm{k}}(\bm{r})f(t) \overset{(1)}{=} \frac{1}{(2\pi)^{3/2}} e^{i\bm{k}\cdot \bm{r}}  e^{-i\frac{E_{\bm{k}}}{\hbar}t} \overset{(2)}{=} \frac{1}{(2\pi)^{3/2}} e^{i(\bm{k} \cdot \bm{r}-\omega_{\bm{k}} t)} \quad,
+    \label{eq:onda-Piana_lib}
+\end{equation}
+dove in $(1)$ abbiamo aggiunto il pedice $\bm{k}$ all'energia per specificare il legame con l'autovalore $\propto |\bm{k}|^2 = k^2$ di $\h{K}$ e in $(2)$ abbiamo sfuttato la relazione di Planck $E_{\bm{k}} = \hbar \omega_{\bm{k}}$. L'interpretazione della forma appena trovata è cristallina: una particella libera è descritta, quantisticamente, da un'\textbf{onda piana monocromatica}. Possiamo anche suggerire una motivazione per la scelta di porre $B = 0$: il termine $A$ era legato alla radice positiva del polinomio caratteristico dell'equazione differenziale associata al problema degli autovalori di $\h{K}$, portando all'onda \emph{progressiva} ottenuta nella \eqref{eq:onda-Piana_lib}. Il coefficiente $B$, invece, avrebbe generato un'onda \emph{regressiva}, scomoda ai fini della trattazione\footnote{Si noti che anche scegliendo di mantenere $B \neq 0$ avremmo ottenuto $B = (2\pi)^{-3/2}$.}. In questo senso, possiamo formulare una forma ancora più \emph{completa} per il generico stato $\Phi_{\bm{k}}(\bm{r},t)$, che includa anche il termine associato a $B$:
+\[
+    \Phi_{\bm{k}}(\bm{r},t) = \frac{1}{(2\pi)^{3/2}} \left[ e^{i(\bm{k} \cdot \bm{r}-\omega_{\bm{k}} t)} + e^{-i(\bm{k} \cdot \bm{r}-\omega_{\bm{k}} t)} \right]
+\]
+che corrisponde, come prevedibile, alla combinazione lineare di due onde, una progressiva e una regressiva. 
+
+\begin{approfondimento}[title={Non solo questione di comodità}]
+    \noindent
+    Anche se più completo, questo modo di scrivere lo stato legato all'autovalore $\propto k^2$ è sconveniente perché non permette di avere l'autostato $\phi_{\bm{k}}(\bm{r})$, tramite cui abbiamo composto $\Phi_{\bm{k}}(\bm{r},t)$, come un autostato dell'operatore quantità di moto. Sfruttando un fatto scoperto in precedenza, ovvero $\phi_{\bm{k}}(\bm{r}) = \Phi_{\bm{k}}(\bm{r}, 0)$, applichiamo $\hat{\bm{p}}$ e otteniamo:
+    \[
+        \hat{\bm{p}}\phi_{\bm{k}} = -i\hbar \nabla \phi_{\bm{k}}(\bm{r}) = \frac{-i\hbar}{(2\pi)^{3/2}} \nabla\left[ e^{i\bm{k} \cdot \bm{r}} + e^{-i\bm{k} \cdot \bm{r}}\right] = \frac{\hbar\bm{k} }{(2\pi)^{3/2}} \left(e^{i\bm{k} \cdot \bm{r}} - e^{-i\bm{k} \cdot \bm{r}} \right) \quad,
+    \]
+    evidentemente non proporzionale a $\phi_{\bm{k}}(\bm{r})$ e quindi non autostato di $\hat{\bm{p}}$. L'unico modo per ricavare un autostato è, come fatto nella trattazione, \emph{eliminare} un esponenziale, ovvero porre uguale a zero il coefficiente a lui associato. Nel tal caso si otterrebbe:
+    \[
+        \hat{\bm{p}}\phi_{\bm{k}} = \pm \hbar \bm{k}\phi_{\bm{k}} 
+    \]
+    in base alla scelta di quale esponenziale far sopravvivere. 
+
+    Nel continuo della trattazione sarà lampante il fatto che ottenere autostati "comuni" a più operatori sia qualcosa di formidabile. In questo senso, porre $B = 0$, preserva il fatto che $\hat{\bm{p}}$ e $\h{K}$ preservino \emph{lo stesso set di autostati}.
+\end{approfondimento}
+
+\subsection{La soluzione generale del problema della particella libera}
+Possiamo costruire un qualsiasi stato per un corpuscolo non sottoposto a un campo di forze e in moto nell'intero spazio tridimensionale invocando il principio di sovrapposizione. In questo caso, però, bisogna notare che lo spettro dei vari valori che può assumere $k$ è \emph{continuo} e, di conseguenza, bisogna utilizzare la rappresentazione integrale:
+\begin{equation}
+    \Phi(\bm{r}, t) = \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, a(\bm{k})\Phi_{\bm{k}}(\bm{r},t) = \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, \frac{a(\bm{k})}{(2\pi)^{3/2}} e^{i(\bm{k} \cdot \bm{r}-\omega_k t)} \quad,
+    \label{eq:phi_four}
+\end{equation}
+dove $a(\bm{k})$ rappresenta una sorta di \emph{coefficiente di combinazione lineare nel continuo}. Quanto appena trovato non è altro che la \textbf{Trasformata di Fourier} di $\Phi(\bm{r}, t)$.
+
+\subsubsection{Check della soluzione}
+Come sempre fatto, verifichiamo che la \eqref{eq:phi_four} soddisfi alla S.E. di partenza. Iniziamo calcolando il membro sinistro:
+\[
+\begin{aligned}
+    i\hbar \pdv{\Phi(\bm{r}, t)}{t} &= i\hbar \pdv{}{t} \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, \frac{a(\bm{k})}{(2\pi)^{3/2}} e^{i(\bm{k} \cdot \bm{r}-\omega_k t)} \overset{(1)}{=} i\hbar \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, \frac{a(\bm{k})}{(2\pi)^{3/2}} \pdv{\big( e^{i(\bm{k} \cdot \bm{r}-\omega_k t)} \big)}{t} \\
+    &= \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, a(\bm{k}) (i\hbar )(-i\omega_{\bm{k}}) \Phi_{\bm{k}}(\bm{r}, t) = \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, a(\bm{k}) E_k \Phi_{\bm{k}}(\bm{r}, t) \quad,
+\end{aligned}
+\]
+dove in $(1)$ abbiamo sfruttato la commutazione di derivata temporale e integrale agente su $\bm{k}$. Usiamo $E_k$ come modo compatto per scrivere l'energia associata al vettore d'onda $\bm{k}$:
+\[
+    E_{\bm{k}} = \frac{\hbar^2 k^2}{2m} \quad.
+\]
+
+Il membro destro risulta invece:
+\[
+\begin{aligned}
+    \h{H}\Phi(\bm{r}, t) = \h{K}\Phi(\bm{r}, t) &= -\frac{\hbar^2}{2m}\nabla^2 \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, \frac{a(\bm{k})}{(2\pi)^{3/2}} e^{i(\bm{k} \cdot \bm{r}-\omega_{\bm{k}} t)}\\
+    & = \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, \frac{a(\bm{k})}{(2\pi)^{3/2}} \left[ -\frac{\hbar^2}{2m}\nabla^2 \big( e^{i(\bm{k} \cdot \bm{r}-\omega_{\bm{k}} t)} \big) \right] \\
+    &= \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, a(\bm{k}) E_{\bm{k}} \Phi_{\bm{k}}(\bm{r}, t) \quad,
+\end{aligned}
+\]
+esattamente coincidente con quanto calcolato in precedenza.
+
+\subsection{Gli stati localizzati: il pacchetto d'onda gaussiano}
+Per considerare definitivamente archiviata questa analisi, rimane da risolvere l'integrale di Fourier ottenuto in precedenza e l'unica forma funzionale ancora da determinare sono i coefficienti $a(\bm{k})$.
+
+Conducendo un'analisi semiclassica, forti dei risultati di De Broglie, abbiamo che una particella libera deve avere la quantità di moto costante e pari a:
+\[
+    \bm{p} = \hbar \bm{q} \quad,
+\]
+con $\bm{q}$ il vettore d'onda associato. Assumiamo allora che la trasposizione quantistica di questo sistema sia contraddistinta dai coefficienti della trasformata di Fourier così definiti:
+\begin{equation}
+    a(\bm{k}) = A e^{-(\bm{k}-\bm{q})^2 d^2}, \quad A \in \mathbb{C} \quad.
+\end{equation}
+Questo particolare ansatz ci permette di interpretare nella maniera più "classica" possibile la situazione. I maggiori contributi alla \eqref{eq:phi_four} sono infatti dati da tutti quegli stati con quantità di moto affini a quella assunta classicamente dalla particella mentre, per valori di $\bm{k}$ molto diversi da $\bm{q}$, la gaussiana garantisce un contributo prossimo allo zero. Globalmente, si registra che gli unici termini rilevanti ai fini del generico stato $\Phi$ derivano logicamente dagli stati stazionari $\Phi_{\bm{k}}$ caratterizzati da $\bm{k} \simeq \bm{q}$. 
+
+Sostituiamo nell'integrale:
+\[
+    \Phi(\bm{r}, t) = \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, \frac{a(\bm{k})}{(2\pi)^{3/2}} e^{i(\bm{k} \cdot \bm{r}-\omega_{\bm{k}} t)} = \int_{\mathbb{R}^3} \dd^3{\bm{k}} \, \frac{A e^{-(\bm{k}-\bm{q})^2 d^2}}{(2\pi)^{3/2}} e^{i(\bm{k} \cdot \bm{r}-\omega_{\bm{k}} t)} \quad.
+\]
+Per continuare, notiamo che l'integrale esteso su $\mathbb{R}^3$ non è altro che un integrale triplo sulle tre direzioni spaziali $x_{1,2,3}$. Allegerendo la notazione passando alle componenti vettoriali, abbiamo i seguenti passaggi intermedi:
+\[
+    (\bm{k}-\bm{q})^2 = (k_1 - q_1)^2 + (k_2 - q_2)^2 + (k_3 - q_3)^2, \quad \bm{k} \cdot \bm{r} = k_1x_1 + k_2x_2 + k_3x_3 \quad.
+\]
+Sostituendo e sfruttando le proprietà degli esponenziali otteniamo:
+\[
+\begin{aligned}
+    \Phi(\bm{r}, t) &= \frac{A}{(2\pi)^{3/2}} \int_{\mathbb{R}} \dd{{k}_1} \, \int_{\mathbb{R}} \dd{{k}_2} \, \int_{\mathbb{R}} \dd{{k}_3} \,  e^{-(\bm{k}-\bm{q})^2 d^2} e^{i(\bm{k} \cdot \bm{r}-\omega_{\bm{k}} t)} \\
+    &= \frac{A}{(2\pi)^{3/2}} \int_{\mathbb{R}} \dd{{k}_1} \, \int_{\mathbb{R}} \dd{{k}_2} \, \int_{\mathbb{R}} \dd{{k}_3} \, \prod_{j=1}^{3} e^{-({k}_j-{q}_j)^2 d^2} e^{i({k}_j {x}_j-\omega_{{k}_j} t)} \quad.
+    \end{aligned}
+\]
+Data la simmetria del problema, assumiamo ora che è possibile scrivere la funzione d'onda come il prodotto di tre componenti indipendenti, ciascuna funzione di $k_{1,2,3}$:
+\[
+    \begin{aligned}
+        \Phi(\bm{r}, t) &= \Phi(x_1, t) \Phi(x_2, t) \Phi(x_3, t)  = \prod_{j=1}^{3} \Phi(x_j, t) \\
+        &= \prod_{j=1}^{3} \frac{A_j}{\sqrt{2\pi}} \underbrace{\int_{\mathbb{R}} \dd{{k}_j} \, e^{-({k}_j-{q}_j)^2 d^2} e^{i({k}_j {x}_j-\omega_{{k}_j} t)}}_I \quad,
+    \end{aligned}
+\]
+dove abbiamo considerato, ai fini del disaccoppiamento, $A_1 A_2 A_3 = A$. Introduciamo, per semplicità di notazione, il fattore 
+\[
+    s(t) = \frac{\hbar t}{2m} \implies \omega_{\bm{k}} t = \frac{E_{\bm{k}}}{\hbar} t = \frac{\hbar k^2}{2m} t = s(t) k^2 \quad.
+\]
+Iniziamo, con pazienza, a lavorare sull'integrale:
+\[
+\begin{aligned}
+    I &= \int_{\mathbb{R}} \dd{{k}_j} \, e^{-({k}_j-{q}_j)^2 d^2} e^{i({k}_j {x}_j-sk_j^2)} = \int_{\mathbb{R}} \dd{{k}_j} \, \exp\big[ -(k_j^2 + q_j^2 - 2q_jk_j)d^2 + ik_jx_j - isk_j^2 \big] \\
+    &= e^{-q_j^2 d^2} \int_{\mathbb{R}} \dd{{k}_j} \, \exp\big[ -k_j^2d^2  + 2q_jk_jd^2 + ik_jx_j - isk_j^2 \big] \\
+    &= e^{-q_j^2 d^2} \int_{\mathbb{R}} \dd{{k}_j} \, \exp\big[ -k_j^2\underbrace{(d^2 + is)}_{\nu}  +k_j \underbrace{( 2q_jd^2 + ix_j)}_{\eta}\big] = e^{-q_j^2 d^2} \int_{\mathbb{R}} \dd{{k}_j} \, \exp\big[ - \nu k_j^2 + \eta k_j \big] \\
+    &\overset{(1)}{=} e^{-q_j^2 d^2} \int_{\mathbb{R}} \dd{{k}_j} \, \exp\left\{ -\nu\bigg[ \bigg( k_j - \frac{\eta}{2\nu} \bigg)^2 - \frac{\eta^2}{4\nu^2}  \bigg] \right\} = e^{-q_j^2 d^2 + \frac{\eta^2}{4\nu}} \int_{\mathbb{R}} \dd{{k}_j} \, e^{-\nu\left( k_j - \frac{\eta}{2\nu} \right)^2} \quad.
+\end{aligned}
+\]
+In $(1)$ si è completato il quadrato. L'integrale è adesso quanto mai affine al classico gaussiano se non fosse per lo shift complesso del massimo dell'integranda. Proviamo a fare un cambio di variabile e vediamo che succede:
+\[
+    y = k_j - \frac{\eta}{2\nu} \rightarrow \dd{y} = \dd{k_j}, \quad \mathbb{R} \to \mathbb{R} - \frac{\eta}{2\nu}, \quad e^{-\nu\left( k_j - \frac{\eta}{2\nu} \right)^2} \to e^{-\nu y^2} \quad.
+\]
+Benchè la variabile d'integrazione originale sia reale e corra lungo $\mathbb{R}$, la necessaria sostituzione che serve per risolvere il calcolo impone di trattare con una variabile complessa $y \in \mathbb{C}$ integrata lungo una retta traslata rigidamente dall'asse reale di una quantità pari al fantomatico shift... come fare? 
+
+Immaginiamo di tracciare una sorta di rettangolo sul piano complesso contraddistinto dai vertici $A = \left( -R, 0 \right)$, $B = \left( R, 0 \right)$, $C = \left( -R, -\frac{\eta}{2\nu}\right)$ e $D = \left( R, -\frac{\eta}{2\nu}\right)$. Il lato $AB$ giace su $\mathbb{R}$, $CD$ sulla retta su cui dovremmo integrare. Essendo $e^{-\nu y^2}$, possiamo sfruttare il \emph{Teorema di Cauchy-Goursat} per concludere che l'integrale sul rettangolo è nullo. Osserviamo però che, quando si fa tendere $R \to \infty$, l'integranda tende a zero! I contributi dovuti ai "lati verticali" del rettangolo sono quindi trascurabili e otteniamo che l'integrale lungo la retta reale traslata è uguale a quello calcolato lungo $\mathbb{R}$. Possiamo quindi scrivere:
+\[
+I = e^{-q_j^2 d^2 + \frac{\eta^2}{4\nu}} \int_{-\infty}^{+\infty}e^{-\nu y^2} = e^{-q_j^2 d^2 + \frac{\eta^2}{4\nu}} \sqrt{\frac{\pi}{\nu}} \quad.
+\]
+La funzione d'onda risultante è:
+\[
+\begin{aligned}
+    \Phi(\bm{r},t) &= \prod_{j=1}^{3} \frac{A_j}{\sqrt{2\pi}} \sqrt{\frac{\pi}{\nu}} \exp[-q_j^2d^2 + \frac{(2q_jd^2 + ix_j)^2}{4\nu}]  = \prod_{j=1}^{3} \frac{A_j}{\sqrt{2\nu}} \exp[-q_j^2d^2 + \frac{(2q_jd^2 + ix_j)^2}{4\nu}] \\
+    &= \prod_{j=1}^{3} \frac{A_j}{\sqrt{2(d^2 + is)}} \exp[-q_j^2d^2 + \frac{(2q_jd^2 + ix_j)^2}{4(d^2+is)}] \quad.
+\end{aligned}
+\]  
+
+\subsubsection{La densità di probabilità gaussiana}
+Se all'inizio del paragrafo abbiamo introdotto in qualche modo il concetto di "localizzazione" per la funzione d'onda, richiedendo che i coefficienti dello sviluppo di Fourier tenessero conto della differenza fra il momento del genrico stato $\phi$ e quello reale, quest'ultimo emerge in maniera quanto mai significativa quando si valuta la densità di probabilità associata a $\Phi$. 
+
+Ricordando che $\rho = |\Phi(\bm{r},t)|^2 = |\Phi(x_1,t)|^2|\Phi(x_2,t)|^2|\Phi(x_3,t)|^2$, per i nostri fini è dunque sufficienti calcolare $|\Phi(x_j,t)|^2$. Iniziamo:
+\[
+\begin{aligned}
+    |\Phi(x_j,t)|^2 = \Phi(x_j,t)^*\Phi(x_j,t) &= \frac{|A_j|^2}{{2|d^2 + is|}}e^{-2q_j^2d^2}\exp[\frac{(2q_jd^2 + ix_j)^2}{4(d^2+is)}]\exp[\frac{(2q_jd^2 + ix_j)^2}{4(d^2+is)}]^* \\
+    &= \frac{|A_j|^2}{{2\sqrt{d^4+s^2}}} e^{-2q_j^2d^2} \exp{2\Re\left[\frac{(2q_jd^2 + ix_j)^2}{4(d^2+is)}\right]} \\
+    &= \frac{|A_j|^2}{{2\sqrt{d^4+s^2}}} e^{-2q_j^2d^2} \exp[2q_j^2d^2 -d^2\frac{(2sq_j-x_j)^2}{2(d^4+s^2)}] \\
+    &= \frac{|A_j|^2}{{2\sqrt{d^4+s^2}}} \exp[-d^2\frac{(2sq_j-x_j)^2}{2(d^4+s^2)}] \quad.
+\end{aligned}
+\]
+Ci siamo quasi. Espandiamo ancora $2sq_j$:
+\[
+    2sq_j = 2\left(\frac{\hbar t}{2m}\right)q_j \overset{(1)}{=} v_j t \quad,
+\]
+dove in $(1)$ abbiamo usato la relazione \textbf{classica} per la quantità di moto $q_j = mv_j$. Sostituendo nella densità di probabilità otteniamo un'espressione definitiva:
+\begin{equation}
+    \rho_{x_j} = |\Phi(x_j,t)|^2 = \frac{|A_j|^2}{{2\sqrt{d^4+s^2}}} \exp[-d^2\frac{(v_jt-x_j)^2}{2(d^4+s^2)}] \quad.
+\end{equation}
+Il risultato è {sorprendente}. La gaussiana che descrive la densità di probabilità associata alla particella libera ha il suo massimo per $x_j = v_jt$, esattamente la posizione assunta classicamente dalla particella. Ecco trovata la tanto agognata, e semiclassica, \emph{localizzazione}. 
+
+Definiamo in questo senso, e ora sarà chiaro il perché, $\Phi(\bm{r}, t)$ come \textbf{stato localizzato} o \textbf{pacchetto d'onda gaussiano}.
+
+\subsubsection{Una progressiva delocalizzazione}
+Abbiamo trovato un risultato specificatamente \emph{semiclassico}. \emph{Semi}-classico, per l'appunto. L'assurdo, almeno classicamente, lo ritroviamo analizzando e il massimo del pacchetto gaussiano e la sua ampiezza. Quest'ultima, nota come \emph{varianza} $\sigma$, corrisponde all'inverso del coefficiente moltiplicativo della variabile, eventualmente traslata, della funzione:
+\[
+    \sigma = 2\left( d^2 + \frac{s^2}{d^2} \right) = 2\left( d^2 + \frac{\hbar^2k^4}{4m^2d^2}t^2 \right) 
+\]
+che tende evidentemente a infinito quando $t \to \infty$. 
+
+Il massimo, ottentuo per $x_j = v_jt$, assume come valore:
+\[
+    \max{\rho_{x_j}} = \frac{|A_j|^2}{{2\sqrt{d^4+s^2}}} = \frac{|A_j|^2}{2} \left( d^4 + \frac{\hbar^2k^4}{4m^2}t^2 \right)^{-\frac{1}{2}} 
+\]
+che diventa invece infinitesimo per tempi grandi. La densità di probabilità tende ad \emph{appiattirsi} con il passare del tempo, con il picco della gaussiana sempre meno "concentrato" nel suo massimo e quanto mai \emph{delocalizzato}. Ecco, in ultimo, un irreale effetto quantistico che si presenta ai nostri occhi: l'informazione riguardo la probabilità di trovare la particella in un determinato punto dello spazio diventa via via meno \emph{precisa} con il passare del tempo. A tutti gli effetti, il corpuscolo non è deterministiscamente confinato in un punto dello spazio, bensì risulta \textbf{delocalizzato}.
+
+\section{Il Teorema di Ehrenfest}
+Per chiudere il discorso riguardo l'evoluzione temporale dell'informazione quantistica, dobbiamo aggiungere ancora un importantissimo tassello che ci permetterà di estendere la nostra analisi all'evoluzione di quantità legate agli operatori e di porre ulteriori ponti (o distruggerne altri) con la meccanica classica. Discuteremo infatti in questa sezione un risultato fondamentale della meccanica quantistica, il \textit{Teorema di Ehrenfest}, fornendo preliminarmente la definizione di \textbf{valore di aspettazione} di un operatore fisico.
+
+\subsection{Valore di aspettazione di un operatore}
+Definiamo il {valore di aspettazione} di un operatore, o \emph{media}, relativo ad un generico stato $\psi(\bm{r},t)$ (definito sul volume $\Omega \subseteq \mathbb{R}^3$) la quantità reale:
+\begin{equation}
+        \langle \h{A} \rangle \equiv (\psi, \h{A} \psi) = \int_\Omega \dd^3{\bm{r}}\,\psi(\bm{r},t)^* \h{A}\psi(\bm{r},t) \quad. 
+        \label{eq:exp_value}
+\end{equation}
+Il significato del prodotto scalare appena formulato è intrinsecamente probabilistico e al concetto di \emph{misura}\footnote{Si noti anche che, benchè sotto altra veste, sia nascosta nella definizione appena fornita la caratteristica di ogni operatore fisico di essere hermitiano. Se così non fosse, $\langle \h{A} \rangle \neq \langle \h{A} \rangle^*$ implicando $\langle \h{A} \rangle \notin \mathbb{R}$, impossibile essendo una misura necessariamente reale.} ed è profondamente connesso alla nozione di set completo di autofunzioni di un operatore hermitiano, ma tratteremo queste peculiarità più avanti. Per ora ci limitiamo a calcolare completamente un interessante valore di aspettazione di un operatore ormai ampiamente noto: l'operatore posizione $\hat{\bm{r}}$.
+
+\subsubsection{Valore di aspettazione della posizione}
+Ricordando che $\hat{\bm{r}}$ è un operatore moltiplicativo, usiamo la \eqref{eq:exp_value} e otteniamo:
+\[
+    \langle \hat{\bm{r}} \rangle = (\psi, \hat{\bm{r}} \psi) = \int_\Omega \dd^3{\bm{r}}\,\psi(\bm{r},t)^* \hat{\bm{r}}\psi(\bm{r},t) = \int_\Omega \dd^3{\bm{r}}\, |\psi(\bm{r},t)|^2 {\bm{r}}\quad.
+\]
+Il risultato appena trovato ha una limpida interpretazione. Possiamo infatti riscrivere l'integrale come: 
+\[
+    \langle \hat{\bm{r}} \rangle = \int_\Omega \dd^3{\bm{r}}\, \rho(\bm{r},t) {\bm{r}}
+\]
+e vedere che stiamo ottenendo il \emph{valore medio} dell'operatore posizione come "somma ponderata" (tramite densità di probabilità) di tutte le possibili posizioni assunte dal sistema. Stiamo quindi ricostruendo la controparte quantistica del \textbf{centro di massa} di un sistema, infatti:
+\[
+    \langle \hat{\bm{r}} \rangle_{\text{classico}} = \bm{r}_{\text{CDM}} = \frac{\sum_i m_i \bm{r}_i}{\sum_i m_i} = \sum_i \underbrace{\frac{m_i}{M}}_{\rho_{\text{classica}}} \bm{r}_i 
+\]
+
+\subsection{Considerazioni preliminari}
+Nella formulazione classica fornitaci da Hamilton, la derivata rispetto al tempo di una generica grandezza $A$ che vive nello spazio delle fasi è data da:
+\[
+    \dv{A}{t} = \{A,H\} + \pdv{A}{t} \quad.
+\]
+L'idea è quella di cercare di capire se esiste un modo speculare in meccanica quantistica per calcolare l'evoluzione temporale del valore di aspettazione di un operatore. E Ehrenfest ci viene in soccorso.
+
+
+\subsection{L'hamiltoniano come operatore hermitiano}
+Per poter giungere formalmente al risultato ricercato, dobbiamo preliminarmente dimostrare che l'operatore $\h{H}$ è hermitiano. Per farlo, invochiamo la definizione e, armati di pazienza, svolgiamo i calcoli:
+\[
+\begin{aligned}
+    (\psi, \h{H}\phi)^* &= \int_\Omega \dd^3{\bm{r}} \, \left[\psi(\bm{r},t)^* \h{H}\phi(\bm{r},t)\right]^* \\
+    &= \int_\Omega \dd^3{\bm{r}} \, \psi(\bm{r},t) \left[ -\frac{\hbar^2}{2m}\nabla^2\phi(\bm{r},t) + U(\bm{r})\phi(\bm{r},t)\right]^* \\
+    &\overset{(1)}{=} \int_\Omega \dd^3{\bm{r}} \, \psi(\bm{r},t) U(\bm{r}) \phi(\bm{r},t)^*  -\frac{\hbar^2}{2m}\int_\Omega \dd^3{\bm{r}} \, \psi(\bm{r},t) \nabla^2 \phi(\bm{r},t)^*\\
+    &= (\phi, U\psi) - \frac{\hbar^2}{2m} \underbrace{\int_\Omega \dd^3{\bm{r}} \, \psi(\bm{r},t) \nabla^2 \phi(\bm{r},t)^*}_{(a)} \quad,
+\end{aligned}
+\]
+dove in $(1)$ abbiamo sfruttato il fatto che l'energia cinetica è un operatore reale e abbiamo assunto che il potenziale sia puramente reale ($U = U^*$). Per continuare, integriamo $(a)$ per parti:
+\[
+\begin{aligned}
+    (a) &= \int_\Omega \dd^3{\bm{r}} \, \left\{ \nabla \cdot[\psi(\bm{r},t)\nabla\phi(\bm{r},t)^*] - \nabla \psi(\bm{r},t) \cdot \nabla\phi(\bm{r},t)^* \right\} \\
+    &= \underbrace{\oint_{\partial\Omega} \psi(\bm{r},t)\nabla\phi(\bm{r},t)^* \cdot \dd{\bm{S}}}_{0} - \int_\Omega \dd^3{\bm{r}} \, \nabla \psi(\bm{r},t) \cdot \nabla\phi(\bm{r},t)^* \quad.
+\end{aligned}
+\] 
+Il primo integrale si annulla poiché le funzioni d'onda fisiche devono essere a quadrato sommabile, decadendo a zero all'infinito (oppure annullandosi sulla frontiera $\partial\Omega$). Integriamo ancora il secondo termine per parti:
+\[
+    \begin{aligned}
+       (a) &= - \int_\Omega \dd^3{\bm{r}} \, \{\nabla\cdot [\phi(\bm{r},t)^*\nabla\psi(\bm{r},t)] - \phi(\bm{r},t)^*\nabla^2\psi(\bm{r},t) \} \\
+       &= -\underbrace{\oint_{\partial\Omega} \phi(\bm{r},t)^*\nabla\psi(\bm{r},t) \cdot \dd{\bm{S}}}_0 + \int_\Omega \dd^3{\bm{r}} \, \phi(\bm{r},t)^*\nabla^2\psi(\bm{r},t) \quad.
+    \end{aligned}
+\]
+Ancora una volta, per le medesime ragioni discusse in precedenza, il termine di flusso di frontiera è nullo. Sostituendo il risultato ottenuto, possiamo finalmente concludere che:
+\begin{equation}
+    \begin{aligned}
+        (\psi, \h{H}\phi)^* &= (\phi, U\psi) -\frac{\hbar^2}{2m} \int_\Omega \dd^3{\bm{r}} \, \phi(\bm{r},t)^*\nabla^2\psi(\bm{r},t) \\
+        &= (\phi, U\psi) + (\phi, \h{K}\psi) \\
+        &= (\phi, \h{H}\psi) \quad. 
+    \end{aligned}
+\end{equation}
+
+\subsection{La formulazione di Ehrenfest}
+Siamo finalmente pronti per comprendere il teorema che stiamo per dimostrare. Partiamo dal chiederci: come varia rispetto al tempo il valore di aspettazione del generico operatore $\h{A}$? Ossia, quanto vale la \emph{derivata totale} rispetto al tempo di $\langle \h{A} \rangle$? Calcoliamo:
+\[
+\begin{aligned}
+    \dv{\langle \h{A} \rangle}{t} = \dv{(\psi, \h{A}\psi)}{t} &= \dv{}{t}\int_\Omega \dd^3{\bm{r}} \, \psi(\bm{r},t)^* \h{A} \psi(\bm{r},t) \\
+    &=  \int_\Omega \dd^3{\bm{r}} \, \pdv{}{t}\left[ \psi(\bm{r},t)^* \h{A} \psi(\bm{r},t) \right] \\
+    &= \int_\Omega \dd^3{\bm{r}} \, \left[ \pdv{\psi(\bm{r},t)^*}{t}\h{A}\psi(\bm{r},t) + \psi(\bm{r},t)^*\pdv{\h{A}}{t}\psi(\bm{r},t) + \psi(\bm{r},t)^*\h{A}\pdv{\psi(\bm{r},t)}{t} \right] \\
+    &= \left(\partial_t\psi, \h{A}\psi\right) + \left(\psi, \partial_t\h{A} \, \psi \right) + \left(\psi, \h{A} \, \partial_t\psi\right) \quad.
+    \end{aligned}
+\]
+Dalla S.E. abbiamo che $i\hbar \partial_t \psi = \h{H}\psi$. Implementiamo questa relazione nel nostro calcolo e otteniamo:
+\[
+    \begin{aligned}
+        \dv{\langle \h{A} \rangle}{t} &= \left( \frac{1}{i\hbar}\h{H}\psi, \h{A}\psi \right) + \left\langle \pdv{\h{A}}{t} \right\rangle + \left(\psi, \h{A}\left(\frac{1}{i\hbar}\h{H}\psi\right) \right) \\
+        &= -\frac{1}{i\hbar} \left( \h{H}\psi, \h{A}\psi \right) + \frac{1}{i\hbar} \left(\psi, \h{A}\h{H}\psi\right) + \left\langle \pdv{\h{A}}{t} \right\rangle \\
+        &\overset{(1)}{=} -\frac{1}{i\hbar} \left( \psi, \h{H}\h{A}\psi \right) + \frac{1}{i\hbar} \left(\psi, \h{A}\h{H}\psi\right) + \left\langle \pdv{\h{A}}{t} \right\rangle \\
+        & = \frac{1}{i\hbar}\left( \psi, \left( \h{A}\h{H} - \h{H}\h{A} \right) \psi \right) + \left\langle \pdv{\h{A}}{t} \right\rangle = \frac{1}{i\hbar}\left( \psi, \left[ \h{A},\h{H} \right] \psi \right) + \left\langle \pdv{\h{A}}{t} \right\rangle \quad,
+    \end{aligned}
+\]
+dove in $(1)$ abbiamo sfruttato l'hermitianità appena dimostrata dell'operatore hamiltoniano. Riconoscendo la definizione di valore di aspettazione, otteniamo quindi la formulazione generale del Teorema di Ehrenfest:
+\begin{equation}
+    \dv{\langle \h{A} \rangle}{t} = \frac{1}{i\hbar}\left\langle \left[ \h{A},\h{H} \right] \right\rangle + \left\langle \pdv{\h{A}}{t}\right\rangle\quad.
+    \label{eq:teo_ehrenfest}
+\end{equation}
+
+\subsubsection{Interpretazione del risultato ottenuto}
+In pieno accordo con il principio di quantizzazione canonica, la formulazione hamiltoniana dell'evoluzione di una generica grandezza nello spazio delle fasi rispecchia in maniera pressoché perfetta la teoria quantistica, a meno del fantomatico fattore $1/i\hbar$ predetto da Dirac. 
+
+Si noti che, così come classicamente l'indipendenza della generica variabile $A$ esplicita dal tempo e dalla funzione di Hamilton garantisce che $A$ sia una costante del moto del sistema, lo stesso avviene in termini quantistici. L'evoluzione del valore di aspettazione di un operatore quantistico è infatti, a tutti gli effetti, \textit{governata dalle stesse leggi che interessano la sua controparte classica}.
+
+\subsection{Esempi notevoli di applicazioni del Teorema}
+Proviamo a questo punto a calcolare l'evoluzione temporale di $\langle  \hat{\bm{r}}\rangle $ e $\langle  \hat{\bm{p}}\rangle $, ricordando che classicamente si ha $\dot{\bm{r}} = \bm{v}$ e $\dot{\bm{p}} = \bm{F}$.
+
+\subsubsection{Dalla posizione ...}
+Sfruttiamo la \eqref{eq:teo_ehrenfest} e otteniamo:
+\[
+    \dv{\langle \hat{\bm{r}} \rangle}{t} = \frac{1}{i\hbar}\left\langle \left[ \hat{\bm{r}},\h{H} \right] \right\rangle + \left\langle \pdv{\hat{\bm{r}}}{t}\right\rangle \quad.
+\]
+Assumendo il sistema conservativo, il commutatore vale:
+\[
+\begin{aligned}
+    \left[ \hat{\bm{r}},\h{H} \right] = \left[ \hat{\bm{r}},\h{U} + \h{K} \right] &= \underbrace{\left[ \hat{\bm{r}},\h{U} \right]}_{0} + \left[ \hat{\bm{r}},\h{K} \right] \\
+    &= \frac{1}{2m}\left[ \hat{\bm{r}},\hat{\bm{p}}^2 \right] = \frac{1}{2m}\sum_i \left(\hat{p}_i\left[ \hat{x}_i,\hat{p}_i \right] +\left[ \hat{x}_i,\hat{p}_i \right] \hat{p}_i\right)\bm{u}_i \\
+    &= \frac{1}{2m}\sum_i 2i\hbar \hat{p}_i \bm{u}_i = i\hbar\frac{\hat{\bm{p}}}{m} \quad.
+\end{aligned}
+\]
+Sostituendo, abbiamo:
+\[
+    \dv{\langle \hat{\bm{r}} \rangle}{t} = \frac{1}{i\hbar} \left\langle i\hbar\frac{\hat{\bm{p}}}{m}\right\rangle + \left\langle \pdv{\hat{\bm{r}}}{t}\right\rangle = \left\langle \frac{\hat{\bm{p}}}{m}\right\rangle + \left\langle \pdv{\hat{\bm{r}}}{t}\right\rangle \quad.
+\]
+Nella maggior parte dei casi, l'operatore posizione non dipende esplicitamente dal tempo e otteniamo la traduzione della arcinota relazione classica:
+\begin{equation}
+    \dv{\langle \hat{\bm{r}} \rangle}{t} = \frac{1}{m} \langle \hat{\bm{p}}\rangle \quad.
+\end{equation}
+
+
+\subsubsection{... Alla quantità di moto}
+Ripetiamo gli stessi calcoli fatti in precedenza:
+\[
+    \dv{\langle \hat{\bm{p}} \rangle}{t} = \frac{1}{i\hbar}\left\langle  \left[ \hat{\bm{p}},\h{H} \right] \right\rangle + \left\langle \pdv{\hat{\bm{p}}}{t}\right\rangle \quad.
+\]
+Si noti che $[\hat{\bm{p}}, \h{K}] = 0$, da cui:
+\[
+\begin{aligned}
+    \left[ \hat{\bm{p}},\h{H} \right] = \left[ \hat{\bm{p}},\h{U} + \h{K} \right] &= \left[ \hat{\bm{p}},\h{U} \right] + \underbrace{\left[ \hat{\bm{p}},\h{K} \right]}_0 \\
+    &= \sum_i -i\hbar\pdv{U}{x_i} \, \bm{u}_i \overset{(1)}{=} i\hbar \bm{F} \quad,
+\end{aligned}
+\]
+dove in $(1)$ abbiamo definito l'$i$-esima componente della forza come $F_i = -\partial_{x_i}U$, mimando la formulazione classica. Ricostruendo, otteniamo:
+\[
+    \dv{\langle \hat{\bm{p}} \rangle}{t} = \frac{1}{i\hbar}\left\langle i\hbar \bm{F} \right\rangle + \left\langle \pdv{\hat{\bm{p}}}{t}\right\rangle = \left\langle  \bm{F} \right\rangle + \left\langle \pdv{\hat{\bm{p}}}{t}\right\rangle\quad.
+\]
+Ancora una volta, assumiamo $\hat{\bm{p}}$ non dipendente esplicitamente dal tempo e ritroviamo la controparte quantomeccanica della seconda legge di Newton:
+\begin{equation}
+    \dv{\langle \hat{\bm{p}} \rangle}{t} = \left\langle  \bm{F} \right\rangle \quad.
+\end{equation}
+
+\begin{approfondimento}[title={Eccezioni alla regola}]
+    \noindent
+    In realtà, la "perfetta" corrispondenza classica-quantistica tende a rompersi in alcune particolari situazioni come, ad esempio, casi in cui il potenziale in cui è immerso il sistema non è una forma al più quadratica delle posizioni, bensì presenta una dipendenza cubica, quartica, ecc. dalle coordinate. 
+    
+    Scelto il semplice potenziale unidimensionale $U(x) = \alpha x^4/4$, abbiamo:
+    \[
+        \left\langle  \bm{F} \right\rangle = -\left\langle  \pdv{U}{x} \right\rangle = -\left\langle  \alpha x^3 \right\rangle = -\alpha \left\langle   x^3 \right\rangle
+    \] 
+    che, in generale, è diverso da $-\alpha \left\langle   x \right\rangle^3$. Per \emph{energie sufficientemente grandi}\footnote{Sarà chiaro più avanti come questa assunzione si traduca formalmente nell'ipotesi di avere un sistema caratterizzato da \emph{numeri quantici} sufficientemente grandi.}, comunque, si può dimostrare che $\langle AB \rangle = \langle A \rangle \langle B \rangle$, concludendo che l'uguaglianza è verificata anche nel caso di $\langle x^3 \rangle = \langle x \rangle^3$. 
+
+    In questo senso, il Teorema di Ehrenfest si inserisce in un quadro più ampio completato dal \textbf{Principio di Corrispondenza} di Bohr, che stabilisce che nel limite semiclassico ("grandi energie") le leggi della meccanica quantistica collassano su quelle della fisica classica.
+    
+\end{approfondimento}

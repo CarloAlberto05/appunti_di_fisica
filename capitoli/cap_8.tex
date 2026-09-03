@@ -1,0 +1,342 @@
+%!TEX root = ../dispense_QP.tex
+
+\chapter{Il principio di indeterminazione e le sue conseguenze}
+La discussione che segue presenta il suo cardine nel celeberrimo \textbf{Principio di indeterminazione di Heisenberg} che dimostreremo entro breve. Le conseguenze fisiche che ne conseguono sono \emph{devastanti}: un assaggio lo abbiamo già avuto durante l'analisi della posizione della massa oscillante nel caso dell'oscillatore armonico. In quel contesto avevamo scoperto che non è possibile conoscere simultaneamente con errore nullo sia la posizione sia la quantità di moto associate alla particella, a meno di un fattore di scarto $\hbar/2$. Nel seguito proveremo a formalizzare quella che era stata solo un'intuizione e riprenderemo gli autostati dell'oscillatore armonico, imparando a identificarli come \textbf{stati coerenti}.
+
+\section{Il Principio di indeterminazione di Heisenberg}
+L'idea di partenza è semplice: se classicamente è possibile conoscere \emph{tutto} e \emph{allo stesso tempo} su una particella in moto, cosa mi garantisce che lo stesso è fattibile nel mondo quantistico? Effettivamente nulla permette di avere tanta \emph{hybris} da avanzare una tale assunzione, per di più smentita da uno dei più grandi che la meccanica quantistica abbia conosciuto: Werner Karl Heisenberg. Discuteremo più avanti il suo approccio alla fisica dei quanti, sufficientemente diverso da quello dei compagni Schrödinger e Dirac: per ora ci \emph{limitiamo} a cercare di capire se e in quali condizioni possiamo mimare la certezza classica della conoscenza istantanea e assoluta di un sistema. 
+
+\subsection{Alcune considerazioni preliminari}
+Scegliamo inizialmente due osservabili fisiche, $A_1$ e $A_2$, a cui sono associate gli operatori hermitiani $\h{A}_1$ e $\h{A}_2$. Assumiamo che il commutatore dei due operatori sia non nullo e richiediamo che valga:
+\[
+    [\h{A}_1, \h{A}_2] = i\h{G} \quad,
+\]
+con $\h{G}$ un generico operatore. Questa apparentemente particolare forma non lede in alcun modo la generalità dell'approccio al problema: quanto ci siamo limitati a fare è stato imporre il commutatore fra due operatori, che in generale è proprio un operatore che possiamo chiamare $\h{C}$, uguale a $i\h{G}$. Questo escamotage, in ogni caso, permette di garantire che $\h{G}$ sia anch'esso hermitiano, infatti:
+\[
+\begin{aligned}
+    \hd{G} = \left(-i[\h{A}_1, \h{A}_2]\right)^\dagger = i(\h{A}_1\h{A}_2 - \h{A}_2\h{A}_1)^\dagger &= i(\hd{A}_2\hd{A}_1 - \hd{A}_1\hd{A}_2) \\ &\giustifica[=]{1} i(\h{A}_2\h{A}_1 - \h{A}_1\h{A}_2) = -i[\h{A}_1, \h{A}_2] = \h{G} \quad,
+\end{aligned}
+\]
+dove in $(1)$ abbiamo sfruttato il fatto che i due opratori sono hermitiani. Definiamo a questo punto due nuovi operatori costruiti a partire da quelli di partenza tramite cui mimare la definizione classica di varianza\footnote{Si ricordi che $Var(X) = E[(X-\mu_X)^2]$, con $X$ una generica variabile aleatoria e $\mu_X$ la sua media.}:
+\[
+    \h{D}_1 = \h{A}_1 - \avg{\h{A}_1}\mathds{1}, \quad \h{D}_2 = \h{A}_2 - \avg{\h{A}_2}\mathds{1} \quad,
+\]
+che sono a loro volta hermitiani perché $\h{A}_i$ e $\mathds{1}$ lo sono. Si noti che i $\h{D}_i$ sono satti costruiti come \emph{osservabile} meno la sua media: la media del loro quadrato deve dunque essere la controparte quantistica della varianza di $\h{A}_i$:
+\begin{equation}
+\begin{aligned}
+        \avg{\h{D}_i^2} = \avg{\left( \h{A}_i - \avg{\h{A}_i} \mathds{1} \right)^2} &= \avg{\hat{A}_i^2 - 2\h{A}_i\avg{\h{A}_i} + \avg{\h{A}_i}^2 \mathds{1}} \\ &\giustifica[=]{2} \avg{\h{A}_i^2} - 2\avg{\h{A}_i}^2 + \avg{\h{A}_i}^2 = \avg{\h{A}_i^2} - \avg{\h{A}_i}^2 = \sigma_i^2 = (\Delta \h{A}_i)^2 \quad,
+\end{aligned}
+\label{eq:varianza_A}
+\end{equation}
+dove in $(2)$ abbiamo sfruttato la linearità del prodotto scalare. Si noti ancora che:
+\[
+\begin{aligned}
+    [\h{D}_1, \h{D}_2] &= [\h{A}_1 - \avg{\h{A}_1}\mathds{1}, \h{A}_2 - \avg{\h{A}_2}\mathds{1}] \\ &= [\h{A}_1, \h{A}_2] - \avg{A_1}[\mathds{1}, \h{A}_2] - \avg{A_2}[\mathds{1}, \h{A}_1] + \avg{A_1}\avg{A_2}[\mathds{1}, \mathds{1}] = [\h{A}_1, \h{A}_2] \quad,
+\end{aligned}
+\]
+dal momento che qualsiasi operatore commuta con l'identità. 
+
+\subsection{Derivazione della disuguaglianza di Robertson}
+Se nella meccanica classica le parentesi di Poisson fra due funzioni dello spazio delle fasi rappresentano un'indicatore di \emph{quanto l'evoluzione della prima influenzi l'evoluzione della seconda} e viceversa, la regola di quantizzazione ci permette di estendere questa descrizione geometrica alla meccanica quantistica. Il commutatore diventa così lo strumento tramite cui discernere quanto due operatori (e dunque le osservabili ad essi associate) siano \emph{compatibili}. 
+
+Il modulo quadro del commuatatore fra due operatori deve quindi resitutire una \emph{misura} di questa fantomatica compatibilità. La quantità d'interesse diventa allora:
+\[
+    \left| \avg{\h{G}} \right|^2 = \left| \avg{-i[\h{A}_1, \h{A}_2]} \right|^2 \quad.
+\]
+Espandendo l'ugaglianza si ottiene:
+\[
+        \left| \avg{\h{G}} \right|^2 = \left| \avg{[\h{A}_1, \h{A}_2]} \right|^2 = \left| \avg{[\h{D}_1, \h{D}_2]} \right|^2 = \left| \avg{\h{D}_1\h{D}_2 - \h{D}_2\h{D}_1} \right|^2 = \left|\avg{\h{D}_1\h{D}_2} - \avg{\h{D}_2\h{D}_1} \right|^2 \quad.
+\]
+È possibile sfruttare l'hermitianità di $\h{D}_i$ per riscrivere l'ultimo termine. Vale infatti:
+\[
+\begin{aligned}
+    \avg{\h{D}_2\h{D}_1} = \left( \psi, \h{D}_2\h{D}_1 \psi \right) &= \left(\hd{D}_2 \psi, \h{D}_1 \psi \right) = \left(\h{D}_2 \psi, \h{D}_1 \psi \right) \\
+    &= \left(\h{D}_1 \psi, \h{D}_2 \psi \right)^* = \left(\psi, \hd{D}_1\h{D}_2 \psi \right)^* = \left(\psi, \h{D}_1\h{D}_2 \psi \right)^* = \avg{\h{D}_1\h{D}_2}^* \quad.
+\end{aligned}
+\]
+Sfruttando questo risultato otteniamo:
+\[
+    \begin{aligned}
+        \left| \avg{\h{G}} \right|^2 = \left|\avg{\h{D}_1\h{D}_2} - \avg{\h{D}_1\h{D}_2}^* \right|^2 = \left|2i\Im\left(\avg{\h{D}_1\h{D}_2}\right) \right|^2 = 4\left|\Im\left(\avg{\h{D}_1\h{D}_2}\right) \right|^2 \quad.
+    \end{aligned}
+\] 
+Il valore di aspettazione del prodotto $\h{D}_1 \h{D}_2$ è un numero complesso del tipo $\alpha + i\beta$ da cui:
+\[
+    \begin{aligned}
+        \left| \avg{\h{G}} \right|^2 = 4\left|\Im\left(\alpha + i\beta\right) \right|^2 = 4\beta^2 \leq 4(\alpha^2 + \beta^2) = 4\left| \avg{\h{D}_1\h{D}_2} \right|^2 \quad.
+    \end{aligned}
+\]
+Si noti l'introduzione del segno di minore o uguale! Questa è l'origine della fantomatica \textbf{formulazione di Robertson} del principio di indeterminazione. Continuando con la definizione di valore di aspettazione abbiamo:
+\[
+    \begin{aligned}
+        \left| \avg{\h{G}} \right|^2 \leq 4\left| (\psi, \h{D}_1\h{D}_2\psi) \right|^2 = 4\left| (\h{D}_1\psi, \h{D}_2\psi) \right|^2 = 4\left| (\phi_1, \phi_2) \right|^2 \quad,
+    \end{aligned}
+\]
+dove si sono chiamati $\phi_1$ e $\phi_2$ i due stati prodotti dall'applicazioni di $\h{D}_i$ su $\psi$. La \emph{disuguaglianza di Cauchy-Schwarz} permette di continuare:
+\[
+    \begin{aligned}
+        \left| \avg{\h{G}} \right|^2 \leq 4(\phi_1, \phi_1)(\phi_2, \phi_2) = 4(\h{D}_1\psi, \h{D}_1\psi)(\h{D}_2\psi, \h{D}_2\psi) = 4(\psi, \h{D}_1^2 \psi)(\psi, \h{D}_2^2 \psi) = 4\avg{\h{D}_1^2}\avg{\h{D}_2^2}
+    \end{aligned}
+\]
+e grazie alla \eqref{eq:varianza_A}, con qualche rimaneggiamento di carattere algebrico, otteniamo la formula di Robertson:
+\begin{equation}
+    \begin{aligned}
+    \left| \avg{\h{G}} \right|^2 &\leq 4(\Delta \h{A}_1)^2 \, (\Delta \h{A}_2)^2 \\
+    \implies (\Delta \h{A}_1)^2 \, (\Delta \h{A}_2)^2 &\geq \frac{1}{4} \left| \avg{[\h{A}_1, \h{A}_2]} \right|^2 \quad.
+    \end{aligned}
+\end{equation}
+Gli stati per cui la disuguaglianza diventa un'uguaglianza sono detti \textbf{stati coerenti}.
+
+\subsection{interpretazione fisica}
+La relazione appena trovata testimonia come la conoscenza di due osservabili associate a operatori non commutanti è intrinsecamente affetta da un errore che non permette di avere informazioni \emph{esatte} e \emph{simultanee} riguardo entrambe le grandezze studiate. L'incertezza in questione, ancora, non può essere ridotta arbitrariamente: nel limite in cui $(\Delta \h{A}_1)^2 \to 0$, necessariamente $(\Delta \h{A}_1)^2 \to \infty$. 
+
+In soldoni, nel caso in esame di operatori non commutanti: diminuire l'incertezza sulla misura di una grandezza impone la perdita di informazioni sulla seconda. 
+
+\subsubsection{L'esempio della particella libera}
+Nel caso della particella libera ci siamo concentrati sullo studio degli operatori posizione $\hat{x}_k$ e momento $\hat{p}_j$, declinati nelle loro componenti. Cerchiamo di applicare il Principio di indeterminazione e vedere dove ci porta:
+\[
+    (\Delta \hat{x}_k)^2 (\Delta \hat{p}_j)^2 \leq \frac{1}{4} \left| \avg{[\hat{p}_j, \hat{x}_k]}\right|^2 = \frac{1}{4} \left| \avg{i\hbar \delta_{jk}\mathds{1}}\right|^2 = \frac{\hbar^2 \delta_{jk}}{4} \quad.
+\]
+Questo risultato ci conferma il fatto che, se è possibile conoscere con assoluta precisione e simultaneamente posizione e momento relativi a due \emph{direzioni differenti}, il collasso alla stessa componente porta a:
+\[
+    (\Delta \hat{x}_k)^2 (\Delta \hat{p}_j)^2 \leq \frac{\hbar^2}{4} \implies \Delta \hat{x}_k \Delta \hat{p}_j \leq \frac{\hbar}{2} 
+\]
+come conseguenza della natura prettamente non deterministica, bensì probabilistica, della teoria quantistica. Il percorso seguito da una particella libera, quindi, non è dato da una \emph{linea retta} in quanto questo implicherebbe la conoscenza della legge oraria,
+\[
+    x(t) = x_0 + \frac{p_x}{m} t \quad,
+\]
+in disacccordo con Heisenberg. Quanto si conosce, come discusso nella sezione dedicata, è il fatto che il massimo della probabilità è localizzato laddove classicamente si riuscirebbe a prevedere la posizione del corpuscolo che, almeno nei limiti quantistici, si muove entro una sorta di percorso \emph{ombreggiato}.
+
+
+\section{Teorema sugli operatori commutanti}
+Di grande interesse a questo punto della trattazione è capire se, e quando, due operatori commutano. Il seguente teorema ci viene in soccorso.
+
+\begin{teorema}[Operatori hermitiani commutanti]
+    Siano $\h{A}$ e $\h{B}$ due operatori hermitiani e \emph{commutanti}, ovvero per cui vale:
+    \[
+        [\h{A}, \h{B}] = \h{A}\h{B} - \h{A}\h{B} = 0 \quad,
+    \]
+    allora $\h{A}$ e $\h{B}$ condividono almeno un insieme di autofunzioni.
+\end{teorema}
+La dimostrazione si articola in due casistiche, quella relativa a operatori con spettro degenere e non. Iniziamo dall'evenienza più semplice.
+
+\subsubsection{Caso non degenere}
+Si ricordi che un operatore ha spettro non degenere se per ogni autostato esiste un unico autovalore, ovvero se
+    \[
+        \forall \alpha : \h{A}\psi = \alpha \psi \quad \exists! \, \psi \quad.
+    \] 
+\begin{proof}
+    \textbf{(1. Caso non degenere)} 
+    Sia $\h{A}$ un operatore con spettro non degenere e $\h{B}$ un operatore \textbf{qualunque}. Si noti come non è \emph{assolutamente necessario} imporre che anche lo spettro di $\h{B}$ sia non degenere (segue esempio al termine della dimostrazione). Sia $\psi$ un generico autostato di $\h{A}$ con associato l'autovalore $\alpha$, allora:
+    \[
+        \h{A}(\h{B}\psi) = (\h{A}\h{B})\psi \giustifica[=]{1} (\h{B}\h{A})\psi = \h{B}(\h{A}\psi) = \alpha \h{B}\psi \quad,
+    \]
+    dove in $(1)$ abbiamo sfruttato il fatto che $[\h{A}, \h{B}] = 0$. Notiamo allora che anche lo stato $\h{B}\psi$ è autostato di $\h{A}$. Essendo lo spettro di quest'ultimo non degenere, però, $\h{B}\psi$ non può che essere proporzionale a $\psi$:
+    \[
+        \h{B}\psi = \beta \psi \quad.
+    \]
+    Ne consegue che $\psi$ deve essere autostato anche di $\h{B}$ associato all'autovalore $\beta$. Dal momento che questo ragionamento si può estendere a tutte le autofunzioni di $\h{A}$, allora ciascuna di esse è anche autostato di $\h{B}$. 
+\end{proof}
+Come anticipato, la richiesta che $\h{B}$ abbia spettro non degenere è superflua. Si prenda infatti un qualsiasi $\h{A}$ non degenere, allora vale sempre:
+\[
+    [\h{A}, \mathds{1}] = \h{A}\mathds{1} - \mathds{1}\h{A} = \h{A} - \h{A} = 0 \quad,
+\]
+anche se $\mathds{1}$ ammette come unico autovalore $\alpha = 1$. 
+
+\subsubsection{Caso degenere}
+Se entrambi gli operatori analizzati avessero spettro degenere, ovvero se fossero caratterizzati da più autostati associati al medesimo autovalore, non sarebbe possibile concludere \emph{facilmente} la dimostrazione come in precedenza. 
+
+\begin{proof}
+    \textbf{(2. Caso degenere)} Siano $\h{A}$ e $\h{B}$ due operatori commutanti con spettro degenere. Concentriamoci su $\h{A}$ e scegliamo, senza perdita di generalità, il generico autovalore $\alpha$ a cui sono associate $n$ autofunzioni. L'insieme
+    \[
+        \mathcal{F}_n \coloneq \left\{ \psi_i, i \in \{1, n\} : \h{A}\psi_i = \alpha \psi_i  \right\}
+    \]
+    è un sottospazio vettoriale\footnote{Non è difficile verificarlo: contiene certamente l'elemento nullo ed è formato da vettori appartenenti a uno spazio vettoriale, lo spettro di $\h{A}$.}. Procedendo come nel caso non degenere, scriviamo:
+    \[
+        \h{A}(\h{B}\psi_i) = (\h{A}\h{B})\psi_i = (\h{B}\h{A})\psi_i = \h{B}(\h{A}\psi_i) = \alpha \h{B}\psi_i \quad.
+    \]
+    A questo punto, però, non è possibile concludere che lo stato $\h{B}\psi_i$ sia proporzionale a $\psi_i$: nell'evenienza precedente, il sottospazio generato dall'unico autostato associato ad $\alpha$ aveva dimensione 1, di conseguenza qualsiasi autofunzione che avrebbe condiviso $\alpha$ come autovalore sarebbe dovuta essere proporzionale a $\psi$. In questo caso, $\dim{\mathcal{F}} > 1$ per ipotesi: quanto possiamo certamente assumere è che $\h{B}\psi_i$ si possa esprimere come combinazione lineare degli elementi di $\mathcal{F}$:
+    \[
+        \h{B}\psi_i = \sum_j C_{ij}\psi_j,\quad C_{ij} = (\psi_j, \h{B}\psi_i), \quad \psi_j \in \mathcal{F} \quad.
+    \]
+    Se raccogliamo in una matrice $\mathcal{C}$ tutti gli elementi $C_{ij}$, ci rendiamo conto del fatto che $\mathcal{C}$ è hermitiana, infatti:
+    \[
+        C_{ij}^* = (\psi_j, \h{B}\psi_i)^* = (\h{B}\psi_i, \psi_j) =  (\psi_i, \hd{B}\psi_j) \giustifica[=]{1} (\psi_i, \h{B}\psi_j) = C_{ji}
+    \]
+    dove in $(1)$ abbiamo sfruttato il fatto che $\h{B}$ è hermitiano. Il \emph{Teorema spettrale} garantisce che $\mathcal{C}$ possa essere diagonalizzata tramite matrici diagonalizzanti unitarie (ovvero per cui $\mathcal{U}^{-1} =\mathcal{U}^{\dagger} $):
+    \[  
+        \mathcal{C} = \mathcal{U} \mathcal{D} \mathcal{U}^{\dagger}
+    \]
+    con $\mathcal{D}$ diagonale. Riscrivendo l'uguaglianza in componenti si ottiene:
+    \[
+        C_{ij} = \sum_m \sum_k \mathcal{U}_{im} \mathcal{D}_{mk} (\mathcal{U}^{\dagger})_{kj} \giustifica[=]{2} \sum_m \sum_k \mathcal{U}_{im} d_m \delta_{mk} \mathcal{U}^*_{jk} = \sum_m \mathcal{U}_{im} d_m \mathcal{U}^*_{jm} \quad,
+    \] 
+    dove in $(2)$ si è sfrutatto il fatto che $\mathcal{D}$ è diagonale. Sostituendo nella relazione per $\h{B}\psi_i$ si ottiene:
+    \[
+        \h{B}\psi_i = \sum_j\sum_m \mathcal{U}_{im} d_m \mathcal{U}^*_{jm} \psi_j = \sum_m \mathcal{U}_{im} d_m \underbrace{\sum_j \mathcal{U}^*_{jm} \psi_j}_{\phi_m} = \sum_m \mathcal{U}_{im} d_m \phi_m
+    \]
+    dove si è identificato con $\phi_m$ il nuovo stato ottenuto tramite C.L. delle $\psi_j \in \mathcal{F}$. Si noti come $\phi_m$ deve necessariamente essere autostato di $\h{A}$ essendo costruito a partire dfa autostati di $\h{A}$. L'ultima relazione può suggerire che $\phi$ sia autostato anche di $\h{B}$ dal momento che l'applicazione dell'operatore sullo stato $\psi_i$ genera una C.L. delle $\phi_m$. Verifichiamolo:
+    \[
+        \h{B}\phi_m = \h{B} \sum_j \mathcal{U}^*_{jm} \psi_j = \sum_j \mathcal{U}^*_{jm} \h{B}\psi_j = \sum_j \mathcal{U}^*_{jm} \sum_k \mathcal{U}_{jk} d_k \phi_k =\sum_k\underbrace{\sum_j \mathcal{U}^*_{jm}\mathcal{U}_{jk}}_{\delta_{mk}} d_k \phi_k = d_m \phi_m \quad,
+    \]
+    con $\phi_m$ che è così autofunzione sia di $\h{B}$ sia di $\h{A}$. Si noti che sono state trovate $m$ autostati $\phi$, nello stesso numero della cardinalità dell'insieme delle autofunzioni degenri di $\h{A}$. Dal momento che questo approccio può essere esteso per ogni insieme $\mathcal{F}$, segue l'ipotesi.
+\end{proof}
+
+\subsection{Insieme completo di operatori}
+Nell'analizzare un problema quantistico, un'informazione di notevole importanza è data dalla conoscenza di tutti gli operatori associati a osservabili del sistema che commutanto fra loro: questa caratteristica garantisce di poter misurare con precisione assoluta e simultaneamente le grandezze ad essi associate e di descrivere, in questo modo, il sistema nel modo più \emph{completo} possibile. 
+
+Definiamo in questo senso un generico insieme di operatori $\mathcal{I}$ come \textbf{insieme completo di operatori commutanti} (ICOC) di un sistema se contiene il numero massimo di operatori che commutano fra loro e se la base di autostati condivisa è non degenere\footnote{Questa richiesta non è un vezzo matematico, bensì una necessità fondata nella \emph{teoria della misura}.}. Si noti come è spesso possibile trovare più di un ICOC per ogni sistema: la scelta di quale usare spetta a colui che lo analizza e solo alcuni portano a lavorare con sole quantità conservate.
+
+\section{Stati coerenti}
+Passiamo adesso a discutere di quegli stati che minimizzano la formulazione di Robertson del Principio di Heinseberg: gli \emph{stati coerenti}. La loro rilevanza nello studio della materia è data dal fatto che il loro comportamento è quanto di più affine si possa trovare a quello proprio di un sistema classico. 
+
+Gli stati coerenti possono essere ricavati in diversi modi, qui si presenta la definizione classica che si appoggia al già introdotto \textbf{operatore di annichilazione} $\hat{a}$. Si dice che uno stato $\psi_z$ è uno stato coerente se è un autostato di $\hat{a}$:
+\begin{equation}
+    \hat{a} \psi_z = z\psi_z \quad.
+    \label{eq:stati_coerenti}
+\end{equation}
+
+\subsection{Soluzione dell'equazione differenziale}
+Armati di pazienza, ci immergiamo adesso nella soluzione della \eqref{eq:stati_coerenti}, ricordando la definizione operazionale di $\hat{a}$:
+\[
+    \hat{a} = \sqrt{\frac{m\omega}{2\hbar}} \left( \hat{x} + i\frac{\hat{p}}{m\omega} \right) \quad.
+\]
+Abbiamo:
+\[
+    \sqrt{\frac{m\omega}{2\hbar}} \left( x + \frac{\hbar}{m\omega} \dv{}{x}\right)\psi_z(x) = z\psi_z(x) \quad.
+\]
+Si può dimostrare che la soluzione ha la forma di:
+\[
+    \psi_z(x) = Ce^{-\sigma x^2 + i\eta x}
+\] 
+che, sostituita nell'equazione, permette di trovare le costanti $\sigma$ e $\eta$:
+\[
+    \begin{aligned}
+        \sqrt{\frac{m\omega}{2\hbar}} \left( x + \frac{\hbar}{m\omega} (-2\sigma x + i\eta)\right)&\psi_z(x) = \sqrt{\frac{m\omega}{2\hbar}} \left( x - \frac{2\hbar}{m\omega}\sigma  + \frac{\hbar}{m\omega}i\eta \right)\psi_z(x) = z\psi_z(x)\\
+        &\implies \begin{dcases}
+            \frac{2\hbar}{m\omega}\sigma = 1 \\
+            \frac{\hbar}{m\omega}i\eta = z 
+        \end{dcases}
+        \implies \begin{dcases}
+        \sigma = \frac{m\omega}{2\hbar} = \frac{1}{2\lambda^2} \\
+        i\eta = \frac{2m \omega}{\hbar}z = \frac{\sqrt{2}}{\lambda}z 
+        \end{dcases}
+    \end{aligned}
+\] 
+dove abbiamo riconosciuto la lunghezza caratteristica dell'oscillatore armonico $\lambda$. Segue che lo stato coerente può essere scritto come:
+\[
+    \psi_z(x) = Ce^{-\frac{x^2}{2\lambda^2} + \frac{\sqrt{2}z}{\lambda}x} \quad.
+\]
+Per trovare la cosatante $C$ si impone la normalizzazione:
+\[
+    (\psi_z, \psi_z) = 1 \implies 1 = |C|^2 \int_{\mathbb{R}} \dd{x} \, \exp\left[ -\frac{x^2}{\lambda^2} + \frac{\sqrt{2}x}{\lambda}(z+z^*) \right] \quad,
+\]
+con $z + z^* = 2\Re(z) = 2v$. Completando il quadrato e effettuando il cambio di variabile $y = x/\lambda$:
+\[
+    1 = |C|^2 \lambda \int_{\mathbb{R}} \dd{y} \, e^{ -y^2 + 2\sqrt{2}yv } = |C|^2 \lambda \int_{\mathbb{R}} \dd{y} e^{-\left(y-\sqrt{2}v\right)^2+2v^2} = |C|^2 \lambda e^{2v^2} \int_{\mathbb{R}} \dd{y} e^{-\left(y-\sqrt{2}v\right)^2} \quad,
+\]  
+dove riconosciamo l'integrale gaussiano come uguale a $\sqrt{\pi}$. Imponendo un fattore di fase nullo per $C$ abbiamo infine:
+\[
+    C^2\lambda e^{2v^2}\sqrt{pi} = 1 \implies C = \frac{e^{-v^2}}{\sqrt{\lambda\sqrt{\pi}}} \quad.
+\]
+Otteniamo infine:
+\begin{equation}
+    \psi_z(x) = \frac{e^{-\frac{x^2}{2\lambda^2} + \frac{\sqrt{2}z}{\lambda}x-v^2}}{{\sqrt{\lambda\sqrt{\pi}}}} \quad.
+    \label{eq:stati_coerenti}
+\end{equation}
+
+\subsubsection{Significato fisico dell'autovalore $\bm{z}$}
+L'interessante significato fisico di $z$ diventa palese quando si proietta lo stato $\hat{a}\psi_z$ su $\psi_z$, infatti:
+\[
+    \sqrt{\frac{m\omega}{2\hbar}} \left( \hat{x} + i\frac{\hat{p}}{m\omega} \right)\psi_z = z\psi_z \implies \sqrt{\frac{m\omega}{2\hbar}} \left[ (\psi_z,\hat{x}\psi_z) + i\frac{(\psi_z,\hat{p}\psi_z)}{m\omega} \right]= z(\psi_z, \psi_z) \quad.
+\]
+Riconoscendo adesso la definizione di valore di aspettazione e sfruttando la normalizzazione di $\psi_z$ abbiamo:
+\[
+    z = \sqrt{\frac{m\omega}{2\hbar}} \left( \avg{\hat{x}} + i\frac{\avg{\hat{p}}}{m\omega} \right) \implies \begin{dcases}
+    \Re(z) = \sqrt{\frac{m\omega}{2\hbar}}\avg{\hat{x}} = \frac{\avg{\hat{x}}}{\lambda\sqrt{2}}\\
+    \Im(z) = \frac{\avg{\hat{p}}}{\sqrt{2\hbar m\omega}} = \frac{\lambda \avg{\hat{p}}}{\hbar \sqrt{2}} \quad.
+    \end{dcases}
+\]
+Questo permette di riscrivere in modo più elegante e fisicamente significativo la \eqref{eq:stati_coerenti}:
+\[
+\begin{aligned}
+        \psi_z(x) &= \frac{1}{\sqrt{\lambda\sqrt{\pi}}} \exp\left[ -\frac{x^2}{2\lambda^2} + \frac{\sqrt{2}x}{\lambda} \left(\frac{\avg{\hat{x}}}{\lambda\sqrt{2}} + i\frac{\lambda \avg{\hat{p}}}{\hbar \sqrt{2}}  \right) - \frac{\avg{\hat{x}}^2}{2\lambda^2} \right] \\
+        &= \frac{1}{\sqrt{\lambda\sqrt{\pi}}} e^{i\frac{\avg{\hat{p}}}{\hbar}x} \exp\left[ -\frac{x^2 + \avg{\hat{x}}^2 - 2x\avg{\hat{x}}}{2\lambda^2} \right] = \frac{1}{\sqrt{\lambda\sqrt{\pi}}} e^{i\frac{\avg{\hat{p}}}{\hbar}x} e^{-\frac{(x-\avg{\hat{x}})^2}{2\lambda^2}} \quad,
+\end{aligned}
+\]
+dimostrando come uno stato coerente non è altro che la combinazione di un'onda piana di numero d'onda $\avg{\hat{p}}/\hbar$ e di uno stato localizzato gaussiano.
+
+\subsection{Sviluppo nella base di Fock}
+Di seguito indagheremo la soluzione della \eqref{eq:stati_coerenti} sfruttando una tecnica lievemente diversa dalla \emph{bruta} soluzione dell'equazione differenziale. L'idea è quella di scrivere $\psi_z$ in serie di Fourier sfruttando la base di $\mathcal{L}^2$ fornita dall'hamiltoniana del sistema, ovvero:
+\[
+    \h{H} = \hbar \omega \left( \frac{1}{2} + \hat{n} \right) \quad,
+\]
+dove $\hat{n} = \hatd{a}\hat{a}$ è l'operatore numero. Lo spettro in questione è dunque $\mathcal{B} \coloneq \left\{ \psi_n : \hat{n}\psi_n = n\psi_n \right\}$. Iniziamo dall'espansione in serie:
+\[
+    \psi_z(x) = \sum_{n= 0}^\infty f_n \psi_n(x)
+\]
+dove con $f_n$ si identificano i coefficienti di Fourier. Sfruttando il fatto che $\psi_z$ è autostato di $\hat{a}$, lo applichiamo ad ambo i membri e otteniamo:
+\[
+    \begin{aligned}
+        \hat{a}\psi_z(x) = z\psi_z(x) &= \hat{a}\sum_{n= 0}^\infty f_n \psi_n(x) = \sum_{n= 0}^\infty f_n \hat{a}\psi_n(x)\\ &= \sum_{n= 0}^\infty f_n \sqrt{n}\psi_{n-1}(x) \giustifica[=]{1} \sum_{n= 1}^\infty f_n \sqrt{n}\psi_{n-1}(x) \giustifica[=]{2} \sum_{n= 0}^\infty f_{n+1} \sqrt{n+1}\psi_{n}(x) \quad,
+    \end{aligned}
+\]
+dove in $(1)$ abbiamo fatto partire la somma da $n=1$ trascurando il primo termine nullo ($n= 0$) e in $(2)$ abbiamo eseguito il cambio di variabile $n' = n+1$. Si noti come $z\psi_z$ altro non è che:
+\[
+    z\psi_z(x) = z \sum_{n= 0}^\infty f_n \psi_n(x) \quad.
+\]
+Uguagliando le due serie ottenute si ha:
+\[
+    \begin{aligned}
+        z \sum_{n= 0}^\infty f_n \psi_n(x) = \sum_{n= 0}^\infty f_{n+1} \sqrt{n+1}\psi_{n}(x) \implies \sum_{n= 0}^\infty\left( f_{n+1}\sqrt{n+1} - zf_n \right)\psi_n(x) = 0 \quad.
+    \end{aligned}
+\]
+Perché la serie sia nulla per ogni scelta di $\psi_z(x)$ serve che il termine fra parentesi sia identicamente nullo. Questo permette di definire una relazione ricorsiva per il coefficiente di Fourier $f_n$:
+\[
+    f_{n+1} =  z\frac{f_n}{\sqrt{n+1}} 
+\]
+che, iterata a partire da $n = 0$, resistuisce:
+\[
+    f_n = \frac{z^n}{\sqrt{n!}}f_0 \quad.
+\]
+Il generico stato coerente assume allora la forma di:
+\[  
+    \psi_z(x) = \sum_{n=0}^\infty \frac{z^n}{\sqrt{n!}}f_0\, \psi_n(x)
+\]
+e la costante $f_0$ si può trovare imponendo la normalizzazione di $\psi_z$:
+\[
+    \begin{aligned}
+        (\psi_z,\psi_z) &= 1 = \left( \sum_{n=0}^\infty \frac{z^n}{\sqrt{n!}}f_0\, \psi_n, \sum_{m=0}^\infty \frac{z^m}{\sqrt{m!}}f_0\, \psi_m \right) = 1 \\
+        &\implies \sum_{n=0}^\infty\sum_{m=0}^\infty \frac{z^n (z^m)^*}{\sqrt{n!m!}}f_0f_0^*\underbrace{(\psi_n,\psi_m)}_{\delta_{mn}} = |f_0|^2 \sum_{n=0}^\infty \frac{|z|^{2n}}{n!} = |f_0|^2 e^{|z|^2} = 1 \implies f_0 \giustifica[=]{3} e^{\frac{|z|^2}{2}} \quad,
+    \end{aligned}
+\]
+dove abbiamo riconosciuto la delta di Kronecker derivante dal prodotto scalare di due autofunzioni appartenenti alla base normalizzabile dell'operatore numero e in $(3)$ abbiamo assunto, senza perdita di generalità, la fase di $f_0$ come nulla\footnote{Si ricordi che quanto si osserva è il modulo quadro della funzione d'onda, in questo caso proporzionale a $|f_0|^2$. La scleta della fase è dunque assolutamente arbitraria.}. 
+
+La forma finale dello stato coerente è pertanto:
+\begin{equation}
+        \psi_z(x) = e^{\frac{|z|^2}{2}}  \sum_{n=0}^\infty \frac{z^n}{\sqrt{n!}}\, \psi_n(x) \quad, 
+        \label{eq:stati_coerenti_2}
+\end{equation}
+con $\psi_n$ autofunzione dell'operatore numero:
+\[
+    \psi_n(x) = \frac{1}{\sqrt{2^n \lambda n!\sqrt{\pi}}}e^{-\frac{x^2}{2\lambda^2}}H_n\left({\frac{x}{\lambda}}\right) \quad.
+\]
+La base dell'ocillatore armonico viene detta \emph{base di Fock} pertanto la \eqref{eq:stati_coerenti_2} prende il nome di \textbf{espansione nella base di Fock.}
+
+\subsubsection{Funzione generatrice dei polinomi di Hermite}
+Abbiamo così trovato due espressioni differenti per definire uno stato coerente, la \eqref{eq:stati_coerenti} e la \eqref{eq:stati_coerenti_2}. Con manipolazioni algebriche dalla difficoltà non indifferente, è possibile dimostrare che la combinazione delle due porti a trovare la cosiddetta \emph{funzione generatrice} dei polinomi di Hermite definiti secondo la teoria dei polinomi ortogonali. 
+
+\subsubsection{Base dell'oscillatore armonico}
+Ricordando che le $\psi_n$ formano una base per $\mathcal{L}^2$ poiché compongono lo spettro di un operatore hermitiano ($\hat{n}$), l'espressione ottenuta per $\psi_z(x)$ che fa uso delle serie di Fourier non è altro che la scrittura dello stato coerente nella base dell'oscillatore armonico:
+\[
+    \psi_z(x) = \sum_n C_n(z)\psi_n(x), \quad (\psi_n, \psi_z) = C_n(z) = e^{-\frac{|z|^2}{2}}\frac{z^n}{\sqrt{n!}} \quad.
+\]
+
+Si presti attenzione al fatto che l'insieme degli stati coerenti \textbf{non} è una base per $\mathcal{L}^2$ dal momento che diagonalizza un operatore non hermitiano. In ogni caso, il prodotto scalare di due generici stati coerenti $\psi_z$ e $\psi_\xi$ con $z \neq \xi$ porta a:
+\[
+    (\psi_z, \psi_\xi) = e^{-\frac{|z|^2+|\xi|^2}{2}}\sum_m \sum_n \frac{(z^*)^m \xi^n}{\sqrt{m!n!}}\underbrace{(\psi_m, \psi_n)}_{\delta_{mn}} =  e^{-\frac{|z|^2+|\xi|^2}{2}} \sum_n \frac{(z^*\xi)^n}{n!} = e^{-\frac{|z|^2+|\xi|^2}{2}} e^{z^* \xi} \neq 0 \quad.
+\]
+In ogni caso, con $z = \xi$ il prodotto scalare restituisce l'unità, a testimonianza del fatto che la condizione di normalizzazione è preservata. 
+
+\subsection{Evoluzione temporale degli stati coerenti}
+

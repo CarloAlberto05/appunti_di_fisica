@@ -1,0 +1,47 @@
+%!TEX root = ../dispense_QP.tex
+
+\chapter{Il momento angolare}
+La trattazione del momento angolare in termini quantistici è di fondamentale importanza ai fini dello studio di innumerevoli modelli fisici, alcuni fra tutti quelli dell'\emph{atomo di idrogeno}, della \emph{molecola biatomica} e del \emph{moto di una carica in un campo magnetico}. Come anticipato nella sezione introduttiva sugli operatori, essendo a tutti gli effetti il momento angolare un'osservabile fisica, possiamo definire $\hb{L} = (\hat{L}_1, \hat{L}_2, \hat{L}_3)$ come \emph{operatore momento angolare}. 
+
+\section{Richiami e definizione}
+Senza ripetere quanto già detto, si definisce operatore momento angolare:
+\[
+    \hb{L} = \hb{x} \times \hb{p} \implies \hat{L}_i = \varepsilon_{ijk}x_jp_k = -i\hbar \varepsilon_{ijk} x_j \pdv{}{x_k} \quad.
+\]
+Si noti come il commutatore delle componenti dell'operatore momento angolare è \emph{ciclico}:
+\[
+    [\hat{L}_i, \hat{L}_j] = i\hbar \varepsilon_{ijk}\hat{L}_k \quad,
+\]
+a testimonianza del fatto che l'insieme $\mathcal{M} \coloneq \left\{ \hat{L}_i, i \in 1,2,3 \right\}$ genera un Algebra di Lie. Sfruttando questa peculiarità possiamo costruire un'ulteriore struttura algebrica con le medesime caratteristiche. A tale fine definiamo gli operatori:
+\[
+    \hat{L}_+ = \hat{L}_1 + i\hat{L}_2, \quad \hat{L}_- = \hat{L}_1 - i\hat{L}_2 
+\]
+che saranno molto utili nel definire lo spettro di $\hat{L}_3$\footnote{Si noti che la scelta di definire $\hat{L}_\pm$ tramire $\hat{L}_{1,2}$ nasce esclusivamente dall'esigenza di studiare lo spettro di $\hat{L}_3$ perché, complessivamente, decisamente più semplice rispetto agli altri due. }. 
+
+\subsection{Caratteristiche di \texorpdfstring{$\bm{\hat{L}_{\pm}}$}{L pm}} 
+Si preannuncia che la finalità di quanto segue è quella di arrivare a costruire, tramite il metodo dell'algebra generatrice di spettro, l'insieme degli autostati di $\hat{L}_3$. Si noti come, essendo:
+\[
+    [\hat{L}_3, \hat{L}^2] = 0 \quad,
+\]
+è sempre possibile definire una base comune di autostati. Assumeremo che lo spettro che troveremo per $\hat{L}_3$ diagonalizzi anche $\hat{L}^2$ senza porci particolari domande\footnote{Una giustificazione piuttosto euristica sarà fornita al termine della derivazione.}. 
+
+Partiamo dal calcolare il commutatore di dei due nuovi operatori:
+\[
+    \begin{aligned}
+        [\hat{L}_+, \hat{L}_-] = [\hat{L}_1 + i\hat{L}_2, \hat{L}_1 - i\hat{L}_2] = 2i[\hat{L}_2, \hat{L}_1] = - 2i (i\hbar)\hat{L}_3 = \hbar \hat{L}_3 \quad.
+    \end{aligned}
+\]
+Il commutatore con $\hat{L}_3$, invece:
+\[
+    \begin{aligned}
+        [\hat{L}_3, \hat{L}_\pm] = [\hat{L}_3, \hat{L}_1 \pm i\hat{L}_2] = [\hat{L}_3, \hat{L}_1] \pm i[\hat{L}_3, \hat{L}_2] = i\hbar\hat{L}_2 \mp i (i\hbar) \hat{L}_1 = \pm\hbar(\hat{L}_1 \pm i\hat{L}_2) = \pm \hbar \hat{L}_{\pm} \quad.
+    \end{aligned}
+\]  
+L'insieme $\mathcal{N} \coloneq \left\{ \hat{L}_+, \hat{L}_-, \hat{L}_3 \right\}$ definisce quindi un'algebra di Lie e ben si presta, come nel caso dell'oscillatore armonico, all'applicazione del metodo dell'algebra generatrice di spettro\footnote{Il parallelo con il caso dell'oscillatore armonico vuole: $\hat{a} \to \hat{L}_-$, $\hatd{a} \to \hat{L}+-$, $\hat{n} \to \hat{L}_3$. Si noti che esiste però un'enorme differenza fra le due situazioni. Se, infatti, il commutatore fra gli operatori di creazione e annichilazione è una costante, per altro unitaria, nel caso del momento angolare il commutatore restituisce il terzo componente dell'algebra.}.
+
+\section{Lo spettro di \texorpdfstring{$\bm{\hat{L}_3}$}{L3}}
+L'importante di trovare lo spettro della terza componete (componente $z$) del momento angolare risiede nel fatto che, nei problemi a simmetria sferica come quello dell'atomo di idrogeno, si conoscono questi due commutatori fondamentali:
+\[
+    [\h{H}, \hat{L}^2] = 0 = [\hat{L}^2, \hat{L}_3] \quad.
+\]
+Diagonalizzare $\hat{L}_3$, quindi, significa diagonalizzare $\hat{L}^2$ e quindi, almeno in parte, l'hamiltoniana. 

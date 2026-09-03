@@ -1,0 +1,359 @@
+%!TEX root = ../dispense_QP.tex
+
+\chapter{Alcuni esempi di problemi quantistici}
+Ci dedichiamo adesso alla soluzione di alcuni "problemi" quantistici monodimensionali\footnote{L'estensione a più dimensioni è fattibile ma esula dai fini di questo corso.}, ovvero all'analisi di situazioni tanto semplici quanto istruttive e \emph{concretamente utilizzabili}. Ci concentreremo su casistiche in cui una singola particella incontra \emph{potenziali differenti}: i.e. il potenziale a gradino, la barriera di potenziale e il pozzo di potenziale. Iniziamo dal primo in elenco.
+
+\section{Il caso del potenziale a gradino}
+Si immagini un corpo di massa $m$ che viene lanciato lungo un piano orizzontale a quota $y = 0$ contro un pendio di altezza $y = h$ e inclinato di un angolo $\varphi$ rispetto all'orizzontale. Classicamente, è possibile che il corpo \emph{risalga} l'ostacolo \textbf{se e solo se} la sua energia meccanica $E$ è maggiore della variazione di energia potenziale fra quota iniziale e finale:
+\[
+    E > \Delta V = mgh \quad.
+\]
+Sorge ora spotaneo il quesito: -\emph{la meccanica quantistica, fra tutte le sue stranezze, preserva questa legge apparentemente invalicabile?}-. La risposta alla domanda sarà sviscerata in questo paragrafo e risulterà, con tutte le probabilità, sorprendente.
+
+\subsection{Approccio al problema}
+Iniziamo con il definire un potenziale a gradino. Nel limite tale per cui l'angolo di inclinazione del pendio classico di cui si discuteva poc'anzi tenda a diventare retto, $\varphi \to \pi/2$, la barriera di potenziale che deve affrontare il corpo diventa a tutti gli effetti un \textbf{gradino}, nullo prima dell'inizio della salita e di valore $V_0 = mgh$ dopo:
+\[
+    V(x) = V_0 \, \theta(x-a) = \begin{cases}
+        0 \quad x < a \\
+        V_0 \quad x \geq a \quad,
+    \end{cases}
+\]
+dove abbiamo definito con $\theta(x-a)$ la funzione \textit{gradino di Heaviside} centrata in $x = a$:
+\[
+    \theta(x-a) = \begin{cases}
+    0 \quad x < a \\
+    1 \quad x \geq a \quad .
+    \end{cases}
+\]
+definita a piacere in $x = a$. Assumeremo d'ora in poi che, nel nostro problema quantistico, sia coinvolto un potenziale del tutto affine a questo, con $a = 0$. 
+
+\subsubsection{L'hamiltoniana del sistema e S.E. stazionaria}
+Il primo passo che dobbiamo fare per tradurre questo contesto classico in uno puramente quantistico è scrivere $\h{H}$:
+\[
+    \h{H} = \frac{\hat{p}^2}{2m} + V(x) = \frac{\hat{p}^2}{2m} V_0\theta(x) \quad,
+\]
+dove abbiamo già tenuto in considerazione la natura moltiplicativa dell'operatore potenziale. La struttura funzionale di $V(x)$ ci permette scrivere l'operatore di Hamilton in due modi differenti in base a se ci si trova prima o dopo il gradino:
+\begin{equation}
+    \h{H} = \begin{dcases}
+        \frac{\hat{p}^2}{2m} \quad x < 0 \\
+        \frac{\hat{p}^2}{2m} + V_0 \quad x \geq 0 \quad.
+    \end{dcases}
+    \label{eq:H_gradino}
+\end{equation}
+L'equazione di Schrödinger in forma stazionaria allora si scrive come:
+\[
+    \h{H}\psi = E\psi
+\]
+e tenendo conto della \eqref{eq:H_gradino}, possiamo suddidere la soluzione in due parti distinte caratterizzate dalle proprie funzioni d'onda $\psi_1$ e $\psi_2$:
+\[
+    \begin{aligned}
+        & x < 0 \quad \frac{\hat{p}^2}{2m} \psi_1(x) = E \psi_1(x)\\
+        & x \geq 0 \quad \left(\frac{\hat{p}^2}{2m} + V_0\right)\psi_2(x) = E \psi_2(x) \quad.
+    \end{aligned}
+\]
+La soluzione generale $\Psi$ del problema deve essere data da \emph{entrambe} le funzione d'onda, dovutamente raccordate in occorrenza del gradino per garantire continuità e differenziabilità:
+\[
+    \Psi(x) = \psi_1(x)\theta(-x) + \psi_2(x)\theta(x) \quad.
+\]
+
+\subsection{Soluzione delle equazioni agli autovalori}
+In entrambi i casi si tratta con equazioni simili al caso della particella libera, di energia pari a $E$ nella regione $(-\infty, 0)$ e $E-V_0$ in $[0,+\infty)$. La soluzione del problema agli autovalori deve quindi essere una combinazione lineare di onde piane, una regressiva e una progressiva\footnote{Si ricordi che il fatto che un'onda sia \emph{progressiva} o \emph{regressiva} dipende esclusivamente da se la parte temporale e spaziale della fase sono rispettivamente \emph{discordi} o \emph{concordi}. Per renderlo più chiaro, si prenda un'onda di fase $\Phi(x,t) = kx \pm \omega t$: con il passare del tempo (all'aumento di $t$), la funzione d'onda $f(\Phi)$ trasla rigidamente in \emph{avanti} (letteralmente progredisce) se la parte temporale è preceduta da segno negativo, regredisce altrimenti.}:
+\[
+    \psi_1(x) = Ae^{ikx} + Re^{-ikx}, \quad \psi_2(x) = Te^{iqx} + Be^{-iqx} \quad,
+\]
+con $q$ e $k$ i vettori d'onda della forma:
+\[
+    k = \frac{\sqrt{2mE}}{\hbar}, \quad q = \frac{\sqrt{2m(E-V_0)}}{\hbar} \quad.
+\]  
+Dal momento che il generico fattore temporale associato alle onde è dato da $\exp{-iE t/\hbar}$, abbiamo che le componenti progressive sono contraddistinte da momenti preceduti dal segno $+$, le regressive altrimenti. Analizziamo quindi termine a termine per identificarne il carattere: 
+\begin{itemize}
+    \item $Ae^{ikx}$: progressiva, parte da $-\infty$ e si dirige verso la barriera con quantità di moto $k$, coerentemente positiva dal momento che si muove lungo il verso di crescita delle $x$.
+    \item $Re^{-ikx}$: regressiva, parte da $x = 0$ e continua sino a $-\infty$. Corrisponde a un'onda \textbf{riflessa}.
+    \item $Te^{iqx}$: progressiva, vive nella regione $x \geq 0$. Corrisponde pertanto a una componente \textbf{trasmessa} della radiazione incidente sulla barriera.
+    \item $Be^{-iqx}$: regressiva, vive nella regione $x \geq 0$. Se esistesse, implicherebbe l'esistenza, fisicamente insensata, di un'onda che parte da $+\infty$ per dirigersi verso la barriera. Procedermo dunque assumendo 
+    \[
+    B = 0 
+    \]
+    per garantire corenza fisica ai risultati.
+\end{itemize}
+Complessivamente, dunque, la soluzione assume la forma di:
+\[
+    \Psi(x) = \begin{cases}
+    \psi_1(x) = Ae^{ikx} + Re^{-ikx} \quad x < 0 \\
+    \psi_2(x) = Te^{iqx} \quad x \geq 0 \quad,
+    \end{cases}
+\]
+con $A, R, T$ costanti d'integrazione in $\mathbb{C}$. In questo caso non possono essere ricavate tramite un processo di normalizzazione di $\Psi$, in quanto la base delle {onde piane} costruisce funzioni d'onda \emph{non normalizzabili}. In questo senso, i coefficienti in discussione rappresentano unicamente il "peso" delle singole componenti delle onde. 
+
+Quanto possiamo fare è imporre condizioni al contorno tali da garantire continuità e derivabilità in occorrenza del gradino, dal momento che per ogni altro valore di $x$ le $\psi$ sono addirittura $\mathcal{C}^\infty$. Si noti che queste condizioni, oltre a essere necessarie ai fini di $\Psi$, sono anche indispensabili per garantire che la densità di probabilità possa soddisfare l'equazioni di continuità e per evitare discontinuità non fisiche di $\rho = |\Psi|^2$.
+
+\subsubsection{Condizioni al contorno}
+Iniziamo dalla continuità: vogliamo che $\psi_1(0) = \psi_2(0)$:
+\[
+    A + R = T \quad.
+\]  
+Per quanto riguarda la derivabilità, serve richiedere che $\psi'_1(0) = \psi'_2(0)$:
+\[
+    \begin{aligned}
+        ik A - ik R &= iqT \\
+        k(A-R) &= qT \quad.
+    \end{aligned}
+\]
+Abbiamo quindi due equazioni equazioni e tre incognite: possiamo dunque sceglierne una e esprimere le altre due in funzione della prima. Sfruttando $A$ come parametro\footnote{-\emph{Perché proprio $A$?}- Il coefficiente $A$ altro non è che l'ampiezza dell'onda incidente. Se spariamo un fascio di $n$ elettroni contro il gradino, l'intensità del fascio è proporzionale a $n$ e ad $|A|^2$ per l'ipotesi di Born. Il rapportare tutto ad $A$ implica eseguire una sorta di \emph{normnalizzazione} che riconduce tutti i risultati a \emph{quanto si ha all'inizio}.}, otteniamo:
+\begin{equation}
+\begin{aligned}
+    R &= A \, \frac{k-q}{k+q} = A \, \frac{\sqrt{E}-\sqrt{E-V_0}}{\sqrt{E}+\sqrt{E-V_0}} \implies \frac{R}{A} = \frac{k-q}{k+q}\\
+    T &= A\, \frac{2k}{k+q} = A \, \frac{2\sqrt{E}}{\sqrt{E}+\sqrt{E-V_0}} \implies \frac{T}{A} = \frac{2k}{k+q} \quad.
+\end{aligned}
+\label{eq:RA}
+\end{equation}
+Si noti come il rapporto $R/A$ è strettamente positivo, con ciò a implicare che la componente incidente è in fase rispetto a quella riflessa. La soluzione generale della S.E. stazionaria è quindi data da:
+\[
+\begin{aligned}
+        \Psi(x) &= A \left[ \bigg(e^{ikx} + \frac{R}{A} \,e^{-ikx}\bigg)\theta(-x) + \frac{T}{A}e^{iqx}\,\theta(x) \right] \\
+        &= A \left[ \bigg(e^{ikx} + \frac{k-q}{k+q}e^{-ikx}\bigg)\theta(-x) + \frac{2k}{k+q} \,e^{iqx}\,\theta(x) \right] \quad.
+\end{aligned}
+\]
+
+\subsection{Densità di corrente di probabilità}
+Come \emph{prova del nove} del fatto che abbiamo trovato i corretti parametri $R$ e $T$, possiamo ora verificare che la densità di corrente di probabilità associata a $\Psi$ sia continua nell'origine, ovvero:
+\[
+    \psi_1(0) \rightarrow j_1(0) = j_2(0) \leftarrow \psi_2(0) \quad.
+\]
+Dalla definizione abbiamo:
+\[
+\begin{aligned}
+    j_1(x) &= \frac{\hbar}{2mi}\left( \psi_1^*(x)\pdv{\psi_1(x)}{x} - \psi_1(x)\pdv{\psi_1^*(x)}{x} \right) \\
+    &= \frac{\hbar}{2mi}\left[ \psi_1^*(x)\pdv{\psi_1(x)}{x} - \bigg(\psi_1^*(x)\pdv{\psi_1(x)}{x} \bigg)^*\right] \overset{(1)}{=} \frac{\hbar}{2mi} \, 2i \, \Im\left( \psi_1^*(x)\pdv{\psi_1(x)}{x} \right) \\
+    &= \frac{\hbar}{m} \,\Im\left[ A^*\left( e^{-ikx}+\frac{R}{A}\,e^{ikx} \right) A \left( ike^{ikx}-ik\frac{R^*}{A^*}\,e^{-ikx} \right)  \right] \\
+    &= \frac{\hbar}{m} \,\Im\left[ ik|A|^2\bigg(1 - \frac{|R|^2}{|A|^2}+ \frac{R^*}{A^*}e^{2ikx} - \frac{R}{A}e^{-2ikx}
+    \bigg)  \right]
+\end{aligned}
+\]
+dove in $(1)$ abbiamo usato la relazione $z-z^* = 2i \Im(z)$. Per continuare, notiamo che il rapporto $R/A$ è, nonchè strettamente positivo, \emph{puramente reale}. Segue che $R^*/A^* = R/A$:
+\[
+    \begin{aligned}
+    j_1(x) &= \frac{\hbar}{m} \,\Im\left[ ik|A|^2\bigg(1 - \frac{|R|^2}{|A|^2}+ \frac{R}{A}\left(e^{2ikx} - e^{-2ikx}
+    \right)\bigg)  \right] \\
+    &= \frac{\hbar}{m} \,\Im\left[ ik|A|^2\bigg(1 - \frac{|R|^2}{|A|^2}+ 2i\frac{R}{A}\sin(2kx)\bigg)  \right]\\
+    &= \frac{\hbar}{m} \,\Im\left[ ik\big(|A|^2 - {|R|^2}\big)  -2k|A|^2\frac{R}{A}\sin(2kx)  \right] = \frac{\hbar k}{m} \big(|A|^2 - {|R|^2}\big) \quad.
+\end{aligned}
+\]
+Per semplificare i conti che seguono, senza perdita di generalità, assumiamo d'ora in poi che $A$ e $R$ (e anche $T$) siano parametri puramente reali. Benché sembra che nulla garantisca che questa assunzione trovi fondamento fisico, o matematico, effettivamente non esiste neppure nulla che impedisca di farlo. Ciò che è osservabile è $|\psi|^2$, associato a u n generico termine costante, ad esempio $|A|^2$. Essendo $A \in \mathbb{C}$, possiamo scrivere:
+\[
+    A = |A|e^{i\beta}
+\]
+con il termine esponenziale di fase che scompare nella valutazione del modulo quadro del numero. Imponiamo quindi $\beta = 0$ \emph{senza modificare la fisica osservabile!}. Abbiamo allora:
+\[
+    j_1(x) = \frac{\hbar k}{m}(A^2-R^2) = \text{costante!} 
+\]
+\begin{approfondimento}[title={Densità di corrente di probabilità costante}]
+    \noindent
+    La densità di corrente appena calcolata è una costante... ma ha senso? 
+Si pensi all'equazione di continuità:
+\[
+    \pdv{\rho}{t} + \nabla \cdot \bm{j} = 0 \implies \pdv{\rho}{t} +  \pdv{j}{x} = 0
+\]
+in una dimensione. Dal momento che stiamo risolvendo la S.E. stazionaria, $\rho$ necessariamente è indipendente dal tempo e quindi $\partial_x j = 0$: $j_x$ deve essere una costante.
+\end{approfondimento}
+
+\noindent
+Procedendo similmente si ricava $j_2(x)$
+\[
+    j_2(x) = \frac{\hbar}{m} \Im\left( Te^{-iqx}Tiqe^{iqx} \right) = \frac{\hbar q}{m}T^2 \quad,
+\]
+giustamente costante. Verifichiamo adesso, usando le \eqref{eq:RA}, che $j_1 = j_2$:
+\[
+\begin{aligned}
+    &\frac{\hbar k}{m}(A^2-R^2) = \frac{\hbar q}{m}T^2 \\
+    &\frac{k}{q}\left( 1-\frac{R^2}{A^2} \right) = \frac{T^2}{A^2} \implies \frac{k}{q}\left( 1-\frac{(k-q)^2}{(k+q)^2} \right) = \frac{4k^2}{(k+q)^2} \\ &\implies \frac{1}{q}\left( \frac{(k+q)^2-(k-q)^2}{(k+q)^2} \right) = \frac{4k}{(k+q)^2} \implies \frac{4k}{(k+q)^2} = \frac{4k}{(k+q)^2} \quad,
+\end{aligned}
+\] 
+come cercavamo.
+
+È ancora possibile dare un'ulteriore caratterizzazione ai rapporti $R/A$ e $T/A$ e, per fare ciò, introduciamo la densità di corrente di probabilità associata alle onde incidente, riflessa e trasmessa seguendo lo stesso procedimento usato sinora. Per completezza, presentiamo il conto esplicito solo per la componente incidente, $\psi_{in}(x) = Ae^{ikx}$:
+\[
+\begin{aligned}
+    j_{in}(x) = \frac{\hbar}{2mi}\left( \psi_{in}^*(x) \pdv{\psi_{in}(x)}{x} - \psi_{in}(x) \pdv{\psi_{in}^*(x)}{x} \right) &= \frac{\hbar}{m}\Im\left( \psi_{in}^*(x) \pdv{\psi_{in}(x)}{x} \right) \\
+    &= \frac{\hbar}{m}\Im\left( Ae^{-ikx} \, (ik A e^{ikx}) \right) \\
+    &= \frac{\hbar}{m}\Im\left( i k A^2 \right) = \frac{\hbar k}{m} A^2 \quad,
+\end{aligned}
+\]
+coerentemente costante e positiva come il verso di propagazione dell'onda. Scriviamo quindi:
+\[
+    j_{in} = \frac{\hbar k}{m} A^2, \quad j_{R} = \frac{\hbar k}{m} R^2, \quad j_T = \frac{\hbar q}{m}T^2
+\]
+con 
+\[
+    j_1 = j_{in} - j_R, \quad j_2 = j_T \quad.
+\]
+Rapportando le varie densità di corrente si ottiene:
+\[
+    \frac{j_R}{j_{in}} = \frac{R^2}{A^2} = \left( \frac{k-q}{k+q} \right)^2, \quad \frac{j_T}{j_{in}} = \frac{qT^2}{kA^2} = \frac{4kq}{(q+k)^2}, \quad \frac{j_R}{j_{in}} + \frac{j_T}{j_{in}} = 1 \quad,
+\]
+mostrando chiaramente come $R/A$ e $T/A$ non sono altro che le frazioni dell'onda incidente che vengono rispettivamente \emph{riflessa} e \emph{trasmessa}. Ancora, si noti come questo risultato conferma la coerenza logica del costrutto quantistico: la somma delle probabilità relative a tutti gli eventi fisicamente possibili (riflessione o attraversamento) deve necessariamente restituire la certezza assoluta ($100 \%$).
+
+\section{Il caso della barriera di potenziale}
+A differenza del gradino di potenziale, si immagini la barriera come un qualcosa di \emph{finito}: il potenziale parte da un livello zero, sale istantaneamente a un valore costante $V_0$ per poi tornare a zero. L'hamiltoniana del sistema deve constare allora di un potenziale del tipo:
+\[
+    V(x) = \begin{cases}
+        0 \quad x < -a \\
+        V_0 \quad -a \leq x \leq a \\
+        0 \quad x > a \quad.
+    \end{cases}
+\]
+L'equazione di Schrödinger si scrive:
+\[
+    \h{H}\psi(x) = \left[ -\frac{\hbar^2}{2m} + V(x) \right]\psi(x) = E\psi(x) \quad.
+\]
+La geometria del problema permette di decomporre $\psi$ in tre parti distinte, ciascuna vivente in una delle tre zone di definizione di $V(x)$: 
+\begin{equation}
+        \psi(x) = \psi_1(x)\, \theta(a-x) + \psi_2(x)\, \theta(a-|x|)+\psi_3(x)\, \theta(x-a) \quad,
+        \label{eq:hp_psi}
+\end{equation}
+portando a tre diverse S.E., una per funzione d'onda. Di seguito investighiamo il caso in cui la particella è dotata di energia maggiore della barriera, $E > V_0$, mentre il viceversa è oggetto di discussione della sezione successiva sull'\emph{effetto tunnel}.
+
+\subsection{Analisi del problema}
+Abbiamo una particella libera di massa $m$ e di energia $E$ nella regione $|x| > a$ e $E-V_0$ in $|x| \leq a$. Le soluzioni delle S.E. sono quindi date da onde piane con vettori d'onda determinati dall'energia:
+\begin{equation}
+    \psi_1(x) = Ae^{ikx} + Re^{-ikx}, \quad \psi_2(x) = Ce^{ikx} + De^{-ikx}, \quad \psi_3(x) = Te^{ikx} \quad,
+    \label{eq:psi_barriera}
+\end{equation}
+dove non abbiamo considerato termini regressivi non fisici in $\psi_3$. Le interpretazioni dei vari termini sono identiche al caso del gradino di potenziale e non vengo pertanto riproposte. Si noti come entro la regione della barriera la più generale espressione per $\psi_2$ comprende un termine progressivo (\emph{trasmesso} dopo l'incidenza al gradino in $x = -a$) e uno regressivo (derivante dalla \emph{riflessione} sul secondo gradino in $x = a$). 
+
+I vettori d'onda sono dati dalle solite espressioni:
+\[
+    k = \frac{\sqrt{2mE}}{\hbar}, \quad q = \frac{\sqrt{2m(E-V_0)}}{\hbar} \quad.
+\]
+A questo punto bisogna analizzare le condizioni al contorno che risultano necessarie per garantire che la forma di $\psi(x)$ ipotizzata nella \eqref{eq:hp_psi} sia fisicamente plausibile.
+
+\subsubsection{Condizione di continuità di $\bm{\psi(x)}$ e $\bm{\partial_x\psi(x)}$}
+Imponiamo che la funzione d'onda e la sua derivata siano continue\footnote{Si ricordi che una generica funzione d'onda che descrive uno stato fisico è soluzione di un'equazione di Schrödinger e dunque deve essere \emph{almeno} $\mathcal{C}^2$ nello spazio e $\mathcal{C}^1$ nel tempo.} per $x = \pm a$. La condizione di continuità di $\psi(x)$ vuole:
+\[
+    \begin{aligned}
+        &\psi_1(-a) = \psi_2(-a) \implies Ae^{-ika} + Re^{ika} = Ce^{-iqa} + De^{iqa} \\
+        &\psi_2(a) = \psi_3(a) \implies Ce^{iqa} + De^{-iqa} = Te^{ika} \quad.
+    \end{aligned}
+\]
+La continuità della derivata, poi:
+\[
+    \begin{aligned}
+        &\pdv{\psi_1(-a)}{x} = \pdv{\psi_2(-a)}{x} \implies ik\left(Ae^{-ika} - Re^{ika}\right) = iq\left(Ce^{-iqa} - De^{iqa}\right) \\
+        &\pdv{\psi_2(a)}{x} = \pdv{\psi_3(a)}{x} \implies iq\left(Ce^{iqa} - De^{-iqa}\right) = ikTe^{ika} \quad.
+    \end{aligned}
+\]
+Il sistema delle quattro equazioni appena trovate nelle cinque incognite ($A, R, C, D, T$) ammette un grado di libertà. Come nel caso precedente, esprimiamo tutto come rapporto del tipo \emph{variabile}/$A$. Nel caso di $R$ e $T$ abbiamo:
+\[
+   \frac{R}{A} = e^{-i2ka}\frac{i (q^2-k^2) \sin(2qa)}{2kq\cos(2qa) - i{k^2+q^2}\sin(2qa)} \quad \frac{T}{A} = e^{-i2ka}\frac{2kq}{\cos2kq(2qa) - i{k^2+q^2}\sin(2qa)} \quad.
+\]
+Le correnti di densità di probabilità devono essere costanti per l'equazione di continuità e si ricavano come nel caso precedente.  Abbiamo quindi:
+\[
+\begin{aligned}
+    &j_1(x) = \frac{\hbar}{2mi} \left( \psi_1^*(x)\pdv{\psi_1(x)}{x} - \psi_1(x)\pdv{\psi_1^*(x)}{x} \right) = \dots = \frac{\hbar k}{m}\left( A^2 - |R|^2 \right) \\
+    &j_2(x) = \frac{\hbar q}{m}\left( |C|^2 - |D|^2 \right) \\
+    &j_3(x) = \frac{\hbar k}{m} |T|^2 \quad,
+\end{aligned} 
+\]
+con $j_1(-a) = j_2(-a)$ e $j_2(a) = j_3(a)$ per via della conservazione della densità di probabilità. Definiamo la densità incidente, riflessa e trasmessa come a partire da $j_1 = j_{in} - j_R$ e $j_3 = j_T$:
+\[
+    j_{in} = \frac{\hbar k}{m} A^2 \quad j_R = \frac{\hbar k}{m} |R|^2 \quad j_T = \frac{\hbar k}{m} |T|^2 \quad. 
+\]
+Definiamo in questo contesto il \textbf{coefficiente di riflessione} $\mathcal{R}$ e il \textbf{coefficiente di trasmissione} $\mathcal{T}$:
+\[
+\begin{aligned}
+    \mathcal{R} &= \frac{j_R}{j_{in}} = \frac{|R|^2}{A^2} = \frac{\left( \frac{k^2-q^2}{2kq} \right)^2 \sin^2(2qa)}{1 + \left( \frac{k^2-q^2}{2kq} \right)^2 \sin^2(2qa)} \\
+    \mathcal{T} &= \frac{j_T}{j_{in}} = \frac{|T|^2}{A^2} = \frac{1}{1 + \left( \frac{k^2-q^2}{2kq} \right)^2 \sin^2(2qa)} \quad,
+\end{aligned}
+\]
+con $\mathcal{R} + \mathcal{T} = 1$. Vediamo ora cosa succede in diversi regimi energetici.
+
+\subsubsection{Limite di alta energia}
+Nel caso in cui l'energia della aprticlla sia molto maggiore dell'altezza della barriera, $E \gg V_0$, abbiamo che al primo ordine $q \approx k$ infatti:
+\[
+    q = \frac{\sqrt{2m(E-V_0)}}{\hbar} = \frac{\sqrt{2mE(1-V_0/E)}}{\hbar} \to \frac{\sqrt{2mE}}{\hbar} = k 
+\]
+per grandi energie. Abbiamo quindi che $\mathcal{R} \approx 0$: l'alta energia rende il gradino invisibile alla particella, che riesce a superarlo senza riflessioni. Vale infatti che la componente trasmessa è la totalità di quella incidente, con $\mathcal{T} \approx 1$. Parallelamente, notiamo che la funzione d'onda complessiva è data da un'unica onda piana di numero d'onda $k$. Si verifica che:
+\[
+    \psi_1(x) = Ae^{ikx} + Re^{-ikx} = A\left( e^{ikx} + \frac{R}{A} e^{-ikx} \right) \to Ae^{ikx} 
+\] 
+dal momento che $\mathcal{R} \to 0 \implies R \to 0$. Allo stesso modo si vede che $\mathcal{T} \to 1 \implies T \to A$ e:
+\[
+    \psi_3(x) = Te^{ikx} \to Ae^{ikx}.
+\] 
+Nella regione intermedia, poi, si puù dimostrare che si ottiene $D \to 0$ e $C \to A$ portando a un risultato complessivo di:
+\[
+    \psi(x) = Ae^{ikx} \quad,
+\]
+coerentemente con l'ipotesi, informale, di \emph{cecità} della particella rispetto alla barriera garantita dalla grande energia relativa.
+
+\subsubsection{Limite di bassa energia}
+Se si considerano energia nell'ordine dell'altezza della barriera, $E \approx V_0$, il numero d'onda nella regione interna tende a zero, $q \to 0$ e i rapporti $R/A$ e $T/A$ tendono a:
+\[
+    \frac{R}{A} \approx \frac{ika}{ika - 1} \quad \frac{T}{A} \approx \frac{1}{1-ika} \quad,
+\] 
+mentre i coefficienti di trasmissione e riflessione risultano:
+\[
+    \mathcal{R} \approx \frac{k^2a^2}{1+k^2a^2} \quad \mathcal{T} \approx \frac{1}{1+k^2a^2} \quad.
+\]  
+Dal momento che il numero d'onda è inversamente proporzionale alla lunghezza d'onda, possiamo ancora distinguere due subregimi a queste basse energie, contraddistinti rispettivamente da una barriera \emph{larga} o \emph{stretta}. Si ha una barriera larga quando $ka \gg 1$, ovvero se $\lambda / a \gg 2\pi$ (la lunghezza d'onda è molto maggiore dello spessore fisico della barriera), stretta con $\lambda / a \ll 2\pi$. In queste condizioni, abbiamo:
+\[
+    \begin{cases}
+    \text{barriera larga} \implies \mathcal{R} \approx 1, \quad \mathcal{T} \approx 0 \\
+    \text{barriera stretta} \implies \mathcal{T} \approx 1, \quad \mathcal{R} \approx 0 \quad.
+    \end{cases}
+\]
+Si noti come questi risultati siano fisicamente coerenti: una barriera larga è, letteralmente, più complicata da superare a basse energie, viceversa se l'ostacolo è stretto. Nel primo caso, infatti, il coefficiente di riflessione tende a uno, nel secondo quello di trasmissione si avvicina ad essere unitario.
+
+\subsubsection{Trasmissione totale}
+Un effetto \textbf{puramente quantistico} e difficilmente interpretabile in un framework classico è quello dato dalla \emph{trasmissione totale dell'onda} in occorrenza di alcuni particolari valori dei numeri d'onda. Per $2qa = 2\pi n, n \in \mathbb{Z}$ i coefficienti diventano $\mathcal{R} = 0$ e $\mathcal{T} = 1$: trasmissione totale dell'onda attraverso la barriera.
+
+\section{L'effetto tunnel quantistico}
+Questa sezione apre a una trattazione di carattere strettamente quantistico: qualsiasi reminiscenza classica deve lasciare il passo ai risultati, piuttosto controintuitivi, che seguono. Nel caso in cui l'energia della particella sia minore dell'altezza della barriera, $E < V_0$, la regione $x > -a$ è \emph{classicamente proibita}. Se nelle regioni esterne alla barriera la funzione d'onda assume la stessa forma proposta in \eqref{eq:psi_barriera}, la soluzione della S.E. nella regione intermedia, $-a \leq x \leq a$, conduce a un risultato differente:
+\[  
+    -\frac{\hbar^2}{2m}\pdv[2]{\psi_2(x)}{x} + V_0\psi_2(x) = E \psi_2(x) \implies \psi_2(x) = Ce^{-qx} + De^{qx} \quad,
+\]
+con $q = \sqrt{2m(V_0-E)}/\hbar$. La presenza di una soluzione non nulla della S.E. nella region proibita dimostra matematicamente come il \emph{tunnel} classicamente impossibile sia una \emph{realtà} fisica quantistica. 
+
+\subsection{Condizioni di continuità e coefficienti di trasmissione eriflessione}
+Le condizioni di continuità in $x = \pm a$ portano al seguente sistema: 
+\[
+\begin{dcases}
+    Ae^{-ika} + Re^{ika} = Ce^{qa} + De^{-qa} \\
+    Ce^{-qa} + De^{qa} = Te^{ika} \\
+    ik\big(Ae^{-ika} - Re^{ika}\big) = q\big( -Ce^{qa} + De^{-qa} \big) \\
+    q\big(-Ce^{-qa}+De^{qa}\big) = ikTe^{ika} 
+\end{dcases}
+\]
+che conduce alle seguenti soluzioni (espresse come di consueto come rapporto rispetto al coefficiente $A$):
+\[
+    \frac{T}{A} = \frac{e^{-i2ka}}{\cosh(2qa) - i\frac{k^2 - q^2}{2kq}\sinh(2qa)} \quad
+    \frac{R}{A} = \frac{-i\frac{k^2 + q^2}{2kq}\sinh(2qa) e^{-i2ka}}{\cosh(2qa) - i\frac{k^2 - q^2}{2kq}\sinh(2qa)} 
+\]
+e ai seguenti coefficienti:
+\[
+    \mathcal{R} = \frac{|R|^2}{|A|^2} = \frac{\left( \frac{k^2 + q^2}{2kq} \right)^2 \sinh^2(2qa)}{1 + \left( \frac{k^2 + q^2}{2kq} \right)^2 \sinh^2(2qa)} \quad
+    \mathcal{T} = \frac{|T|^2}{|A|^2} = \frac{1}{1 + \left( \frac{k^2 + q^2}{2kq} \right)^2 \sinh^2(2qa)} 
+\]
+con il coefficiente di trasmissione evidentemente non nullo. Esclusivamente nel caso in cui $E \ll V_0$ (e quindi $q \gg k$) si ritrova il limite classico della totale riflessione, con $\mathcal{R} \approx 1$ e $\mathcal{T} \approx 0$, $R/A \approx -e^{2iak}$ e $T/A \approx 0$. Per avere una visione più concreta dei risultati appena ottenuti, si possono ancora sostituire le relazioni per i numeri d'onda nel coefficiente di riflessione e ottenere:
+\[
+    \mathcal{T} = \frac{1}{1 + \frac{V_0^2}{4E(V_0 - E)} \sinh^2(2qa)} \quad. 
+\]  
+
+\begin{approfondimento}[title={Approssimazione di barriera spessa}]
+    \noindent
+Nel caso di una \emph{barriera opaca o spessa}, ovvero quando l'attenuazione dell'onda all'interno della regione classicamente proibita è molto forte ($2qa \gg 1$), è possibile ricavare una fondamentale espressione approssimata. Per argomenti grandi, il seno iperbolico è dominato dall'esponenziale crescente:
+\[
+    \sinh(2qa) = \frac{e^{2qa} - e^{-2qa}}{2} \approx \frac{e^{2qa}}{2} \implies \sinh^2(2qa) \approx \frac{e^{4qa}}{4} \,.
+\]
+Sostituendo questa approssimazione nell'espressione esatta di $\mathcal{T}$, si ha:
+\[
+    \mathcal{T} \approx \frac{1}{1 + \frac{V_0^2}{16E(V_0 - E)} e^{4qa}} \,.
+\]
+Essendo $e^{4qa} \gg 1$, il termine esponenziale al denominatore risulta preponderante rispetto all'unità, che può essere trascurata. Invertendo la frazione si ottiene:
+\[
+\begin{aligned}
+    \mathcal{T} &\approx \frac{16E(V_0 - E)}{V_0^2} e^{-4qa} \\
+                &= \frac{16E(V_0 - E)}{V_0^2} \exp\left(-4a\frac{\sqrt{2m(V_0 - E)}}{\hbar}\right) \quad .
+\end{aligned}
+\]
+\end{approfondimento}

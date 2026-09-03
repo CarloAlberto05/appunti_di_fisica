@@ -1,0 +1,603 @@
+%!TEX root = ../dispense_QP.tex
+
+\chapter{La fine della fisica classica}
+All'inizio del secolo scorso, una serie di esperimenti rese clamorosamente evidente l'inadeguatezza della fisica classica nel fornire una spiegazione soddisfacente a un numero crescente di fenomeni su scala microscopica e atomica. L'adozione di un'interpretazione classica portava a risultati contraddittori nello studio di processi che coinvolgevano la radiazione ad alta frequenza, le proprietà di conduzione dei solidi, l'interazione tra radiazione e materia, l'apparente comportamento ondulatorio di elettroni e atomi e molti altri aspetti della fisica atomica e della materia condensata. La necessità di una nuova e più efficace base teorica, in grado di fornire un'interpretazione coerente di questa ricca fenomenologia, portò alla formulazione della \textbf{Meccanica Quantistica}. Tra i molti esperimenti in questo senso \emph{pionieristici}, vanno ricordati in particolare: \\
+
+\noindent
+\emph{La quantizzazione della radiazione}
+\begin{enumerate}
+    \item La misura dell'energia (per unità di volume e di frequenza) della Radiazione di Corpo Nero, la quale mostrò come la legge (classica) di Rayleigh-Jeans fallisse nel descrivere lo spettro ad alta frequenza, mentre la legge (quantistica) di Planck si adattasse perfettamente ai dati sperimentali (Planck, 1900).
+    \item L'Effetto Fotoelettrico, che portò al postulato secondo cui la luce è composta da fotoni, i quali rappresentano quanti di energia $E = \hbar\omega$ (Einstein, 1905).
+\end{enumerate}
+
+\noindent \emph{La quantizzazione dei livelli atomici}
+\begin{enumerate}
+    \setcounter{enumi}{2}
+    \item Il carattere discreto esibito dagli spettri atomici di emissione e di assorbimento.
+    \item L'esperimento di Franck-Hertz (1914), che fornì l'evidenza diretta dell'esistenza di livelli energetici discreti all'interno degli atomi.
+\end{enumerate}
+
+\noindent \emph{Il dualismo onda-corpuscolo per la materia}
+\begin{enumerate}
+    \setcounter{enumi}{4}
+    \item L'esperimento di Davisson-Germer (1927), in cui un fascio di elettroni, incidendo su un bersaglio (un reticolo cristallino con una costante di reticolo opportunamente piccola), subisce un effetto di diffrazione. Questo fenomeno dà origine a figure di interferenza del tutto analoghe a quelle tipiche della luce visibile o dei raggi X.
+    \item L'esperimento di Thomson (1927-1928), in cui un fascio di elettroni, attraversando una sottile lamina d'oro, produce su una lastra fotografica le ben note figure di diffrazione (rappresentate da una serie di anelli concentrici).
+\end{enumerate}
+
+\section{La riformulazione di Schrödinger}
+In un contesto quanto mai effervescente come quello appena descritto, si percepisce sempre più crescente la richiesta impellente di un \emph{cambio radicale di paradigma} per descrivere accuratamente la realtà. Fra le varie esperienze sperimentali, la sopracitata esperienza di Davisson e Germer ai Bell Labs ha in particolare dimostrato come gli \textbf{elettroni}, in certi contesti, esibiscano comportamenti tipici delle \emph{onde}. L'intuizione geniale che ebbe Schrödinger è stata quella di tentare di trattare gli elettroni stessi come delle onde caratterizzate da una equazione caratteristica che prende in argomento la ben nota \emph{funzione d'onda} $\psi(\bm{r},t)$, che ne descrive l'evoluzione spazio temporale:
+\begin{equation}
+    \psi(\bm{r},t) = A e^{i(\bm{k}\cdot\bm{r}- \omega t)} \quad.
+    \label{eq:func_onda}
+\end{equation}
+Cerchiamo ora di decifrare i "simboli" coinvolti nell'equazione:
+\begin{itemize}[noitemsep]
+    \item $\bm{r}$: la generica posizione nello spazio\footnote{A meno di diversa indicazione, assumeremo sempre lo spazio come tridimensionale e coincidente con $\mathbb{R}^3$.};
+    \item $t$: il generico istante di tempo;
+    \item $A$: l'\emph{ampiezza} dell'onda;
+    \item $i$: l'\emph{unità immaginaria}\footnote{Si ricordi l'uguaglianza fondamentale $i = \sqrt{-1}$.};
+    \item $\bm{k}$: il \emph{vettore d'onda}. Si definisce come
+    \[
+        \bm{k} = \frac{2\pi}{\lambda} \bm{{u}}_r \quad,
+    \]
+    con $\lambda$ la \emph{lunghezza d'onda di De Broglie} caratteristica della particella\footnote{La lunghezza d'onda di De Broglie è parte inegrante della cosiddetta \emph{Ipotesi di De Broglie}, fondamento della fisica moderna che associa alle particelle caratteristiche ondulatorie. Vale la relazione $\lambda = {h}/{p}$, dove $h$ è la costante di Planck e $p$ la quantità di moto del corpuscolo.} e $\bm{{u}}_r$ il versore orientato secondo il verso di propagazione dell'onda; 
+    \item $\omega$: la pulsazione d'onda definita come
+    \[
+        \omega = 2\pi\nu = \frac{2\pi v}{\lambda} \quad,
+    \]
+    con $\nu$ la frequenza d'onda, inverso del periodo e $v$ la velocità di propagazione.
+\end{itemize}
+L'interpretazione di Einstein dell'effetto fotoelettrico e lo studio di Planck sulla quantizzazione dell'energia ci permette inoltre di assumere l'energia degli elettroni come $E = \hbar \omega$, con $\hbar$ la costante di Planck ridotta ($\hbar = h/2\pi$). 
+
+Siamo pronti per derivare, almeno in termini euristici, la fantomatica equazione di Schrödinger. Per una discussione meno edulcorata si veda l'appendice. 
+
+\subsection{L'ipotesi elettromagnetica e l'equazione di D'Alembert}
+Il retaggio elettromagnetico figlio dall'incredibile lavoro di Maxwell potrebbe indurre a pensare che la funzione d'onda debba soddisfare, così come i campi elettrico e magnetico nel vuoto, l'equazione delle onde per eccellenza, quella di \emph{d'Alembert}. Si presti attenzione al fatto che l'intuizione non è assolutamente banale: il generico elettrone in moto descritto dalla funzione $\psi(\bm{r},t)$ analizzata produce infatti un campo elettromagnetico; è necessario pertanto capire se le equazioni che governano suddetti campi funzionano anche per il corpuscolo che li genera. 
+
+Impostiamo quindi una relazione \emph{simil}  D'Alembert:
+\begin{equation}
+    \nabla^2 \psi = \frac{1}{\sigma^2} \pdv[2]{\psi}{t} \quad,
+    \label{eq:d'ale}
+\end{equation}
+e cerchiamo di verificare se, sostituita la $\psi(\bm{r,t})$ al suo interno risulta un'uguaglianza \emph{vera}. Il parametro $\sigma$ corrisponde, in riferimento alla formulazione standard dell'equazione,  alla velocità di propagazione della radiazione mentre $\nabla^2$ è l'operatore di Laplace. Sfruttando la \eqref{eq:func_onda} e svolgendo le derivate otteniamo per la parte spaziale:
+\[
+\begin{aligned}
+    \nabla^2 \psi = \nabla \cdot (\nabla\psi) = \nabla \cdot (i\bm{k}\psi) &= i\bm{k}\nabla\psi + \overbrace{\psi\nabla \cdot (i\bm{k})}^{0} \\ &\overset{(1)}{=} (i\bm{k})\cdot(i\bm{k})\psi = -|\bm{k}|^2 \psi = -k^2 \psi\\
+\end{aligned}
+\]
+dove in $(1)$ abbiamo usato l'uniformità spaziale del vettore d'onda.
+Per quanto riguarda la parte temporale abbiamo:
+\[
+    \pdv[2]{\psi}{t} = \pdv{}{t} \, \bigg(\pdv{\psi}{t}\bigg) = \pdv{}{t}\,(-i\omega\psi) = -\omega^2\psi \quad.
+\]
+Prima di procedere, è interessante analizzare il significato fisico di $k^2$. Vale infatti:
+\[
+    k^2 = \bm{k} \cdot \bm{k} = \left(\frac{2\pi}{\lambda} \bm{\hat{u}}_r\right) \cdot \left(\frac{2\pi}{\lambda} \bm{\hat{u}}_r\right) = \left(\frac{2\pi}{\lambda}\right)^2 \bm{u}_r \cdot \bm{u}_r \overset{(2)}{=} \frac{p^2}{\hbar^2}\quad,
+\]
+dove in $(2)$ abbiamo sfruttato l'Ipotesi di De Broglie e l'unitarietà del prodotto scalare di un versore con se stesso. Abbiamo quindi $p = k\hbar$. 
+
+Siamo a questo punto pronti a sostituire le relazioni trovate nell'equazione di partenza:
+\[
+            -k^2\psi = -\frac{1}{\sigma^2} \omega^2 \psi \implies (\omega^2-\sigma^2 k^2)\psi = 0\quad.
+\]
+Perché l'uguaglianza valga per qualsiasi scelta della funzione d'onda serve che il termine fra parentesi sia identicamente nullo, da cui:
+\[
+    \omega = \sigma k \quad.
+\]
+Quanto appena ottenuto prende il nome di \emph{relazione di dispersione} e permette di stabilire come la lunghezza d'onda della radiazione si rapporta alla pulsazione. Facendo affidamento a De Broglie e a Einstein è ancora possibile espandere l'equazione e ottenere una relazione fra energia e impulso\footnote{Il termine \emph{impulso} è deliberatamente usato per indicare la quantità di moto.}:
+\[
+    \frac{E}{\hbar} = {\sigma} \frac{p}{\hbar} \implies
+    E = {\sigma} p
+    \quad .
+\]
+L'uguaglianza trovata è purtroppo fisicamente incoerente: per una particella libera e \emph{massiva} (come l'elettrone), infatti, l'energia è una funzione quadratica della quantità di moto $E \propto p^2$. La diretta proporzionalità appena ricavata funziona solo nel caso delle radiazioni: l'energia del fotone, infatti, è data da $E = cp$, con $c$ la velocità della luce.
+
+È così necessario cambiare approccio: quello classico-elettromagnetico non risulta più in grado di fornire una corretta descrizione della realtà osservabile.
+
+\subsection{L'ansatz di Schrödinger}
+Durante una conferenza a Zurigo, venne fatto notare a Schrödinger l'esigenza di trovare un'equazione d'onda capace di descrivere in modo rigoroso l'evoluzione spazio temporale delle sìdette \emph{onde di materia} (gli elettroni analizzati), coerentemente con quanto postulato da de Broglie. L'aneddoto storico riporta che fu il fisico Peter Debye, al termine di un seminario sulle onde di fase tenuto dallo stesso Schrödinger alla fine del 1925, a obiettare che \guillemetleft\emph{Se si ha a che fare con delle onde, bisogna avere a disposizione un'equazione d'onda}\guillemetright.
+
+Raccogliendo questa sfida, Schrödinger non "dimostrò" la sua equazione partendo da principi primi della meccanica classica, ma procedette per via euristica formulando, per l'appunto, un \textit{ansatz}. La sua intuizione fu quella di riprendere e ampliare la profonda analogia formale, già scoperta da William Rowan Hamilton nel secolo precedente, tra la meccanica e l'ottica geometrica. Così come l'ottica geometrica (basata sul concetto di raggio luminoso) rappresenta un limite approssimato dell'ottica ondulatoria, valido quando la lunghezza d'onda della luce è trascurabile rispetto alle dimensioni caratteristiche del sistema ($\lambda \to 0$), Schrödinger ipotizzò che la meccanica classica non fosse altro che un limite approssimato di una più generale e fondamentale \textbf{meccanica ondulatoria}. In questo quadro concettuale, l'austriaco postulò la seguente relazione:
+\begin{equation}
+    \nabla^2\psi = i\sigma\pdv{\psi}{t}  \quad.
+    \label{eq:ansatz_schrodi}
+\end{equation}
+Per verificarne però la bontà è necessario verificare che l'equazione rispetti la dipendenza $E \propto p^2$. Calcolando le derivate e sostituendo otteniamo:
+\[
+        (ik)^2\psi - i\sigma(-i\omega)\psi = -(k^2 + \sigma\omega)\psi = 0 \implies k^2 = -\sigma \omega \quad. 
+\]
+Possiamo così ricavare la relazione fra energia e quantità di moto:
+\[
+    \frac{p^2}{\hbar^2} = - \sigma \frac{E}{\hbar} \implies E = -\frac{p^2}{\sigma \hbar}
+\]
+ed ecco la tanto agognata dipendenza quadratica dalla quantità di moto. Serve in ultima istanza scegliere $\sigma$ per riprodurre la usuale relazione per l'energia di una particella libera $E = p^2/2m$.
+\[
+    E = \frac{p^2}{2m} = -\frac{p^2}{\sigma \hbar} \implies \sigma = -\frac{2m}{\hbar}
+\quad.
+\]
+Sostituendo il $\sigma$ appena trovato nella \eqref{eq:ansatz_schrodi}, osserviamo l'ipotesi di Schrödinger assumere una forma sempre più concreta:
+\begin{equation}
+        -\frac{2mi}{\hbar} \pdv{\psi}{t} = \nabla^2\psi \implies
+        {i\hbar \pdv{\psi}{t} = -\frac{\hbar^2}{2m}\nabla^2\psi} \quad.  
+    \label{eq:schrodi_cin}
+\end{equation}
+
+\begin{approfondimento}[title={Un ponte fra i due mondi: la relatività ristretta}]
+Vale la pena notare come la relazione relativistica di Einstein per l'energia totale di una particella libera:
+\[
+    E = \sqrt{p^2c^2 + m^2c^4} \quad
+\]
+rappresenti il vero "ponte" teorico tra i due regimi analizzati in precedenza. L'equazione di d'Alembert e l'ansatz di Schrödinger descrivono infatti i due limiti asintotici di questa legge fondamentale. 
+
+Nel caso della luce, costituita da fotoni con $m = 0$, la relazione si riduce all'esatta proporzionalità lineare $E = cp$ discussa in precedenza, coerentemente con la relazione di dispersione che deriva dall'equazione delle onde di d'Alembert. 
+
+Al contrario, per particelle massive in moto a velocità non relativistiche ($p \ll mc$), è possibile espandere in serie di Taylor il termine sotto radice:
+\[
+    E = \sqrt{p^2c^2 + m^2c^4} = mc^2\sqrt{1 + \frac{p^2}{m^2c^2}} \approx mc^2\left( 1 + \frac{p^2}{2m^2c^2} \right) = mc^2 + \frac{p^2}{2m} \quad.
+\]
+Notiamo come, a meno della costante additiva $mc^2$ (proporzionale l'energia di riposo della particella), l'espressione coincida con l'energia cinetica classica $E_c = p^2/2m$, l'unica a soddisfare l'equazione di Schrödinger per una particella libera. 
+
+Per descrivere quantisticamente l'energia relativistica completa senza ricorrere ad approssimazioni, sarà necessario formulare nuove equazioni, come l'equazione di Klein-Gordon e di Dirac.
+\end{approfondimento}
+
+\section{Un cambio di paradigma}
+L'equazione \eqref{eq:schrodi_cin} ci permette quindi di descrivere con successo quelle particelle che esibiscono comportamenti coerenti con
+un fenomeno ondulatorio. È istruttivo allora tentare di comprendere se le nuove grandezze coinvolte nell'equazione si leghino in qualche modo alle già conosciute quantità tipiche della fisica classica. Iniziamo dall'energia.
+
+\subsection{L'energia totale}
+Sviluppando il membro sinistro della \eqref{eq:schrodi_cin} si ottiene:
+\begin{equation}
+        i\hbar \pdv{\psi}{t} = i\hbar (-i\omega)\psi = \hbar \omega \psi = E\psi \quad.
+        \label{eq:op_E}
+\end{equation}
+L'effetto complessivo della derivazione della funzione d'onda nel tempo, congiunto alla moltiplicazione per il fattore $i\hbar$ "produce" quindi l'energia totale della particella. Forti di una profonda analogia con l'algebra lineare e il concetto di \emph{problema agli autovalori}, possiamo allora interpretare l'azione del termine $i\hbar \partial_t$ sulla funzione d'onda come quella di un \emph{operatore} ($\implies$ matrice, applicazione lineare) che estrae da $\psi(\bm{r},t)$ ($\implies$ vettore) l'energia della particella ($\implies$ autovalore).
+
+\subsection{L'energia cinetica}
+Analizziamo ora il membro destro della \eqref{eq:schrodi_cin}:
+\begin{equation*}
+    -\frac{\hbar^2}{2m}\nabla^2 \psi = -\frac{\hbar^2}{2m} (i\bm{k}) \cdot (i\bm{k}) \psi = -\frac{\hbar^2}{2m} (-k^2) \psi = \frac{k^2\hbar^2}{2m} \psi \overset{(3)}{=} \frac{p^2}{2m} \psi \quad,
+\end{equation*}
+dove in $(3)$ abbiamo sfruttato l'ipotesi di de Broglie $p = \hbar k$. È immediato notare come il termine moltiplicativo della funzione d'onda sia l'energia totale della particella che, nel caso di un sistema libero (come quello trattato nella discussione dell'ansatz di Schrödinger), corrisponde all'energia cinetica. Infatti, forti di quanto appena ricavato:
+\[
+        i\hbar\pdv{\psi}{t} = E\psi = -\frac{\hbar^2}{2m}\nabla^2\psi = \frac{p^2}{2m}\psi = K\psi \implies
+        E = K \quad.
+\]
+
+Il pattern inizia a questo punto ad emergere: abbiamo identificato due \emph{operatori} che, applicati alla funzione d'onda generano rispettivamente la sua energia totale e la sua energia cinetica. Definiamo allora \textbf{operatore energia cinetica} $\hat{K}$:
+\begin{equation}
+    {\h{K} = -\frac{\hbar^2}{2m}\nabla^2} \quad,
+    \label{eq:operatore_K}
+\end{equation}
+caratterizzato dall'equazione agli autovalori\footnote{Nel prosieguo della trattazione sarà sempre più chiaro perché queste siano effettivamente equazioni agli autovalori. La capacità di astrazione è in ogni caso necessaria perché i vari operatori che abbiamo definito e che definiremo non saranno necessariamente ascrivibili al mondo delle \emph{matrici}. Una forte reminiscenza all'algebra lineare, in ogni caso, sarà particolarmente evidente durante l'analisi dell'approccio di Dirac alla meccanica quantisitica.}:
+\[
+    \h{K}\psi = \frac{p^2}{2m} \psi \quad.
+\]
+Da notare il fatto che l'uguaglianza vale \emph{solo perché} si sta analizzando una partcella descritta da un'onda piana a cui è associato un momento \emph{ben definito}. L'equazione perde di significato con stati caratterizzati da una quantità di moto non definibile. 
+
+\subsection{L'operatore quantità di moto}
+Anche se non direttamente coinvolta nell'equazione, la quantità di moto è una quantità fondamentale e pertanto ne proponiamo l'indagine in termini quantistici. L'idea è quindi quella di cercare di esprimere l'\textbf{operatore quantità di moto} $\hat{\bm{p}}$. Dobbiamo cambiare lievemante approccio però rispetto a quanto fatto con l'operatore energia cinetica, dal momento che $\hat{\bm{p}}$ \emph{deve} essere un operatore \emph{vettoriale}: la sua azione su $\psi$ deve infatti produrre la sua controparte classica, non uno scalare (come $K$) bensì il vettore quantità di moto $\bm{p}$. 
+
+Dalla meccanica classica sappiamo che $K = p^2/2m = \bm{p}\cdot\bm{p}/{2m}$. Per analogia, in meccanica quantistica dovremo avere:
+\begin{equation*}
+    \h{K} = \frac{\hat{\bm{p}} \cdot \hat{\bm{p}}}{2m} \implies \hat{\bm{p}} \cdot \hat{\bm{p}} = -\hbar^2\nabla^2 \quad.
+\end{equation*}
+Ricordando che il Laplaciano è il prodotto scalare del gradiente con se stesso ($\nabla^2 = \nabla \cdot \nabla$), la relazione precedente suggerisce per $\hat{\bm{p}}$ una forma vettoriale proporzionale al gradiente:
+\begin{equation*}
+    \hat{\bm{p}} = \beta \nabla \quad,
+\end{equation*}
+con $\beta$ costante da determinare. Sostituendo questa ipotesi nella definizione dell'operatore energia cinetica abbiamo:
+\begin{equation*}
+    (\beta\nabla) \cdot (\beta\nabla) = \beta^2\nabla^2 = -\hbar^2\nabla^2 \implies \beta^2 = -\hbar^2 \implies \beta = \pm i\hbar \quad.
+\end{equation*}
+Siamo di fronte a un'ambiguità matematica: sia scegliendo il segno più che il segno meno otteniamo il corretto operatore energia cinetica. Per risolvere questo dubbio, dobbiamo imporre che l'operatore $\hat{\bm{p}}$, agendo sulla generica funzione d'onda $\psi(\bm{r},t) = A e^{i(\bm{k}\cdot\bm{r} - \omega t)}$, "estragga" il corretto valore della quantità di moto vettoriale, coerente con il verso di propagazione dell'onda, ovvero $\bm{p} = +\hbar\bm{k}$. Testiamo la due ipotesi, $\hat{\bm{p}} = \pm i\hbar\nabla$:
+\[
+\begin{cases}
+    (+) \quad \hat{\bm{p}} = i\hbar\nabla \implies (i\hbar\nabla) \psi = i\hbar (i\bm{k}) \psi = -\hbar\bm{k}\psi = -\bm{p}\psi \quad  \ensuremath{\times}\\
+    (-) \quad \hat{\bm{p}} = -i\hbar\nabla \implies (-i\hbar\nabla) \psi = -i\hbar (i\bm{k}) \psi = \hbar\bm{k}\psi = +\bm{p}\psi \quad \ensuremath{\checkmark} \quad .
+\end{cases}
+\]
+L'ambiguità è a questo punto risolta e deduciamo in modo inequivocabile la forma dell'operatore quantità di moto:
+\begin{equation}
+    {\hat{\bm{p}} = -i\hbar\nabla} \quad.
+    \label{eq:operatore_p}
+\end{equation}
+
+È ancora necessaria una postilla per poter dire conclusa l'analisi di $\hb{p}$. Dobbiamo infatti ancora chiarire il significato dell'espressione \emph{operatore vettoriale}. Si abbia ben chiaro che la sua azione su $\psi$ è quella di produrre $\bm{p}$, dunque una tripla di scalari $(p_1, p_2, p_3)$ nel generico spazio tridimensionale. In questo senso, intrepreteremo $\hat{\bm{p}}$ come un operatore "formato da tre componenti scalari" (pur non essendo concretamente un vettore), ciascuna delle quali agente lungo una direzione indipendente dello spazio in cui vive $\psi$:
+\begin{equation}
+    \hat{\bm{p}} = 
+    \begin{pmatrix}
+        \hat{p}_1 \\
+        \hat{p}_2 \\
+        \hat{p}_3 \\
+    \end{pmatrix}
+    = 
+    \begin{pmatrix}
+        -i\hbar \partial_{x_1} \\
+        -i\hbar \partial_{x_2} \\
+        -i\hbar \partial_{x_3} \\
+    \end{pmatrix}
+    \quad.
+    \label{eq:op_p}
+\end{equation}   
+
+\section{L'equazione di Schrödinger}
+Quanto fatto sino ad ora ci conferisce le basi necessarie per formulare nella sua forma più completa la fantomatica equazione di Schrödinger (S.E., dal'inglese \emph{Schrödinger's equation}). Si noti innanzitutto che la \eqref{eq:schrodi_cin} è stata ricavata imponendo che la funzione d'onda $\psi$ descrivesse un sistema libero, perciò non immerso in campi di forze. Assumendo però di trattare anche \emph{sistemi monogenici}\footnote{Ovvero sistemi in cui si può applicare il principio dell'\emph{azione stazionaria} di Hamilton, in cui le forze possono essere espresse tramite adeguati potenziali scalari.}, si deve poter tenere in considerazione di un generico campo scalare $V(\bm{r},t)$ che descrive l'energia potenziale di interazione. L'energia meccanica totale vale
+\[
+    E = K + V = H \quad,
+\]
+con $H$ l'\textbf{hamiltoniana} del sistema. Si presti estrema attenzione a quanto appena discusso: l'hamiltoniana di un sistema, così come definita entro la trattazione della meccanica analitica, corrisponde all'energia del sistema \emph{solo sotto precise condizioni}. Serve infatti che il potenziale che descrive l'interazione del sistema come l'esterno sia indipendente dalle velocità e che qualsiasi eventuale vincolo esistente sia \emph{scleronomo}, dunque indipendente dal tempo.
+
+Per proporre un'adeguata riformulazione della \eqref{eq:ansatz_schrodi}, dobbiamo quindi definire un operatore che estragga energia meccanica del sistema, intesa come somma di energia cinetica e potenziale. Nell'ansatz iniziale avevamo banalmente $H = K$, da cui:
+\[
+    \h{H} = \h{K} = -\frac{\hbar^2}{2m}\nabla^2 \quad.
+\]
+Generalizziamo così per induzione al caso generale $H = K + V$, introducendo a tal proposito l'\textbf{operatore energia potenziale} $\h{V}$, tale che $\h{V}\psi = V(\bm{r}, t)\psi$. 
+Possiamo adesso definire, in piena analogia con la meccanica classica, l'\textbf{operatore hamiltoniano} $\h{H}$ come:
+\[
+    \h{H} = \h{K} + \h{V} = -\frac{\hbar^2}{2m}\nabla^2 + V(\bm{r},t) \quad.
+\]
+Siamo in direttura d'arrivo. Notando che sia $\h{H}$ sia $i\hbar \partial_t$ producono l'energia totale del sistema se applicati alla funzione d'onda, abbiamo l'\textbf{equazione di Schrödinger}:
+\[
+    {i\hbar \pdv{\psi(\bm{r},t)}{t} = \h{H}\psi(\bm{r},t)} \quad,
+\]
+esprimibile equivalentemente riscrivendo gli operatori:
+\[
+    i\hbar \pdv{\psi(\bm{r},t)}{t} = -\frac{\hbar^2}{2m}\nabla^2\psi(\bm{r},t) + V(\bm{r},t)\psi(\bm{r},t) \quad.
+\]
+
+\begin{concettochiave}{Equazione di Schrödinger}
+    \noindent
+    L'evoluzione temporale di un generico corpuscolo di massa $m$ confinato in un volume $\Omega$ e immerso in un potenziale scalare $V(\bm{r},t)$ è dettata dall'\textbf{equazione di Schrödinger}:
+    \begin{equation}
+        {i\hbar \pdv{\psi(\bm{r},t)}{t} = \h{H}\psi(\bm{r},t)} \quad,
+        \label{eq:schrodinger_completa}
+    \end{equation}
+    un'equazione differenziale lineare alle derivate parziali che richiede soluzioni almeno $\mathcal{C}^2(\Omega)$ nello spazio e $\mathcal{C}^1(\Omega)$ nel tempo.
+\end{concettochiave}
+
+\subsubsection{L'Hamiltoniana come energia totale del sistema}
+Come accennato in precedenza, i dettami della meccanica analitica assicurano che l'uguaglianza tra la funzione Hamiltoniana ${H}$ e l'energia meccanica totale $E = K + V$ non è un'identità a priori, ma è garantita esclusivamente se il sistema è soggetto a vincoli {scleronomi} e potenziali velocità-indipendenti. Solo in questo caso, infatti, l'energia cinetica risulta essere una funzione quadratica omogenea delle velocità generalizzate e, per il teorema di Eulero sulle funzioni omogenee, si ottiene ${H} = E$. Se i vincoli fossero \emph{reonomi} (variabili nel tempo), si avrebbe ${H} \neq E$. 
+
+È dunque lecito chiedersi: cosa garantisce in Meccanica Quantistica l'assenza di vincoli reonomi, tale da giustificare l'assunzione ${H} = {E}$ per postulare l'equazione di Schrödinger?
+
+La giustificazione risiede nel dominio di validità fondamentale della teoria quantistica. A livello subatomico o microscopico, i vincoli macroscopici della meccanica classica (come binari, cerniere, o superfici in movimento) \textbf{non esistono}. I costituenti elementari della materia si muovono liberamente nello spazio tridimensionale $\mathbb{R}^3$, soggetti unicamente alle interazioni fondamentali (forze elettromagnetiche, nucleari, ecc.). 
+In assenza di superfici vincolari, le coordinate generalizzate del sistema coincidono banalmente con le coordinate cartesiane delle singole particelle. L'energia cinetica assume quindi \emph{sempre} ed esclusivamente la forma di una forma quadratica omogenea:
+\begin{equation*}
+    K = \sum_{i=1}^N \frac{\bm{p}_i^2}{2m_i} \quad.
+\end{equation*}
+Essendo strutturalmente assente qualsiasi termine lineare o di grado zero nelle quantità di moto, la coincidenza formale tra l'Hamiltoniana e l'energia meccanica (${H} = E$) è intrinsecamente e sempre garantita a livello fondamentale.
+
+Rimane però da chiarire il caso in cui il potenziale dipenda esplicitamente dal tempo, $V = V(\bm{r}, t)$ (ad esempio, un elettrone investito da un'onda elettromagnetica generata da un laser esterno). In questo caso:
+\begin{equation*}
+    \h{H}(t) = \h{K} + \h{V}(\bm{r}, t) \quad.
+\end{equation*}
+L'operatore $\h{H}(t)$ \emph{continua} a rappresentare l'osservabile "energia totale del sistema" istante per istante. Il fatto che l'Hamiltoniana dipenda esplicitamente dal tempo ($\partial_t \h{H} \neq 0$) implica semplicemente che \textbf{l'energia del sistema quantistico non si conserva}, poiché esso sta scambiando lavoro con l'ambiente esterno classico che genera il campo. L'equazione di Schrödinger $i\hbar\partial_t \psi = \hat{H}(t)\psi$ resta formalmente valida come generatrice della dinamica, ma lo stato del sistema sarà costretto a compiere transizioni tra livelli energetici diversi proprio a causa della forzante esterna tempo-dipendente.
+
+
+\subsection{Il principio di sovrapposizione}
+La \emph{linearità} della S.E., permette, almeno in linea teorica, di avere a disposizione \emph{infinite} soluzioni per l'equazioni. Dette $\psi_1(\bm{r},t), \dots, \psi_n(\bm{r},t)$ un numero $n$ di funzioni d'onda che soddisfano la S.E.,
+\[
+    \begin{aligned}
+        i\hbar \partial_t\psi_1(\bm{r},t) &= \h{H}\psi_1(\bm{r},t)\\
+        &\vdots  \\
+        i\hbar \partial_t\psi_n(\bm{r},t) &= \h{H}\psi_n(\bm{r},t)
+    \end{aligned}
+    \quad,
+\]
+qualsiasi \textbf{combinazione lineare} $\Psi(\bm{r},t)$ delle $\psi_n(\bm{r},t)$ 
+\begin{equation}
+    \Psi(\bm{r},t) = \sum_{j=1}^n c_j\psi_j(\bm{r},t) \quad,
+\end{equation}
+con $c_j \in \mathbb{C}$ costanti dette \emph{ampiezze}, rimane soluzione della S.E. Infatti:
+\begin{equation*}
+\begin{aligned}
+    i\hbar\pdv{\Psi(\bm{r},t)}{t} &= i\hbar \sum_{j=1}^n c_j\psi_j(\bm{r},t) \overset{(4)}{=} \sum_{j=1}^n c_j \left(i\hbar \pdv{\psi_j(\bm{r},t)}{t} \right)\\ &= \sum_{j=1}^n c_j \h{H}\psi_j(\bm{r},t) = \h{H}\sum_{j=1}^n c_j\psi_j(\bm{r},t) \overset{(5)}{=} \h{H}\Psi(\bm{r},t) \quad.
+\end{aligned}
+\end{equation*}
+In $(4)$ e $(5)$ abbiamo sfruttato la linearità degli operatori differenziali $\partial_t$ e $\h{H}$ (costituito da una parte differenziale, $\h{K}$, e una moltiplicativa, $\h{V}$, quindi evidentemente lineare rispetto alla somma).
+
+\section{L'interpretazione di Copenhagen}
+La meccanica classica, con tutte le sue derive Newtoniana, Lagrangiana, Hamiltoniana, ecc., è una teoria \textbf{deterministica}. La conoscenza di posizione e impulso di una particella istante per istante durante il suo moto è \emph{sufficiente} per determinare qualsiasi altra informazione riguardo la stessa, compresa la sua traiettoria nello spazio (eventualmente delle fasi). Dobbiamo ora capire se questa riformulazione quantistica della fisica conserva queste proprietà prettamente deterministiche oppure se, anche in questo contesto, è necessario un cambio di approccio. 
+
+\subsection{L'idea di Born e la densità di probabilità}
+«\emph{Cosa rappresenta, concretamente, la funzione d'onda?}». Questa domanda ha aleggiato a lungo tra i pionieri della meccanica quantistica prima di trovare una risposta esplicativa. Se già risulta poco intuitivo accettare che un corpuscolo materiale sia descritto da un'onda $\psi(\bm{r},t)$, comprendere il significato fisico diretto di tale ampiezza appare ancora più arduo. Fu \textbf{Max Born} a intuire la svolta, introducendo l'\textbf{interpretazione probabilistica} che permette di estrarre informazione fisica osservabile a partire da $\psi$.
+
+Per comprendere la logica di Born, risulta particolarmente illuminante un esperimento concettuale basato sulla classica \emph{esperienza della doppia fenditura di Young} per la radiazione elettromagnetica. 
+
+\subsubsection{L'esperienza della doppia fenditura}
+Si consideri una sorgente che emette radiazione verso una parete dotata di due fenditure. Sullo schermo di rilevazione posto a valle, l'intensità luminosa $I(P)$ registrata in un generico punto $P$ è nota essere proporzionale al modulo quadro del campo elettrico:
+\begin{equation*}
+    I(P) \propto |\bm{E}(P)|^2
+\end{equation*}
+Volendo reinterpretare il fenomeno in chiave quantistica (ovvero corpuscolare), l'intensità $I(P)$ misura la frazione di fotoni che incide in $P$ rispetto al totale di quelli emessi dalla sorgente, in ossequio all'interpetazione della radiazione del corpo nero fornita da Planck e dell'effetto fotoelettrico di Einstein. Di conseguenza, il rapporto tra l'intensità locale e quella totale definisce direttamente la \textbf{probabilità che un singolo fotone arrivi nel punto $P$}.
+
+Estendendo questa intuizione alle onde di materia, Born ipotizzò che la funzione d'onda $\psi$ svolga per le particelle un ruolo del tutto analogo a quello del campo elettrico per i fotoni. Pertanto, il modulo quadro della funzione d'onda non descrive una massa o una carica "diluita" nello spazio, bensì una \textit{densità di probabilità}.    
+
+\subsubsection{Definizione e proprietà della densità di probabilità}
+Si definisce \textbf{densità di probabilità} $\rho(\bm{r},t)$ la probabilità per unità di volume di rinvenire una particella descritta dalla funzione d'onda $\psi(\bm{r},t)$ nell'infinitesimo $\dd^3{\bm{r}}$ all'istante $t$. In formule:
+\begin{equation}
+    \rho(\bm{r}, t) = |\psi(\bm{r}, t)|^2 = \psi(\bm{r}, t)^*\psi(\bm{r}, t) = \dv{\mathcal{P}}{^3\bm{r}} \quad,
+    \label{eq:prob_dens}
+\end{equation}
+con $\psi^*$ il complesso coniugato di $\psi$ e con $\mathcal{P}$ la probabilità. Di conseguenza, se si confina il corpuscolo in un volume $\Omega$, la probabilità che si trovi entro $\Omega$ deve essere unitaria:
+\begin{equation}
+        \mathcal{P}(\Omega) = \int_\Omega |\psi(\bm{r}, t)|^2 \dd^3{\bm{r}} = 1
+        \label{eq:unit_psi}
+\end{equation}
+e, preso $\Omega^{'} \subseteq \Omega$, deve essere:
+\[
+    \mathcal{P}\big(\Omega^{'}\big) = \int_{\Omega^{'}} |\psi(\bm{r}, t)|^2 \dd^3{\bm{r}} \leq 1 \quad.
+\]
+Quanto appena postulato nasconde non poche insidie. Infatti, ha senso aspettarsi che il confinamento di una particella entro un determinato volume (si immagini una scatola) sia \emph{definitivo}: il corpuscolo non può scappare dal suo contenitore. Come si può però costruire una teoria probabilistica in cui la probabilità totale deve essere costante e unitaria ma la sua densità è tempo-dipendente? In altre parole, \guillemetleft\emph{Perchè, se la densità di probabilità $\rho(\bm{r},t)$ dipende esplicitamente dal tempo, la probabilità totale associata è una costante?}\guillemetright.
+
+\subsection{L'evoluzione temporale della densità di probabilità e l'equazione di continuità}
+Partiamo da una delle poche certezze sin'ora a nostra disposizione, la \eqref{eq:prob_dens}. Presa una particella descritta dalla funzione d'onda $\psi(\bm{r},t)$, studiare come la probabilità totale ad essa associata si evolva nel tempo implica valutare:
+\begin{equation}
+    \dv{\mathcal{P}}{t} = \dv{}{t} \int_\Omega \rho(\bm{r}, t) \dd^3{\bm{r}} \overset{(6)}{=} \int_\Omega \pdv{\rho(\bm{r}, t)}{t} \dd^3{\bm{r}} \quad,
+    \label{eq:studio_dens_prob}
+\end{equation}
+dove in $(6)$ si è sfruttata la regola di Leibniz per passare l'operatore di derivata sotto il segno d'integrale\footnote{Si noti che l'operazione d'integrale in questione \emph{satura} qualsiasi eventuale dipendenza spaziale della funzione integranda (nel caso in esame la densità di probabilità $\rho$). La funzione che sopravvive all'integrazione deve dipendere esclusivamente dal tempo e il segno di derivata totale è così giustificato. Nel momento in cui si fanno commutare gli operatori, azione possibile solo perché agiscono su variabili indipendenti, serve tenere presente che l'integranda può avare dipendenze sia esplicite sia implicite dal tempo. Per ovviare a questo cavillo si trasforma $\text{d}_t \mapsto \partial_t$.}. È quindi necessario caratterizzare la quantità integranda per carpire le proprietà di $\text{d}_t \mathcal{P}$. 
+
+Invocando la definizione di densità di probabilità e muniti di pazienza si comincia la derivazione:
+\[
+    \begin{aligned}
+        \pdv{\rho(\bm{r}, t)}{t} &= \pdv{|\psi(\bm{r}, t)|^2}{t} = \pdv{}{t}\, (\psi(\bm{r}, t)^*\psi(\bm{r}, t)) \\
+        &= \psi(\bm{r}, t)^*\pdv{\psi(\bm{r}, t)}{t} + \psi(\bm{r}, t)\pdv{\psi(\bm{r}, t)^*}{t} \quad.
+    \end{aligned}
+\]
+L'equazione di Schrödinger ci permette di riscrivere i termini contenenti le derivate parziali rispetto al tempo delle funzioni d'onda tramite gli operatori energia cinetica e potenziale. Nel primo caso abbiamo:
+\[
+    \pdv{\psi(\bm{r}, t)}{t} = \frac{1}{i\hbar} \left( -\frac{\hbar^2}{2m}\nabla^2 \psi(\bm{r}, t) + V(\bm{r}, t)\psi(\bm{r}, t) \right)
+\]
+e, prendendo il coniugato ad ambo i membri ricaviamo la seconda quantità utile:
+\[
+    \pdv{\psi(\bm{r}, t)^*}{t} = -\frac{1}{i\hbar} \left( -\frac{\hbar^2}{2m}\nabla^2 \psi(\bm{r}, t)^* + V(\bm{r}, t)\psi(\bm{r}, t)^* \right) \quad.
+\]
+Sostituendo otteniamo:
+\[
+    \begin{aligned}
+        \pdv{\rho(\bm{r}, t)}{t} = \frac{\psi(\bm{r}, t)^*}{i\hbar}\bigg( &-\frac{\hbar^2}{2m}\nabla^2 \psi(\bm{r}, t) + V(\bm{r}, t)\psi(\bm{r}, t) \bigg) -\\ &- \frac{\psi(\bm{r}, t)}{i\hbar}\left( -\frac{\hbar^2}{2m}\nabla^2 \psi(\bm{r}, t)^* + V(\bm{r}, t)\psi(\bm{r}, t)^* \right) \quad.
+    \end{aligned}
+\]  
+I termini contenenti i potenziali si elidono e, con le dovute semplificaizoni algebriche, si ha:
+\begin{equation}
+        \pdv{\rho(\bm{r}, t)}{t} = -\frac{\hbar}{2mi}\left(\psi(\bm{r}, t)^*\nabla^2\psi(\bm{r}, t) - \psi(\bm{r}, t)\nabla^2\psi(\bm{r}, t)^*\right) \quad.
+        \label{eq:step_eq_continuità}
+\end{equation}
+D'ora in poi ometteremo gli argomenti delle funzioni analizzate per alleggerire la notazione. 
+Possiamo riscrivere il fattore fra parentesi in maniera più conveniente. Per tentare di intuire quale sia la strada migliore, cerchiamo di capire \emph{davvero} cosa stiamo calcolando. 
+
+Si immagini che la particella di cui stiamo cercando di tracciare il moto sia una carica $q$ in moto in un conduttore. Le leggi di Maxwell, tramite cui analizziamo il suo comportamento, non si arrogano il diritto di trattare la \emph{traiettoria} della singola carica, bensì ci danno informazioni interessanti riguardo il rapporto incrementale fra cariche e volume, ovvero riguardo la densità di carica 
+\[
+\rho_{(q)} = \frac{q}{\tau} \,, \quad q = nu
+\]
+dove con $\tau$ indichiamo il volume del conduttore, con $u = \SI{1}{\coulomb}$ la carica unitaria e con $n$ il numero di cariche elementari che compongono $q$\footnote{Per rendere più chiaro quanto appena descritto, si consideri il seguente esempio: sia $q = \SI{18}{\coulomb}$. Allora possiamo immaginare che $q$ non sia altro che l'agglomerato di $n = 18$ cariche elementari $u$.}. \guillemetleft\emph{Ma cosa rappresenta questa densità?}\guillemetright. Scriviamo:
+\[
+    \rho_{(q)} = \frac{n}{\tau} \, u\quad,
+\] 
+dove il termine $n/\tau$ non è altro che la probabilità di trovare una carica elementare nell'unità di volume, quasi come la densità di probabilità quantistica. Abbiamo così a disposizione una fortissima analogia fra la nostra $\rho(\bm{r},t)$ e la densità di carica classica, la cui evoluzione temporale è determinata dall'\emph{equazione di continuità}:
+\[
+    \pdv{\rho_{(q)}}{t} + \nabla \cdot \bm{J}_{(q)} = 0 \implies \pdv{\rho_{(q)}}{t} = -\nabla \cdot \bm{J}_{(q)} \quad.
+\] 
+Possiamo allora lavorare affinché la \eqref{eq:step_eq_continuità} sia quanto più possibile affine alla controparte classica: a tal fine si tenta di fare emergere l'operatore di divergenza "a fattor comune", così da avere $\partial_t \rho = \nabla \cdot (\text{qualcosa})$. L'operazione tuttavia non è assolutamente ovvia trattandosi di un operatore differenziale. Iniziamo allora con il formalizzare l'intuizione:
+\[
+    \psi^*\nabla^2\psi - \psi\nabla^2\psi^* \overset{?}{=} \nabla \cdot \big( \psi^*\nabla\psi - \psi\nabla\psi^* \big) \quad.
+\]
+Calcoliamo:
+\[
+\begin{aligned}
+    \nabla \cdot \big( \psi^*\nabla\psi - \psi\nabla\psi^* \big) &= \nabla\psi\cdot\nabla\psi^* + \psi^*\nabla^2\psi - \nabla\psi^* \cdotp\nabla\psi - \psi\nabla^2\psi^* \\ &= \psi^*\nabla^2\psi - \psi\nabla^2\psi^* \quad.
+\end{aligned}
+\]
+Appurata la fattibilità matematica del raccoglimento, sostituiamo e otteniamo la forma finale dell'\textbf{equazione di continuità} nel caso quantistico:
+\[
+    \pdv{\rho}{t} + \nabla \cdot \left[\frac{\hbar}{2mi}\big( \psi^*\nabla\psi - \psi\nabla\psi^* \big) \right] = 0 \quad,
+\]
+con il termine fra parentesi quadre che, in piena analogia con il caso elettromagnetico, prende il nome di \textit{densità di corrente di probabilità}:
+\[
+    \bm{J} = \frac{\hbar}{2mi}\big( \psi^*\nabla\psi - \psi\nabla\psi^* \big) \quad.
+\]
+L'equazione di continuità assume così la sua rinomata forma compatta:
+\[
+    \pdv{\rho(\bm{r}, t)}{t} + \nabla \cdot \bm{J}(\bm{r},t) = 0 \quad.
+\]
+
+\begin{concettochiave}{L'equazione di continuità e la densità di corrente di probabilità}
+    \noindent
+    In piena analogia con il caso elettromagnetico, la densità di probabilità quantistica evolve nel tempo in ossequio all'\textbf{equazione di continuità}:
+    \begin{equation}
+    \pdv{\rho(\bm{r}, t)}{t} + \nabla \cdot \bm{J}(\bm{r},t) = 0 \quad.
+    \label{eq:continuità}
+\end{equation}
+dove $\bm{J}(\bm{r},t)$ è la \emph{densità di corrente di probabilità}, definita come:
+\begin{equation}
+    \bm{J} = \frac{\hbar}{2mi}\big( \psi^*\nabla\psi - \psi\nabla\psi^* \big) \quad.
+\end{equation}
+\end{concettochiave}
+
+\subsubsection{Integrazione dell'equazione di continuità}
+Ritorniamo alla questione iniziale, ovvero come evolve nel tempo la probabilità totale. Se integriamo nel generico volume di definizione $\Omega$ in è confinato il corpuscolo descritto dalla funzione d'onda $\psi$, ritroviamo la nozione di derivata della probabilità totale nel tempo:
+\[
+    \int_\Omega \pdv{\rho}{t} \, \dd^3{\bm{r}} = \dv{\mathcal{P}}{t} = -\int_\Omega \nabla \cdot \bm{J} \, \dd^3{\bm{r}} \quad.
+\]
+Sfruttando il Teorema della divergenza di Gauss, si riscrive il membro destro dell'equazione e si ottiene la \eqref{eq:continuità} in forma integrale:
+\[
+    \dv{\mathcal{P}}{t} = -\oint_{\partial \Omega} \bm{J} \cdot \dd{\bm{S}} \quad,
+\]
+che ha un'interpretazione fisica bellissima: la variazione temporale della probabilità totale $\mathcal{P}$ di trovare la particella all'interno del volume $\Omega$ è pari al flusso, cambiato di segno, della densità di corrente di probabilità $\bm{J}$ attraverso la superficie chiusa $\partial \Omega$ che delimita il volume stesso\footnote{Si ricordi l'analogia precedentemente discussa: la controparte classica dell'equazione è $\dv{q}{t} = -\oint_{\partial \Omega} \bm{J}_q \cdot \dd{\bm{S}}$. Per convenzione, un flusso positivo (uscente dalla superficie) indica cariche che \emph{escono} dal volume, viceversa un flusso negativo (entrante) comporta un aumento del numero di cariche entro il volume. La traduzione quantistica è quindi presto fatta.}. In altre parole, la probabilità quantistica \emph{non si crea e non si distrugge}, ma fluisce da una regione all'altra dello spazio in modo continuo.
+
+È facile allora capire che affinché $\mathcal{P}$ sia costante (e unitaria) nel tempo, e quindi perché l'interpretazione di Copenaghen sia salva dal punto di vista matematico, serve che il flusso della densità di corrente sia nullo sul bordo di $\Omega$. La condizione si concretizza dunque come:
+\[
+    \oint_{\partial \Omega} \bm{J} \cdot \dd{\bm{S}} = \frac{\hbar}{2mi} \oint_{\partial \Omega} \big(\psi^*\nabla\psi - \psi\nabla\psi^*\big) \cdot \dd{\bm{S}} = 0 \quad.  
+\]
+Per comprendere in che condizioni questa richiesta è verificata è necessario discutere riguardo alcune caratteristiche della funzione d'onda.
+
+\subsection{Il decadimento all'infinito della funzione d'onda}
+Si può determinare, almeno qualitativamente, cosa succede ad una generica $\psi(\bm{r},t)$ quando ci si trova molto distanti dall'origine, ovvero nel caso in cui $|\bm{r}| = r \to \infty$. 
+
+Una prima fondamentale assunzione che faremo è che, nel caso in cui il volume di definizione di una particella coincida con l'intero spazio tridimensionale ($\Omega \equiv \mathbb{R}^3$), la funzione d'onda debba essere: $(1)$ \emph{velocemente decadente a infinito}; $(2)$ \emph{sufficientemente regolare}. La condizione $(1)$ è necessaria per scongiurare casi patologici contraddistinti da probabilità divergenti mentre la $(2)$, benchè non sia un semplice vezzo matematico, è ridondante ma semplifica notevolmente i calcoli. 
+
+È necessario a questo capire quanto rapidamente $\psi(\bm{r},t)$ debba convergere a $0$ in un intorno di infinito perchè il flusso della densità di corrente di probabilià associata sia anch'esso infinitesimo nel limite $r \to \infty$. La forma funzionale cercata per la funzione d'onda, per grandi distanze dall'origine, è del tipo: 
+\begin{equation}
+        \psi(\bm{r},t) \simeq \frac{f(r,t)}{r^\gamma} 
+        \label{eq:psi_r_grande}
+\end{equation} 
+con $f:\mathbb{R} \to \mathbb{C}$ una tale che $|f(r)| < \infty$. Si noti che argomento di $\psi$ è il vettore $\bm{r}$ mentre della funzione $f$ è semplicemente la distanza $r = |\bm{r}|$. La trattazione si concentra quindi sul determinare $\gamma$ affinché l'ipotesi di Born sia ben posta. 
+
+\subsubsection{Calcolo del flusso}
+Si ricava preliminarmente $\bm{J}$ tramite la definizione:
+\[
+\begin{aligned}
+        \bm{J}(\bm{r},t) &= \frac{\hbar}{2mi}\bigg[\underbrace{\frac{f(r,t)^*}{r^\gamma} \left( \frac{\nabla f(r,t)}{r^\gamma} - \frac{\gamma f(r,t)}{r^{\gamma+1}}\bm{u}_r \right)}_a - \, a^* \bigg] \\ &=  \frac{\hbar}{2mi}\left[\left( \frac{\nabla f(r,t)}{r^{2\gamma}} f(r,t)^* - \frac{\gamma|f(r,t)|^2}{r^{2\gamma+1}}\bm{u}_r \right) - a^*\right] \\
+        &= \frac{\hbar}{2mi}\biggl[\frac{1}{r^{2\gamma}}\biggl( {f(r,t)^*}\nabla f(r,t) -  \underbrace{\frac{\gamma|f(r,t)|^2}{r}\bm{u}_r}_{\text{reale}}\biggr) - a^*\biggr] \quad.
+\end{aligned}
+\]
+Dal momento che $a^*$ è il complesso coniugato del primo termine, la differenza uccide la parte puramente reale. Resta quindi una elegantissima dipendenza per la densità di corrente: 
+\[
+    \bm{J}(\bm{r},t) \propto \frac{1}{r^{2\gamma}}\left({f(r,t)^*}\nabla f(r,t) - {f(r,t)}\nabla f(r,t)^*  \right) \quad.
+\]
+Tornando al flusso, sappiamo che la generica superficie $\Sigma$ cresce come $r^2$. In coordinate sferiche, infatti, l'elemento  infinitesimo di superficie risulta $\dd{\bm{S}} = \bm{u}_r \, r^2 \dd{\Omega}$, con $\dd{\Omega}$ l'elemento infinitesimo di angolo solido. Scriviamo così l'integrale di flusso come:
+\begin{equation}
+    \oint_{\Sigma = \partial \Omega} \bm{J} \cdot \dd{\bm{S}} = \oint_{4\pi} (\bm{J} \cdot \bm{u}_r) \, r^2 \dd{\Omega} \overset{(7)}{\propto} \frac{r^2}{r^{2\gamma}} \oint_{4\pi} f(\Omega) \dd{\Omega} = \frac{C}{r^{2\gamma - 2}} \quad,
+\end{equation}
+dove $C$ è una costante reale che racchiude il risultato dell'integrazione sulle sole variabili angolari. In $(7)$ abbiamo sfruttato il fatto che il gradiente di $f$ è proporzionale al versore $\bm{u}_r$ e constatato che l'integrazione avviene \emph{solo} sull'angolo solido $4\pi$ e non interessa minimamente la parte radiale.
+Avendo così separato analiticamente la dipendenza radiale, possiamo ora applicare rigorosamente il limite per $r \to \infty$ all'intera espressione:
+\[
+    \lim_{r \to \infty} \oint_{\partial \Omega} \bm{J} \cdot \dd{\bm{S}} \propto \lim_{r \to \infty} \frac{1}{r^{2\gamma-2}} \quad,
+\]
+che è infinitesimo solo nel caso in cui l'esponente a denominatore è strettamente positivo:
+\begin{equation}
+        2\gamma - 2 > 0 \implies \gamma > 1 \quad.
+\end{equation}
+
+\subsubsection{Considerazioni finali}
+Abbiamo quindi scoperto che affinché la probabilità totale di trovare una particella entro il volume in cui è stata confinata sia costante nel tempo, serve che la funzione d'onda decada strettamente più velocemente di $r^{-1}$ per $r \to \infty$. Coerentemente, in questa condizione abbiamo: 
+\[
+    \dv{\mathcal{P}}{t} = 0 \implies \mathcal{P} = \text{cost.}
+\] 
+
+\subsection{Altre fondamentali proprietà della funzione d'onda}
+Quanto discusso sino ad ora ci ha permsso di gettare le dovute basi necessarie per elevare la trattazione e analizzare due ulteriori caratterizzazioni della funzione d'onda: il suo essere parte dello \textit{spazio delle funzioni a quadrato sommabile} $\mathcal{L}^2(\Omega \subseteq \mathbb{R}^3)$ e la \textit{condizione di normalizzazione}.
+
+\subsubsection{Lo spazio delle funzioni a quadrato sommabile $\bm{\mathcal{L}^2}$}
+Proviamo ora a guardare con occhi diversi la condizione di unitarietà della probabilità totale prescritta dall'interpretazione di Copenaghen. Il fatto che l'integrale del modulo quadro di $\psi(\bm{r},t)$ sia costantemente 1 sul volume di definizione $\Omega$ della particella implica certamente che:
+\[
+    1 = \int_\Omega |\psi(\bm{r})|^2 \dd^3{\bm{r}} < +\infty \quad.
+\]
+Di conseguenza, perché una generica funzione d'onda rappresenti un \emph{sistema fisico}, serve che il suo modulo quadro sia integrabile e non divergente sul dominio di definizione: in una parola, $\psi(\bm{r},t)$ deve essere a \textbf{quadrato sommabile} sul dominio di definizione\footnote{Si noti come la nozione di sommabilità al quadrato può essere estesa all'intero spazio tridimensionale $\mathbb{R}^3$ oppure a un suo sottospazio $\Omega \in \mathbb{R}^3$ e, in quest'ultimo caso, si dovrebbe parlare di funzioni \emph{localmente} a quadrato sommabile $\psi \in \mathcal{L}^2_{loc}$. Per semplicità si omette la dicitura "{loc}" e si intenderà sempre \guillemetleft \emph{a quadrato sommabile sul dominio di definizione $\Omega$}\guillemetright.}. 
+
+L'insieme delle funzioni a quadrato sommabile costituisce uno \emph{spazio vettoriale} identificato dal simbolo $\mathcal{L}^2(\Omega)$\footnote{Si anticipa che $\mathcal{L}^2(\Omega \subseteq \mathbb{R}^3)$ è anche uno \emph{spazio di Hilbert}. Questa peculiarità è di fondamentale importanza per la coerenza matematica della meccanica quantistica e verrà discussa più approfonditamente nel prosieguo della trattazione.}. Si ricorda che per dimostrare rigorosamente questa conclusione sarebbe necessario dimostrare le fantomatiche \emph{7 proprietà} che caratterizzano un generico spazio vettoriale. Dimostriamo di seguito, per semplicità, che $\mathcal{L}^2$ è necessariamente almeno un \emph{sottospazio vettoriale}: questo ci permetterà di sfruttare comodamente la nozione di combinazione lineare (e dunque il principio di sovrapposizione) durante l'analisi della S.E. di un sistema.
+\begin{proprietà}[Esistenza dell'elemento neutro]
+    L'insieme delle funzioni a quadrato sommabile $\mathcal{L}^2(\Omega)$ ammette l'\emph{elemento neutro} $\psi = 0$.
+\end{proprietà}
+\begin{proof}
+    La dimostrazione è banale se si nota che $\psi(\bm{r},t) = 0$ è evidemtemente a quadrato sommabile su qualsiasi sottoinsieme di $\mathbb{R}^3$ (e quindi anche su $\mathbb{R}^3$).
+\end{proof}
+\begin{proprietà}[Chiusura rispetto alla somma]
+    L'insieme delle funzioni a quadrato sommabile $\mathcal{L}^2(\Omega)$ è \emph{chiuso} rispetto all'operazione di combinazione lineare.
+\end{proprietà}
+\begin{proof}
+    Dobbiamo dimostrare che una generica combinazione lineare di funzioni a quadrato sommabile è a quadrato sommabile. Si cosiderino a tal fine $n$ generiche funzioni a quadrato sommabile $\psi_i \in \mathcal{L}^2(\Omega)$ e altrettante costanti complesse arbitrarie $c_i \in \mathbb{C}$. Per ipotesi, deve valere:
+    \[
+        \int_{\Omega} \dd^3{\bm{r}} \, |\psi_i(\bm{r},t)|^2 < +\infty \quad.
+    \]
+    Si definisce allora una generica funzione $\Psi$ come combinazione lineare delle $\psi_i$:
+    \[
+        \Psi(\bm{r},t) = \sum_{i=1}^n c_i \psi_i(\bm{r},t) \quad.
+    \]
+    Dal momento che il dominio delle $\psi_i$ è $\Omega$ per ipotesi, deve valere $\text{dom}(\Psi) = \Omega$. Si stima dall'alto allora l'integrale sul volume di definizione del suo modulo quadro:
+    \[
+        \begin{aligned}
+            \int_{\Omega} \dd^3{\bm{r}} \, |\Psi(\bm{r},t)|^2 &= \int_{\Omega} \dd^3{\bm{r}} \, \left|\sum_{i=1}^n c_i \psi_i(\bm{r},t)\right|^2 \overset{(8)}{\leq} \int_{\Omega} \dd^3{\bm{r}} \,\sum_{i=1}^n |c_i \psi_i(\bm{r},t)|^2 \\
+            &= \sum_{i=1}^n |c_i|^2 \int_{\Omega} \dd^3{\bm{r}} \,|\psi_i(\bm{r},t)|^2 < +\infty 
+        \end{aligned}
+    \]
+    perché ogni integrale è non divergente per ipotesi. In $(8)$ si è sfruttata la \emph{disuguaglianza di Minkowski} per $\mathcal{L}^2$. 
+\end{proof}
+
+\begin{proprietà}[Chiusura rispetto al prodotto per scalare]
+    L'insieme delle funzioni a quadrato sommabile $\mathcal{L}^2(\Omega)$ è \emph{chiuso} rispetto all'operazione di prodotto per scalare.
+\end{proprietà}
+\begin{proof}
+    Il prodotto per uno scalare non può modificare la proprietà di non divergenza dell'integrale di una funzione.  
+\end{proof}
+
+Le implicazioni che derivano da questa discussione sono molteplici\footnote{Si noti che, con il fine di alleggerire la notazione, si ometterà spesso il dominio di definizione, lasciando spazio al simbolo $\mathcal{L}^2$ per identificare il generico spazio delle funzioni a quadrato sommabile.}, in particolare otteniamo immediatamente un'ulteriore garanzia del fatto che assumere come soluzione dell'equazione di Schrödinger una combinazione lineare di diverse funzioni d'onda anch'esse soluzione della S.E. non è solo lecito dal punto di vista dell'equazione differenziale, ma anche dal profilo strettamente algebrico.
+
+\subsubsection{La condizione di normalizzazione}
+Abbiamo sin'ora discusso quale sia il tipo di funzioni d'onda che hanno senso fisico, ovvero che garantiscono un rigoroso fondamento matematico all'interpretazione probabilistica di Born. È necessario a questo punto imporre ancora che la probabilità totale di trovare una particella nel suo volume di definizione non sia semplicemente non divergente, bensì \textbf{unitaria}. 
+
+Si consideri una particella confinata, per semplicità, nell'intero spazio tridimensionale $\Omega \equiv \mathbb{R}^3$. Richiediamo quindi che l'integrale del modulo quadro della funzione d'onda ad essa associata sia \emph{normalizzato}, ovvero che restituisca esattamente $1$:
+\begin{equation}
+    \int_{\mathbb{R}^3}  \dd^3{\bm{r}} \, |\psi(\bm{r},t)|^2 = 1 \quad.
+    \label{eq:normalizzazione_ps}
+\end{equation}
+Per verificare la fattibilità di questa richiesta sfruttiamo il comportamento asintotico $\psi \sim f(r)/r^\gamma$  analizzato in precedenza e, con il fine di evitare patologie matematiche nell'origine dovute all'uso di un'espressione valida solo per grandi distanze, scindiamo il dominio di integrazione in una sfera di raggio $R$ arbitrariamente grande e nel dominio asintotico da $R$ a $+\infty$. All'interno della sfera $r \le R$, assumiamo che la funzione $\psi$ sia continua e limitata, restituendo un integrale certamente finito che chiameremo $I_0$. Passando in coordinate sferiche per il termine asintotico, otteniamo:
+\begin{equation}
+\begin{aligned}
+    \int_{\mathbb{R}^3} |\psi|^2 \dd^3{\bm{r}} &= \int_{r \le R} |\psi|^2 \dd^3{\bm{r}} + \int_R^\infty \int_0^\pi \int_0^{2\pi} \frac{|f(r)|^2}{r^{2\gamma}} r^2 \sin \theta \dd{r} \dd{\theta} \dd{\phi} \\
+    &= I_0 + \int_R^\infty \frac{|f(r)|^2}{r^{2\gamma-2}} \dd{r} {\int_0^\pi \sin\theta \dd{\theta}} {\int_0^{2\pi} \dd{\phi}} \\
+    &= I_0 + 4\pi \int_R^\infty \frac{|f(r)|^2}{r^{2\gamma-2}} \dd{r} \quad.
+    \label{eq:int_mod_quad}
+\end{aligned}
+\end{equation}
+Ricordando che l'integrale del modulo quadro della funzione d'onda rappresenta la probabilità totale, che è necessariamente minore di infinito, l'ultimo integrale improprio deve necessariamente convergere a un valore finito. Essendo $|f(r)|^2$ limitata asintoticamente per definizione, il criterio di convergenza degli integrali impone che l'esponente a denominatore sia strettamente maggiore di $1$:
+\begin{equation}
+    2\gamma - 2 > 1 \implies \gamma > \frac{3}{2} \quad,
+\end{equation}
+risultato assolutamente coerente con il precedente $\gamma > 1$.
+
+
+\begin{concettochiave}{Condizione di normalizzazione della funzione d'onda e costanza della probabilità totale nel tempo}
+    \noindent
+    Perché ad una generica funzione d'onda $\psi(\bm{r},t)$ ambientata in $\mathbb{R}^3$ sia associata una probabilità totale costante nel tempo, e quindi sia in accordo con l'interpretazione di Copenaghen, serve che 
+    \[
+        \psi = o\left(\frac{1}{r} \right)
+    \] 
+    e quindi che $\psi$ sia \emph{o-piccolo} di $1/r$ per $r \to \infty$.
+    La condizione di normalizzazione invece, ottenuta imponendo che $\psi \in \mathcal{L}^2$, prescrive che 
+    \[
+        \psi = {o}\left(\frac{1}{r^{\frac{3}{2}}} \right) \quad.
+    \]
+    È evidente quindi che una generica funzione d'onda deve \textbf{necessariamente} essere a quadrato sommabile in quanto questa condizione garantisce automaticamente che la probabilità totale sia indipendente dal tempo.
+\end{concettochiave}
+
+\noindent
+A questo punto, supponendo che la \eqref{eq:int_mod_quad} restituisca il valore $\alpha \in \mathbb{R}^+$, per ottenere la condizione di probabilità unitaria prescritta in \eqref{eq:normalizzazione_ps}, è sufficiente sfruttare la linearità dell'equazione di Schrödinger e ridefinire la funzione d'onda moltiplicandola per l'opportuna \emph{costante di normalizzazione} $A = 1/\sqrt{\alpha}$:
+\[
+    \psi_{\text{norm}}(\bm{r}, t) = \frac{1}{\sqrt{\alpha}} \psi(\bm{r}, t) \implies \int_{\mathbb{R}^3} |\psi_{\text{norm}}|^2 \dd^3{\bm{r}} = \frac{1}{\alpha} \underbrace{\int_{\mathbb{R}^3} |\psi|^2 \dd^3{\bm{r}}}_{\alpha} = 1 \quad.
+\]
+
+Da questo momento in poi, assumeremo sempre che le funzioni d'onda trattate siano state preventivamente normalizzate, garantendo la perfetta validità del postulato di Born.
+
+\section{Il prodotto scalare di funzioni d'onda}
+Avendo identificato il "mondo" delle funzioni d'onda come uno spazio vettoriale, è necessario sviscerare ancora una questione: come descrivere una forma di \textit{prodotto scalare} in $\mathcal{L}^2$.
+
+Date due funzioni d'onda a quadrato sommabile $\psi$ e $\phi$, definiamo il loro \textbf{prodotto scalare} come:
+\begin{equation}
+    (\psi, \phi) \equiv \int_{\mathbb{R}^3} \dd^3{\bm{r}}\, \psi(\bm{r},t)^*\phi(\bm{r},t) \quad.
+    \label{eq:prod_scal}
+\end{equation}
+Nel caso del prodotto scalare di una funzione per se stessa, recuperiamo la nozione di norma quadra:
+\[
+    \norm{\psi}^2 \equiv (\psi,\psi) = \int_{\mathbb{R}^3} \dd^3{\bm{r}}\, \psi(\bm{r},t)^*\psi(\bm{r},t) = \int_{\mathbb{R}^3}\dd^3{\bm{r}}\, |\psi(\bm{r},t)|^2 = 1 \quad.
+\]
+Si noti come la norma quadra di una genrica funzione d'onda associata ad uno \emph{stato fisico} non è altro che la probabilità totale di trovare la particella entro il suo spazio di esistenza ed è, di conseguenza, \emph{sempre unitaria} per l'interpretazione di Copenaghen\footnote{Si presti attenzione, in ogni caso, al fatto che la norma è una forma definita positiva e dunque, per definizione, può assumere qualsiasi valore in $\mathbb{R}^+$. La restrizione a un valore unitario vale solo, per l'appunto, nel caso di \emph{stati fisici}.}. 
+
+\subsection{Proprietà del prodotto scalare di funzioni d'onda}
+Sono evidenti alcune analogie con il prodotto scalare caratteristico degli spazi euclidei che ricordiamo essere definito come segue. 
+Dati due vettori $\bm{a}, \bm{b} \in \mathbb{R}^n$, il loro prodotto scalare è dato da:
+\[
+    (\bm{a}, \bm{b}) \equiv \bm{a} \cdot \bm{b} = \sum_{i = 1}^n a_ib_i \quad,
+\]
+con $a_i$ e $b_i$ l'$i$-esima componente dei vettori. Il prodotto scalare euclideo è pertanto definito come una forma \emph{bilineare e simmetrica}.
+
+Nel caso quantistico, invece, si perdono queste "comode" caratteristiche in luogo di due nuove peculiarità che ci accompagneranno nei calcoli. La \eqref{eq:prod_scal} restituisce un costrutto algebrico evidentemente non bilineare, bensì \textbf{sesquilineare}, ovvero lineare nel secondo argomento e antilineare (o lineare coniugato) nel primo. Abbiamo infatti:
+\[
+    (c_1\psi, c_2\phi) = \int_{\mathbb{R}^3} \dd^3{\bm{r}}\, c_1^*\psi(\bm{r},t)^*c_2\phi(\bm{r},t) = c_1^*c_2 \int_{\mathbb{R}^3} \dd^3{\bm{r}}\, \psi(\bm{r},t)^*\phi(\bm{r},t) = c_1^*c_2 (\psi, \phi), \quad c_i \in \mathbb{C} \quad.
+\]
+Il prodotto scalare complesso è inoltre \emph{non simmetrico} (essendo in generale $\psi^*\phi \neq \psi\phi^*$) ma \textbf{simmetrico in senso hermitiano}, ovvero:
+\[
+    (\psi, \phi) = \int_{\mathbb{R}^3} \dd^3{\bm{r}}\, \psi(\bm{r},t)^*\phi(\bm{r},t) = \biggl( \int_{\mathbb{R}^3} \dd^3{\bm{r}}\, \phi(\bm{r},t)^*\psi(\bm{r},t) \biggr)^* = (\phi, \psi)^* \quad.
+\]
+

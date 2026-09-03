@@ -1,0 +1,412 @@
+%!TEX root = ../dispense_QP.tex
+
+\chapter{Gli operatori fisici, la quantizzazione canonica e il commutatore}
+Il passaggio a una \emph{meccanica ondulatoria}, sancito dalle discussioni sull'interpretazione di Copenaghen della funzione d'onda e sul significato della densità di probabilità quantistica, segna uno spartiacque definitivo rispetto alla visione deterministica della meccanica classica, in cui le equazioni del moto definiscono una traiettoria esatta. Quest'ultima deve pertanto essere necessariamente, perlomeno, \emph{rivisitata} in favore di un framework intrinsecamente probabilistico. 
+
+\guillemetleft\emph{Ma perché non abbandonarla direttamente}\guillemetright? La risposta risiede in quanto analizzato sino ad ora: dal momento che le densità di probabilità quantistica e "classica“ si comportano allo stesso modo, qualcosa deve necessaiamente essere conservato e cercheremo di capire \emph{cosa effettivamente non cambia} in quanto segue.  
+Prima di procedere, è pedagogico capire come si trasformano le entità con cui \emph{qualsiasi} equazione fisica deve fare i conti: le \emph{grandezze fisiche}. Come si può intuire nella trattazione dell'equazione di Schrödinger, in questo nuovo nuovo paradigma le grandezze fisiche perdono la loro natura di semplici \emph{campi} (scalari o vettoriali) per assumere la veste matematica di \textbf{operatori lineari} che agiscono sulla funzione d'onda "producendo“ la controparte classica. Questa transizione strutturale porta con sé la conseguenza algebrica più dirompente dell'intera teoria: a differenza delle variabili classiche, in cui il prodotto di due coordinate appartenenti allo spazio delle fasi $q_\alpha$ e $p_\alpha$ è commutativo $q_\alpha p_\alpha = p_\alpha q_\alpha$, il prodotto tra operatori quantistici è generalmente \emph{non commutativo}.
+
+Per quantificare e studiare rigorosamente questa asimmetria, introdurremo lo strumento cardine del formalismo quantistico: il \textbf{commutatore}. Esso non costituisce un mero artificio matematico, ma rappresenta il fulcro del \textbf{principio di quantizzazione canonica} formulato da Dirac. Questo principio stabilisce una mappa formale e rigorosa tra la struttura simplettica dello spazio delle fasi classico e l'algebra degli operatori, associando le \emph{parentesi di Poisson} tra due grandezze dinamiche $\{A, B\}$ al commutatore tra i rispettivi operatori, secondo la celebre prescrizione:
+\begin{equation}
+    \{A, B\} \rightarrow \frac{1}{i\hbar}[\hat{A}, \hat{B}] \quad.
+\end{equation}
+
+
+\section{Gli operatori fisici}
+La discussione sull'equazione di Schrödinger ci ha mostrato che alcune grandezze della fisica classica, come l'energia meccanica o la quantità di moto, si traducono nel contesto quantistico in \textbf{operatori} agenti sulla funzione d'onda. Ci tocca fare, come sempre, un piccolo -\emph{o grande}- passo di astrazione: caratterizzeremo d'ora in poi qualsiasi \emph{grandezza fisica osservabile}, ovvero misurabile, tramite un operatore a questa associato, in ossequio ad un principio che discuteremo nella prossima sezione, ovvero la cosiddetta \textbf{regola della quantizzazione canonica}. In questo contesto, distinguiamo due macro-classi di operatori: gli operatori moltiplicativi e gli operatori derivativi.
+
+\subsection{Operatori moltiplicativi}
+L'azione di determinati operatori si riduce a un semplice prodotto algebrico. L'esempio cardine è l'\textbf{operatore posizione}. Denotato il vettore posizione con $\bm{r} = (x_1, x_2, x_3)$, le sue singole componenti $\hat{x}_i$ sono operatori che agiscono sulla funzione d'onda restituendola moltiplicata per la rispettiva coordinata:
+\begin{equation}
+    \hat{x}_i \psi(\bm{r}, t) = x_i \psi(\bm{r}, t) \quad \text{per } i = 1, 2, 3 \quad.
+\end{equation}
+Raggruppando le componenti in una notazione vettoriale compatta, possiamo formalizzare l'operatore vettore posizione $\hat{\bm{r}}$ come:
+\begin{equation}
+    \hat{\bm{r}} = 
+    \begin{pmatrix}
+        \hat{x}_1 \\
+        \hat{x}_2 \\
+        \hat{x}_3
+    \end{pmatrix}
+    \implies \hat{\bm{r}}\psi(\bm{r},t) = \bm{r}\psi(\bm{r},t) \quad.
+\end{equation}
+Questa logica si estende in modo naturale a qualsiasi funzione scalare dipendente unicamente dalla posizione: l'operatore a essa associato agirà anch'esso in via puramente moltiplicativa. Se consideriamo, ad esempio, l'energia potenziale $U(\bm{r})$:
+\begin{equation*}
+    \hat{U}(\bm{r}) \psi(\bm{r},t) = U(\bm{r})\psi(\bm{r},t) \quad.
+\end{equation*}
+
+\subsection{Operatori derivativi}
+La seconda classe è formata dagli operatori che comportano una derivazione spaziale. Come abbiamo dedotto dall'ansatz di Schrödinger, l'\textbf{operatore quantità di moto} $\hat{\bm{p}}$ ha natura differenziale:
+\begin{equation}
+    \hat{\bm{p}} = -i\hbar\nabla \implies \hat{p}_j \psi(\bm{r},t) = -i\hbar \pdv{\psi(\bm{r},t)}{x_j} \quad.
+\end{equation}
+Di conseguenza, anche gli operatori costruiti a partire dalla quantità di moto erediteranno questa natura differenziale. L'operatore energia cinetica $\hat{K}$ ad esempio, essendo proporzionale a $\hat{\bm{p}}^2$, coinvolgerà le derivate seconde spaziali, tramutandosi nel Laplaciano:
+\begin{equation*}
+    \hat{K} = \frac{\hat{\bm{p}} \cdot \hat{\bm{p}}}{2m} = -\frac{\hbar^2}{2m}\nabla^2 \quad.
+\end{equation*}
+
+\subsubsection{Casi particolari}
+Esistono ancora alcuni operatori contraddistinti da un'azione che non è imputabile unicamente ad alcuna delle due classi appena discusse. Uno fra tutti, l'operatore \textbf{momento angolare} è definito in similitudine all'espressione classica:
+\begin{equation}
+    \bm{L} = \bm{r} \times \bm{p} \to \hat{\bm{L}} \equiv \hat{\bm{r}} \times \hat{\bm{p}} =
+    \begin{pmatrix}
+        \hat{L}_1 \\
+        \hat{L}_2 \\
+        \hat{L}_3
+    \end{pmatrix} 
+    = 
+    \begin{pmatrix}
+        \hat{x}_2\hat{p}_3 - \hat{x}_3\hat{p}_2 \\
+        \hat{x}_3\hat{p}_1 - \hat{x}_1\hat{p}_3 \\
+        \hat{x}_1\hat{p}_2 - \hat{x}_2\hat{p}_1
+    \end{pmatrix}
+    = -i\hbar
+    \begin{pmatrix}
+        x_2 \partial_{x_3} - x_3 \partial_{x_2} \\
+        x_3 \partial_{x_1} - x_1 \partial_{x_3} \\
+        x_1 \partial_{x_2} - x_2 \partial_{x_1}
+    \end{pmatrix} \quad.
+\end{equation}
+In modo molto più compatto, sfruttando il \emph{tensore totalmente antisimmetrico di Levi-Civita} (o \emph{simbolo di Ricci}) $\epsilon_{ijk}$ e la convenzione di Einstein sugli indici ripetuti, la generica componente $i$-esima dell'operatore momento angolare si scrive:
+\[
+    \hat{L}_i = \epsilon_{ijk} \hat{x}_j \hat{p}_k = -i\hbar \epsilon_{ijk} x_j \partial_{x_k} \quad,
+\]
+relazione che si rivelerà di vitale importanza per calcolare in modo sistematico i commutatori tra le componenti di $\hat{\bm{L}}$. Si noti che l'azione dell'operatore momento angolare è sia di carattere moltiplicativo sia derivativo.
+
+\begin{approfondimento}[title={Proprietà del simbolo di Levi-Civita}]
+    \noindent
+Il simbolo $\epsilon_{ijk}$ è definito come:
+\begin{equation*}
+    \epsilon_{ijk} = \begin{cases} 
+    +1 & \text{se } (i,j,k) \text{ è una permutazione pari di } (1,2,3) \\
+    -1 & \text{se } (i,j,k) \text{ è una permutazione dispari} \\
+    0  & \text{se due o più indici sono uguali} \quad .
+    \end{cases}
+\end{equation*}
+Risulta particolamrmente utile per alleggerire la notazione del prodotto vettoriale. Dati infatti due generici vettori $\bm{a}$ e $\bm{b}$, abbiamo:
+\[
+    \bm{a} \times \bm{b} = \bm{c} = (c_1, c_2, c_3) \quad.
+\]
+La $i$-esima componente di $\bm{c}$ può essere ricavata tramite la notazione di Levi-Civita in maniera quasi immediata:
+\[
+    c_i = \epsilon_{ijk}a_j b_k \quad.
+\]
+Proviamo, a scopo di esercizio, a calcolare $c_1$, ponendo quindi $i = 1$. Dalla definizione del simbolo di Ricci, segue che se $j \, \text{e/o} \, k = i$ allora $\epsilon_{ijk} = 0$. Per avere termini non nulli, $j$ e $k$ devono essere diversi e uguali a 2 o 3: abbiamo due differenti casi:
+\[
+    \begin{aligned}
+        j &= 2 \quad k = 3 \rightarrow \text{permutazione pari} \rightarrow \epsilon_{123} = 1 \\
+        j &= 3 \quad k = 2 \rightarrow \text{permutazione dispari} \rightarrow \epsilon_{132} = -1 \quad.
+    \end{aligned}
+\]
+Sommando i due contributi infine otteniamo:
+\[
+    c_1 = \epsilon_{1jk}a_jb_k = \epsilon_{123} a_2b_3 + \epsilon_{132}a_3b_2 = a_2b_3 - a_3b_2 \quad,
+\]
+come ci auspicavamo. 
+
+N.B. In un certo tal senso, il simbolo di Ricci nasconde quindi una sommatoria sui termini diversi dal primo. 
+\end{approfondimento}
+
+\subsection{Alcune proprietà degli operatori}
+Dobbiamo a questo punto sviscerare le caratteristiche degli operatori fisici. Segue dunque una fondamentale discussione di carattere fortemente matematico-teorico che ci permetterà di avere sufficienti basi per affrontare argomenti più avanzati. Si noti come molti dei risultati presentati sono "tratti" dai fondamenti dell'algebra lineare e, pertanto, non verranno dimostrati.
+
+La prima domanda che ci facciamo è: -\emph{cosa restituisce l'applicazione di un operatore?}-. La trattazione introduttiva sull'equazione di Schrödinger può fornire dei suggerimenti ma adesso formalizzeremo l'intuizione nel seguente teorema:
+
+\begin{teorema}[Operatori fisici come applicazioni lineari]
+Sia $\hat{A}$ un operatore e $\psi, \phi \in \mathcal{L}^2$ funzioni d'onda. L'applicazione di $\hat{A}$ è \emph{lineare} e abbiamo:
+\[
+    \hat{A}(c_1 \psi + c_2 \phi) = c_1\hat{A}\psi + c_2\hat{A}\phi \quad c_1, c_2 \in \mathbb{C} \quad.
+\]
+\end{teorema}
+Questa linearità è conservata anche nella somma di due operatori: abbiamo infatti la seguente proprietà:
+
+\begin{proprietà}[Somma di operatori]
+Siano $\hat{A}$ e $\hat{B}$ due opratori fisici. L'applicazione lineare definita dalla loro somma è pari alla somma delle loro applicazioni lineari:
+\[
+    (\hat{A} + \hat{B})\psi = \hat{A}\psi + \hat{B}\psi \quad \psi \in \mathcal{L}^2 \quad.
+\]
+\end{proprietà} 
+Ancora, per quanto riguarda il prodotto fra operatori si ha:
+\begin{definizione}[Prodotto di operatori]
+    Siano $\hat{A}$ e $\hat{B}$ due opratori fisici. L'applicazione lineare definita dal loro prodotto si ottiene come:
+\[
+    (\hat{A}\hat{B})\psi = \hat{A} (\hat{B}\psi) \quad.
+\]
+\end{definizione}
+Si noti come il prodotto di due operatori, anche se associativo non è assolutamente commutativo. Infatti $\hat{A}\hat{B} \neq \hat{B}\hat{A}$. Possiamo a questo punto facilmente definire l'operatore identità e l'operatore zero: 
+\begin{enumerate}
+    \item \textbf{Operatore identità}:
+    $
+        \mathds{1}\hat{A} = \hat{A}\mathds{1} = \hat{A}, \quad \mathds{1}\psi = \psi .
+    $
+    \item \textbf{Operatore zero}:
+    $
+        0\hat{A} = \hat{A}0 = 0, \quad 0\psi = 0 .
+    $
+\end{enumerate}
+
+
+Un altro risultato fondamentale è dato dal teorema che segue. È di vitale importanza capire se l'applicazioni di un operatore restituisce una funzione d'onda a quadrato sommabile:
+
+\begin{teorema}[Operatori fisici come endomorfismi]
+Sia $\hat{A}$ un operatore e $\psi \in \mathcal{L}^2$ una funzione d'onda. (Sotto opportune condizioni di regolarità) l'applicazione lineare rappresentata da $\hat{A}$ è un \emph{endomorfismo} con $\hat{A}: \mathcal{L}^2 \to \mathcal{L}^2$ e abbiamo: 
+\[
+    \hat{A} \psi = \phi \quad \psi,\phi \in \mathcal{L}^2 \quad.
+\]
+\end{teorema}
+Ancora un piccolo passo. Attribuiremo agli operatori fisici la caratteristica di essere \emph{hermitiani}\footnote{Che vede il suo corrispondente dell'algebra lineare elementare nelle matrici complesse hermitiane (o simmetriche in campo reale).}, assunzione che si rivelerà incredibilmente importante nel susseguirsi della trattazione. Definiamo innanzitutto un \emph{operatore aggiunto} e \emph{autoaggiunto}:
+\begin{definizione}[Operatore aggiunto e autoaggiunto]
+    Sia $\hat{A}$ un operatore. Si definisce \emph{operatore aggiunto} di $\hat{A}$ l'operatore $\hat{A}^{\dagger}$ per cui vale:
+\[
+    (\phi, \hat{A}\psi) \equiv (\hat{A}^{\dagger}\phi, \psi)\quad \phi, \psi \in \mathcal{L}^2 \quad.
+\]
+Dalle proprietà del prodotto scalare complesso, abbiamo poi che:
+\[
+    (\phi, \hat{A}\psi) = (\hat{A}^{\dagger}\phi, \psi) = (\psi, \hat{A}^{\dagger}\phi)^* \quad.
+\]
+\end{definizione}
+
+Diciamo che $\hat{A}$ è \emph{autoaggiunto} se vale $\hat{A} = \hat{A}^{\dagger}$.
+Siamo pronti per comprendere il seguente risultato:
+\begin{teorema}[Operatori fisici come operatori autoaggiunti]
+    Sia $\hat{A}$ un operatore fisico. Allora $\hat{A}$ è autoaggiunto, o \emph{hermitiano}, e vale:
+    \begin{equation}
+    (\phi, \hat{A}\psi) = (\hat{A}^{\dagger}\phi, \psi) = (\hat{A}\phi, \psi) = (\psi, \hat{A}\phi)^* \quad \phi, \psi \in \mathcal{L}^2 \quad.
+    \label{eq:hermitiano}
+    \end{equation}
+\end{teorema}
+Possiamo quindi provare un'ultima interessante proprietà che tornerà molto utile nei calcoli:
+\begin{proprietà}[Operatori fisici]
+    Siano $\hat{A}$ e $\hat{B}$ due operatori fisici. Vale la seguente relazionare
+\[
+    \big(\hat{A}\hat{B}\big)^\dagger = \hat{B}^\dagger \hat{A}^\dagger \quad.
+\]
+\end{proprietà}
+\begin{proof}
+Dalla definizione di prodotto scalare, prese $\psi, \phi \in \mathcal{L}^2$, abbiamo:
+\[
+    \big( \psi, (\hat{A}\hat{B})^\dagger\phi \big) \overset{(1)}{=} \big( \phi, (\hat{A}\hat{B})\psi \big)^* = ( (\hat{A}\hat{B})\psi,\phi  \big)\quad,
+\]
+dove in $(1)$ abbiamo sfruttato l'hermitianità del prodotto di operatori hermitiani. Continuiamo:
+\[
+    ( (\hat{A}\hat{B})\psi,\phi  \big) = ( \hat{A}(\hat{B}\psi),\phi  \big) = ( \hat{B}\psi,\hat{A}^\dagger\phi  \big) = (\psi,\hat{B}^\dagger\hat{A}^\dagger\phi  \big) = (\hat{B}^\dagger\hat{A}^\dagger\phi, \psi  \big)^*\quad.
+\]
+Essendo $\hat{A}\hat{B}$ hermitiano, concludiamo che $\big(\hat{A}\hat{B}\big)^\dagger = \hat{B}^\dagger \hat{A}^\dagger$.
+\end{proof}
+
+\section{La regola della quantizzazione canonica}
+Per cogliere appieno la natura degli operatori fisici appena introdotti, dobbiamo ancora trovare risposta al seguente quesito: -\emph{come si costruisce l'operatore quantistico corrispondente a una determinata grandezza classica?}-. La risposta risiede nel \textbf{Principio di Quantizzazione Canonica}, il formidabile ponte logico-matematico gettato da Paul Dirac tra la Meccanica Analitica e la Meccanica Quantistica.
+
+Nel formalismo Hamiltoniano della meccanica classica, lo stato di un sistema è individuato da un punto nello \emph{spazio delle fasi}, descritto dalle coordinate generalizzate $q_\alpha$ e dai rispettivi momenti coniugati $p_\alpha$. Qualsiasi osservabile fisica $A$ è una funzione reale di tali variabili, $A(q,p,t)$. La struttura dinamica di questo spazio è governata dalle \textbf{parentesi di Poisson}, definite per due generiche osservabili $A$ e $B$ come:
+\begin{equation*}
+    \{A, B\} = \sum_\alpha \left( \pdv{A}{q_\alpha}\pdv{B}{p_\alpha} - \pdv{A}{p_\alpha }\pdv{B}{q_\alpha} \right) \quad.
+\end{equation*}
+Dalla definizione, seguono immediatamente le relazioni fondamentali per le variabili canoniche stesse:
+\begin{equation}
+    \{q_i, q_j\} = 0, \quad \{p_i, p_j\} = 0, \quad \{q_i, p_j\} = \delta_{ij} \quad,
+\end{equation}
+dove $\delta_{ij}$ è la Delta di Kronecker.
+
+Sveliamo un grande arcano: in realtà, non è necessario \emph{abbandonare} completamente la teoria classica, per cui Newton prima e Lagrange, Eulero, Hamilton e Jacobi poi, hanno duramente lavorato. Basta \emph{riadattarla}. Il colpo di genio di Dirac fu infatti notare che la struttura algebrica delle parentesi di Poisson (che formano una cosiddetta \emph{algebra di Lie}) è formalmente identica all'algebra dei cosiddetti \emph{commutatori}, protagonisti del discorso che verrà. Dirac postulò quindi che la transizione al regime quantistico non dovesse invalidare l'impalcatura della meccanica classica, ma piuttosto richiederne una "traduzione" in un nuovo linguaggio matematico. 
+
+Il Principio di Quantizzazione Canonica si articola in due prescrizioni operative:
+\begin{enumerate}
+    \item Alle variabili classiche spaziali e d'impulso $(q_i, p_i)$ si sostituiscono operatori lineari autoaggiunti $(\hat{q}_i, \hat{p}_i)$ agenti sullo spazio di Hilbert degli stati del sistema.
+    \item A ogni parentesi di Poisson tra due grandezze classiche si fa corrispondere il \textbf{commutatore} tra i rispettivi operatori quantistici, diviso per una costante immaginaria proporzionale alla costante di Planck ridotta:
+    \begin{equation}
+        \{A, B\} \longrightarrow \frac{1}{i\hbar}[\hat{A}, \hat{B}] \quad,
+        \label{eq:quantizzazione_dirac}
+    \end{equation}
+    dove $[\hat{A}, \hat{B}]$ rappresenta appunto il commutatore fra gli operatori $\hat{A}$ e $\hat{B}$.
+\end{enumerate}
+Questa mappatura impone che gli operatori quantistici obbediscano a specifiche regole di non-commutatività. Andiamo quindi a definire e calcolare esplicitamente questi commutatori.
+
+\section{Il commutatore}
+Il primo step di questo processo è quello di prendere ciò che permette di relazionare due generiche grandezze nello spazio delle fasi, le \textbf{parentesi di Poisson}, e tradurlo nel suo corrispondente quantomeccanico: il \textbf{commutatore}. 
+
+\subsection{Definizione operatoriale e proprietà}
+Definiamo il commutatore come l'\emph{operatore} che prende in argomento due generici operatori $\hat{A}$ e $\hat{B}$ e resituisce la differenza del loro prodotto incrociato:
+\begin{equation}
+    [\hat{A}, \hat{B}] = \hat{A}\hat{B} - \hat{B} \hat{A} \quad.
+\end{equation}
+Per poter giocare serenamente con il commutatore, dobbiamo estrarre dalla definizione alcune proprietà algebriche fondamentali:
+\begin{enumerate}
+    \item \textbf{Antisimmetria}: $[\hat{A}, \hat{B}] = -[\hat{B}, \hat{A}]$. Abbiamo infatti:
+    \[
+        [\hat{A}, \hat{B}] = \hat{A}\hat{B} - \hat{B} \hat{A} = - \big( \hat{B} \hat{A} - \hat{A}\hat{B} \big) = -[\hat{B}, \hat{A}] \quad.
+    \]
+    Segue che $[\hat{A}, \hat{A}] = 0$. 
+    \item \textbf{Bilinearità}: così come per il prodotto scalare euclideo vale:
+    \[
+        \begin{aligned}
+        [\hat{A}, c_1\hat{B} + c_2\hat{C}] &= c_1[\hat{A}, \hat{B}] + c_2[\hat{A}, \hat{C}] \\
+        [c_1\hat{A} + c_2\hat{B}, \hat{C}] &= c_1[\hat{A}, \hat{C}] + c_2[\hat{B}, \hat{C}]
+        \end{aligned}
+    \]
+    \item \textbf{Distributività} (Regola di Leibniz): $[\hat{A}, \hat{B}\hat{C}] = [\hat{A}, \hat{B}]\hat{C} + \hat{B}[\hat{A}, \hat{C}]$. Infatti:
+    \[
+    \begin{aligned}
+               [\hat{A}, \hat{B}\hat{C}] = \hat{A}(\hat{B}\hat{C}) - (\hat{B}\hat{C})\hat{A} &= (\hat{A}\hat{B})\hat{C} - \hat{B}\hat{A}\hat{C} + \hat{B}\hat{A}\hat{C} - (\hat{B}\hat{C})\hat{A} \\
+               &= (\hat{A}\hat{B})\hat{C} - (\hat{B}\hat{A})\hat{C} + \hat{B}(\hat{A}\hat{C}) - \hat{B}(\hat{C}\hat{A}) \\
+               &= (\hat{A}\hat{B}-\hat{B}\hat{A})\hat{C} + \hat{B}(\hat{A}\hat{C} - \hat{C}\hat{A}) \\
+               &= [\hat{A}, \hat{B}]\hat{C} + \hat{B}[\hat{A}, \hat{C}] \quad.
+    \end{aligned}
+    \]
+    \item \textbf{Identità di Jacobi}: $[\hat{A}, [\hat{B}, \hat{C}]] + [\hat{B}, [\hat{C}, \hat{A}]] + [\hat{C}, [\hat{A}, \hat{B}]] = 0$. Infatti:
+    \begin{equation*}
+    \begin{aligned}
+        [\hat{A}, [\hat{B}, \hat{C}]] &= [\hat{A}, \hat{B}\hat{C} - \hat{C}\hat{B}] \\
+        &= \hat{A}(\hat{B}\hat{C} - \hat{C}\hat{B}) - (\hat{B}\hat{C} - \hat{C}\hat{B})\hat{A} \\
+        &= \hat{A}\hat{B}\hat{C} - \hat{A}\hat{C}\hat{B} - \hat{B}\hat{C}\hat{A} + \hat{C}\hat{B}\hat{A} \quad.
+    \end{aligned}
+\end{equation*}
+Sfruttando la simmetria per permutazione ciclica $(\hat{A} \to \hat{B}, \hat{B} \to \hat{C}, \hat{C} \to \hat{A})$, otteniamo le espansioni degli altri due termini:
+\begin{equation*}
+    \begin{aligned}
+        [\hat{B}, [\hat{C}, \hat{A}]] &= \hat{B}\hat{C}\hat{A} - \hat{B}\hat{A}\hat{C} - \hat{C}\hat{A}\hat{B} + \hat{A}\hat{C}\hat{B} \quad, \\
+        [\hat{C}, [\hat{A}, \hat{B}]] &= \hat{C}\hat{A}\hat{B} - \hat{C}\hat{B}\hat{A} - \hat{A}\hat{B}\hat{C} + \hat{B}\hat{A}\hat{C} \quad.
+    \end{aligned}
+\end{equation*}
+Sommando i tre risultati, osserviamo come i dodici termini si elidano a coppie:
+\begin{itemize}[noitemsep]
+    \item $\hat{A}\hat{B}\hat{C}$ si elide con $-\hat{A}\hat{B}\hat{C}$ (rispettivamente nel primo e terzo termine);
+    \item $-\hat{A}\hat{C}\hat{B}$ si elide con $\hat{A}\hat{C}\hat{B}$ (primo e secondo);
+    \item $-\hat{B}\hat{C}\hat{A}$ si elide con $\hat{B}\hat{C}\hat{A}$ (primo e secondo);
+    \item $\hat{C}\hat{B}\hat{A}$ si elide con $-\hat{C}\hat{B}\hat{A}$ (primo e terzo);
+    \item $-\hat{B}\hat{A}\hat{C}$ si elide con $\hat{B}\hat{A}\hat{C}$ (secondo e terzo);
+    \item $-\hat{C}\hat{A}\hat{B}$ si elide con $\hat{C}\hat{A}\hat{B}$ (secondo e terzo).
+\end{itemize}
+Tutti i termini si annullano identicamente, dimostrando l'identità.
+\end{enumerate}
+
+\subsection{Esempi di commutatori notevoli}
+Procediamo a calcolare alcuni commutatori "notevoli" che torneranno utili in computazioni che seguono. Per completare lo svolgimento dei conti che seguono sarà, volta per volta, necessario avanzare richieste più o meno "stringenti" sulla regolarità di $\psi$. 
+
+Utilizzeremo varie tecniche per condurre i calcoli: in alcuni casi, con il fine di esplicitare l'azione differenziale (o moltiplicativa) applicheremo direttamente l'operatore alla generica $\psi$, altrimenti ci limiteremo a ottenere un risultato dipendente esplicitamente da un operatore. 
+
+Sarà tutto in ogni caso più chiaro entro breve.
+
+\subsubsection{Due componenti dell'operatore posizione}
+Come prevedibile dalla meccanica hamiltoniana, il risultato è banalmente zero. Per svolgere il conto applichiamo il commutatore alla funzione d'onda e svolgiamo la differenza:
+\[
+\begin{aligned}
+    [\hat{{x}}_i, \hat{{x}}_j]\psi &= \hat{x}_i (\hat{x}_j \psi) - \hat{x}_j (\hat{x}_i \psi) \\
+    &= \hat{x}_i x_j\psi - \hat{x}_j x_i\psi \\
+    &= {x}_i x_j\psi - {x}_j x_i\psi = 0 \quad.
+\end{aligned}
+\]
+Poiché assumiamo $\psi \neq 0$, deve essere $[\hat{{x}}_i, \hat{{x}}_j] = 0$.
+
+\subsubsection{Due componenti dell'operatore quantità di moto}
+Anche se il risultato è ancora sufficientemente prevedibile, come nel caso precedentemente, dovremo fare un'assunzione più forte su $\psi$ a parte dal richiedere che non sia banalmente nulla per ottenere il nostro risultato. Procedendo come prima otteniamo:
+\[
+\begin{aligned}
+    [\hat{{p}}_i, \hat{{p}}_j]\psi &= \hat{p}_i (-i\hbar\pdv{\psi}{x_j} ) - \hat{p}_j (-i\hbar\pdv{\psi}{x_i} ) \\
+    &= -\hbar^2 \pdv{\psi}{x_j}{x_i} +\hbar^2 \pdv{\psi}{x_i}{x_j} \\
+    &\overset{(1)}{=} -\hbar^2 \bigg( \pdv{\psi}{x_j}{x_i} - \pdv{\psi}{x_j}{x_i} \bigg)= 0 \quad.
+\end{aligned}
+\]
+In $(1)$ abbiamo attribuito a $\psi$ la caratteristica di avere almeno il gradiente differenziabile, $\psi \in \mathcal{C}^2(\mathbb{C}, \Omega)$, con $\Omega$ il volume di definizione, per poter applicare il Teorema di Schwarz e commutare le derivate parziali. Abbiamo quindi $[\hat{{p}}_i, \hat{{p}}_j] = 0$.
+
+\subsubsection{Una coordinata e il suo momento canonico coniugato}
+Classicamente, le parentesi di Poisson di una coordinata generalizzata $q_\alpha$ e del suo momento coniugato $p_\alpha = \partial_{\dot{q_\alpha}} L$, con $L$ la Lagrangiana del sistema, restituiscono:
+\[
+\{q_i, p_j\} = \delta_{ij} \quad.
+\]
+Procediamo ora a verificare se vale lo stesso nel mondo quantistico. Scegliamo come coordinate quelle che definiscono lo spazio delle fasi: una componente della posizione e una della quantità di moto.
+\begin{equation*}
+    \begin{aligned}
+    [\hat{x_i}, \hat{p_j}]\psi &= \biggl(-i\hbar x_i\pdv{}{x_j} + i\hbar \pdv{}{x_j}x_i \biggr)\psi   \\
+    &= -i\hbar x_i\pdv{\psi}{x_j} + i\hbar \pdv{(x_i\psi)}{x_j} \\
+    &= -i\hbar x_i\pdv{\psi}{x_j} + -i\hbar x_i\pdv{\psi}{x_j} + i\hbar \delta_{ij}\psi = i\hbar \delta_{ij}\psi \quad,
+    \end{aligned}
+\end{equation*}
+dove $\delta_{ij}$ rappresenta la \emph{Delta di Kronecker} di indici $i,j$. Essendo in generale $\psi \neq 0$, abbiamo $[\hat{x_i}, \hat{p_j}] = i\hbar \delta_{ij}$
+
+\begin{quote}
+\emph{Nota: formalmente, il risultato di un commutatore è un operatore, per cui andrebbe esplicitato l'operatore identità $\mathds{1}$. Per semplicità notazionale, tale termine verrà spesso omesso nei calcoli successivi.}
+\end{quote}
+
+Riflettendo sulle relazioni che scaturiscono dall'applicazione delle parentesi di Poisson alle variabili posizione e momento coniugato, quanto ottenuto tramite il commutatore differisce per un fattore costante pari a $i\hbar$:
+\[
+    \{x_j, p_j\} \rightarrow \frac{1}{i\hbar}[\hat{x}_j, \hat{p}_i] \quad.
+\]
+Come ampiamente preannunciato dal postulato di quantizzazione di Dirac, il risultato quantistico ricalca esattamente la struttura simplettica classica, a meno del fondamentale fattore $i\hbar$.
+
+\subsubsection{Una componente dell'operatore quantità di moto e una funzione della posizione}
+Procediamo come al solito:
+\[
+\begin{aligned}
+    [\hat{{p}}_i, \hat{f}(\bm{r})]\psi &= \hat{p}_i (f(\bm{r})\psi) - \hat{f}(\bm{r})(-i\hbar\pdv{\psi}{x_i}) \\
+    &= -i\hbar f(\bm{r})\pdv{\psi}{x_i} - i\hbar\psi\pdv{f(\bm{r})}{x_i} + i\hbar {f}(\bm{r})\pdv{\psi}{x_i} = - i\hbar\pdv{f(\bm{r})}{x_i} \psi \quad.
+\end{aligned}
+\]
+Con le solite assunzioni, otteniamo $[\hat{{p}}_i, \hat{f}(\bm{r})] = -i\hbar \partial_{x_i} f(\bm{r})$.
+
+Per pura curiosità, proviamo a fare lo stesso calcolo nell'impalcatura classica:
+\[
+\begin{aligned}
+    \{p_i, f(\bm{r})\} &= \sum_\alpha \left( \pdv{p_i}{q_\alpha}\pdv{f(\bm{r})}{p_\alpha} - \pdv{p_i}{p_\alpha}\pdv{f(\bm{r})}{q_\alpha} \right) \\
+    &= \sum_\alpha \bigg(-\delta_{i\alpha}\pdv{f(\bm{r})}{q_\alpha}\bigg) = - \pdv{f(\bm{r})}{q_i} \quad,
+\end{aligned}
+\]
+Ancora una volta, l'analogia suggerita dalla quantizzazione canonica si rivela fondata.
+
+\subsubsection{Una componente dell'operatore momento angolare e una componente dell'operatore quantità di moto}
+Continuiamo: 
+\[
+\begin{aligned}
+    [\hat{L}_i, \hat{p}_n]\psi &= [\epsilon_{ijk}\hat{x}_j\hat{p}_k, \hat{p}_n]\psi = \epsilon_{ijk}[\hat{x}_j\hat{p}_k, \hat{p}_n] = - \epsilon_{ijk}[\hat{p}_n,\hat{x}_j\hat{p}_k]\\
+    &= - \epsilon_{ijk} \big( \underbrace{[\hat{p}_n,\hat{x}_j]}_{-i\hbar \delta_{nj}}\hat{p}_k - \hat{x}_j \underbrace{[\hat{p}_n,\hat{p}_k]}_{0} \big) = i\hbar\epsilon_{ijk} \delta_{nj}\hat{p}_k \psi = i\hbar\epsilon_{ink} \hat{p}_k\psi \quad.
+\end{aligned}
+\]
+Otteniamo così $[\hat{L}_i, \hat{p}_n] = i\hbar\epsilon_{ink}\hat{p}_k$. Non calcoliamo la controparte classica, nella certezza del fatto che il meccanismo è ormai chiaro.
+
+
+\subsubsection{Una componente dell'operatore momento angolare e una componente dell'operatore posizione}
+Seguendo il solito metodo:
+\[
+\begin{aligned}
+    [\hat{L}_i, \hat{x}_n]\psi &= [\epsilon_{ijk}\hat{x}_j\hat{p}_k, \hat{x}_n]\psi = \epsilon_{ijk}[\hat{x}_j\hat{p}_k, \hat{x}_n] = - \epsilon_{ijk}[\hat{x}_n,\hat{x}_j\hat{p}_k]\\
+    &= - \epsilon_{ijk} \big( \underbrace{[\hat{x}_n,\hat{x}_j]}_{0}\hat{p}_k - \hat{x}_j \underbrace{[\hat{x}_n,\hat{p}_k]}_{i\hbar \delta_{nk}} \big) = i\hbar\epsilon_{ijk} \delta_{nk}\hat{x}_j \psi = i\hbar\epsilon_{ijn}\hat{x}_j\psi \quad.
+\end{aligned}
+\]
+Abbiamo quindi $[\hat{L}_i, \hat{x}_n] = i\hbar\epsilon_{ijn}\hat{x}_j$.
+
+\subsubsection{Una componente dell'operatore momento angolare e l'operatore quantità di moto quadra}
+Prima di imbastire i calcoli, si ricordi che l'operatore quantità di moto al quadrato è uno scalare definito come la somma dei quadrati delle sue componenti:
+\[
+    \hat{\bm{p}}^2 = \sum_k \hat{p}_k^2 \quad.
+\]
+Svolgendo i calcoli tramite la regola di Leibniz per il commutatore, abbiamo:
+\[
+\begin{aligned}
+    [\hat{L}_i, \hat{\bm{p}}^2]\psi &= \sum_k [\hat{L}_i , \hat{p}_k^2]\psi = \sum_k [\hat{L}_i , \hat{p}_k \hat{p}_k]\psi \\
+    &= \sum_k \biggl([\hat{L}_i , \hat{p}_k] \hat{p}_k + \hat{p}_k [\hat{L}_i , \hat{p}_k] \biggr)\psi \\
+    &\overset{(1)}{=} \sum_{k} \bigl( i\hbar \epsilon_{iks}\hat{p}_s\hat{p}_k + \hat{p}_k i\hbar \epsilon_{iks}\hat{p}_s \bigr)\psi \\
+    &= i\hbar \sum_{k,s} \epsilon_{iks} (\hat{p}_s\hat{p}_k + \hat{p}_k\hat{p}_s)\psi \quad.
+\end{aligned}
+\]
+In $(1)$ abbiamo esplicitato il commutatore $[\hat{L}_i, \hat{p}_k] = i\hbar \epsilon_{iks}\hat{p}_s$ calcolato precedentemente.
+
+Arrivati a questo punto, per capire perché l'intera espressione si annulla, analizziamo i termini della doppia sommatoria. Sappiamo che le diverse componenti dell'impulso commutano fra loro ($[\hat{p}_s, \hat{p}_k] = 0$), quindi l'ordine in cui applichiamo gli operatori è ininfluente: $\hat{p}_s\hat{p}_k = \hat{p}_k\hat{p}_s$. La quantità in parentesi si riduce perciò a $2\hat{p}_s\hat{p}_k$. La nostra somma diventa:
+\[
+    [\hat{L}_i, \hat{\bm{p}}^2]\psi = 2i\hbar \sum_{k,s} \epsilon_{iks} \hat{p}_s\hat{p}_k \psi \quad.
+\]
+Pensiamo ora a cosa succede quando esplicitiamo questa somma su tutti i possibili valori di $k$ ed $s$ (che spaziano sugli assi $1, 2, 3$):
+\begin{itemize}
+    \item Se prendiamo i termini con $k = s$, il simbolo di Levi-Civita $\epsilon_{ikk}$ è pari a zero per definizione. Dunque questi termini si annullano immediatamente.
+    \item Se prendiamo i termini con $k \neq s$, ci accorgiamo che per ogni specifica coppia (ad esempio $k=1, s=2$), esisterà all'interno della somma anche il suo termine "gemello" con gli indici scambiati ($k=2, s=1$).
+\end{itemize}
+
+Confrontiamo questi due termini gemelli. Da un lato, il prodotto degli operatori è identico per via della commutatività ($\hat{p}_1\hat{p}_2 = \hat{p}_2\hat{p}_1$). Dall'altro lato, la regola di permutazione del simbolo di Levi-Civita impone un cambio di segno quando si scambiano due indici: $\epsilon_{i12} = -\epsilon_{i21}$.
+Questo significa che il termine corrispondente alla coppia $(1,2)$ sarà esattamente uguale e opposto al termine $(2,1)$. Sommandoli nella sommatoria, essi si cancelleranno a vicenda:
+\[
+    \epsilon_{i12} \hat{p}_1\hat{p}_2 + \epsilon_{i21} \hat{p}_2\hat{p}_1 = \epsilon_{i12} \hat{p}_1\hat{p}_2 - \epsilon_{i12} \hat{p}_1\hat{p}_2 = 0 \quad.
+\]
+Poiché questo ragionamento vale per \emph{qualsiasi} coppia di indici incrociati nella sommatoria, tutti i termini si elidono a due a due. L'intero risultato collassa quindi a zero:
+\begin{equation*}
+    [\hat{L}_i, \hat{\bm{p}}^2] = 0 \quad.
+\end{equation*}
+
+Fisicamente, ricordando che l'operatore energia cinetica $\hat{K}$ per una particella è proporzionale a $\hat{\bm{p}}^2$, questo risultato garantisce che le componenti del momento angolare commutano con l'energia cinetica. Questa proprietà si rivelerà centrale per lo studio dei sistemi a simmetria sferica, in cui il momento angolare costituisce una costante del moto.

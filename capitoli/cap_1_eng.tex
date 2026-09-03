@@ -1,0 +1,616 @@
+%!TEX root = ../dispense_QP.tex
+
+\chapter{The End of Classical Physics}
+At the turn of the last century, a series of experiments made it dramatically clear that classical physics could no longer provide a satisfactory account of a growing number of phenomena at the microscopic and atomic scale. Adopting a classical interpretation led to contradictory results in the study of processes involving high-frequency radiation, the conduction properties of solids, the interaction between radiation and matter, the apparent wave-like behaviour of electrons and atoms, and many other aspects of atomic and condensed-matter physics. The need for a new and more effective theoretical foundation, capable of providing a coherent interpretation of this rich phenomenology, led to the formulation of \textbf{Quantum Mechanics}. Among the many \emph{pioneering} experiments in this direction, the following deserve particular mention: \\
+
+\noindent
+\emph{The quantization of radiation}
+\begin{enumerate}
+    \item The measurement of the energy (per unit volume and frequency) of Black-Body Radiation, which showed how the (classical) Rayleigh-Jeans law failed to describe the high-frequency spectrum, while the (quantum) Planck law fit the experimental data perfectly (Planck, 1900).
+    \item The Photoelectric Effect, which led to the postulate that light is composed of photons, quanta of energy $E = \hbar\omega$ (Einstein, 1905).
+\end{enumerate}
+
+\noindent \emph{The quantization of atomic levels}
+\begin{enumerate}
+    \setcounter{enumi}{2}
+    \item The discrete character exhibited by atomic emission and absorption spectra.
+    \item The Franck-Hertz experiment (1914), which provided direct evidence for the existence of discrete energy levels within atoms.
+\end{enumerate}
+
+\noindent \emph{Wave-particle duality for matter}
+\begin{enumerate}
+    \setcounter{enumi}{4}
+    \item The Davisson-Germer experiment (1927), in which a beam of electrons, striking a target (a crystal lattice with a suitably small lattice constant), undergoes diffraction. This phenomenon produces interference patterns entirely analogous to those typical of visible light or X-rays.
+    \item Thomson's experiment (1927-1928), in which a beam of electrons, passing through a thin gold foil, produces on a photographic plate the well-known diffraction patterns (a series of concentric rings).
+\end{enumerate}
+
+\section{Schrödinger's Reformulation}
+Against a backdrop as effervescent as the one just described, the need for a \emph{radical change of paradigm} to accurately describe reality made itself felt with increasing urgency. Among the various experimental findings, the aforementioned Davisson-Germer experiment at Bell Labs demonstrated, in particular, how \textbf{electrons}, under certain circumstances, exhibit behaviour typical of \emph{waves}. Schrödinger's brilliant intuition was to attempt to treat electrons themselves as waves, characterised by a governing equation whose argument is the well-known \emph{wave function} $\psi(\bm{r},t)$, which describes its evolution in space and time:
+\begin{equation}
+    \psi(\bm{r},t) = A e^{i(\bm{k}\cdot\bm{r}- \omega t)} \quad.
+    \label{eq:func_onda}
+\end{equation}
+Let us now try to decode the "symbols" appearing in the equation:
+\begin{itemize}[noitemsep]
+    \item $\bm{r}$: the generic position in space\footnote{Unless stated otherwise, we will always take space to be three-dimensional and coincide with $\mathbb{R}^3$.};
+    \item $t$: the generic instant of time;
+    \item $A$: the \emph{amplitude} of the wave;
+    \item $i$: the \emph{imaginary unit}\footnote{Recall the fundamental identity $i = \sqrt{-1}$.};
+    \item $\bm{k}$: the \emph{wave vector}, defined as
+    \[
+        \bm{k} = \frac{2\pi}{\lambda} \bm{{u}}_r \quad,
+    \]
+    with $\lambda$ the particle's characteristic \emph{De Broglie wavelength}\footnote{The De Broglie wavelength is an integral part of the so-called \emph{De Broglie Hypothesis}, a cornerstone of modern physics that associates wave-like features with particles. It is given by the relation $\lambda = {h}/{p}$, where $h$ is Planck's constant and $p$ is the particle's momentum.} and $\bm{{u}}_r$ the unit vector oriented along the direction of propagation of the wave;
+    \item $\omega$: the angular frequency of the wave, defined as
+    \[
+        \omega = 2\pi\nu = \frac{2\pi v}{\lambda} \quad,
+    \]
+    with $\nu$ the wave frequency, the inverse of the period, and $v$ the propagation speed.
+\end{itemize}
+Einstein's interpretation of the photoelectric effect and Planck's study of energy quantization further allow us to take the energy of the electrons to be $E = \hbar \omega$, with $\hbar$ the reduced Planck constant ($\hbar = h/2\pi$).
+
+We are now ready to derive, at least heuristically, the elusive Schrödinger equation. For a less sugar-coated discussion, see the appendix.
+
+\subsection{The electromagnetic hypothesis and d'Alembert's equation}
+The electromagnetic legacy bequeathed by Maxwell's extraordinary work might suggest that the wave function should satisfy, just as the electric and magnetic fields do in vacuum, the wave equation \emph{par excellence}: d'Alembert's equation. Note that this intuition is by no means trivial: the generic electron in motion, described by the function $\psi(\bm{r},t)$ under study, does in fact produce an electromagnetic field; it is therefore necessary to determine whether the equations governing that field also apply to the particle that generates it.
+
+Let us set up a d'Alembert-\emph{like} relation:
+\begin{equation}
+    \nabla^2 \psi = \frac{1}{\sigma^2} \pdv[2]{\psi}{t} \quad,
+    \label{eq:d'ale}
+\end{equation}
+and try to check whether, once $\psi(\bm{r},t)$ is substituted into it, we obtain a \emph{true} equality. The parameter $\sigma$ corresponds, in the standard formulation of the equation, to the propagation speed of the radiation, while $\nabla^2$ is the Laplace operator. Using \eqref{eq:func_onda} and carrying out the derivatives, we obtain for the spatial part:
+\[
+\begin{aligned}
+    \nabla^2 \psi = \nabla \cdot (\nabla\psi) = \nabla \cdot (i\bm{k}\psi) &= i\bm{k}\nabla\psi + \overbrace{\psi\nabla \cdot (i\bm{k})}^{0} \\ &\overset{(1)}{=} (i\bm{k})\cdot(i\bm{k})\psi = -|\bm{k}|^2 \psi = -k^2 \psi\\
+\end{aligned}
+\]
+where in $(1)$ we used the spatial uniformity of the wave vector.
+For the temporal part we have:
+\[
+    \pdv[2]{\psi}{t} = \pdv{}{t} \, \bigg(\pdv{\psi}{t}\bigg) = \pdv{}{t}\,(-i\omega\psi) = -\omega^2\psi \quad.
+\]
+Before proceeding, it is worth examining the physical meaning of $k^2$. Indeed:
+\[
+    k^2 = \bm{k} \cdot \bm{k} = \left(\frac{2\pi}{\lambda} \bm{\hat{u}}_r\right) \cdot \left(\frac{2\pi}{\lambda} \bm{\hat{u}}_r\right) = \left(\frac{2\pi}{\lambda}\right)^2 \bm{u}_r \cdot \bm{u}_r \overset{(2)}{=} \frac{p^2}{\hbar^2}\quad,
+\]
+where in $(2)$ we used the De Broglie Hypothesis and the fact that the dot product of a unit vector with itself is one. We thus obtain $p = k\hbar$.
+
+We can now substitute the relations found into the starting equation:
+\[
+            -k^2\psi = -\frac{1}{\sigma^2} \omega^2 \psi \implies (\omega^2-\sigma^2 k^2)\psi = 0\quad.
+\]
+For the equality to hold for any choice of wave function, the term in brackets must vanish identically, from which:
+\[
+    \omega = \sigma k \quad.
+\]
+What we have just obtained is known as the \emph{dispersion relation}, and it establishes how the wavelength of the radiation relates to its angular frequency. Drawing on De Broglie and Einstein, we can further expand the equation and obtain a relation between energy and momentum\footnote{The term \emph{momentum} is used deliberately here to refer to the quantity of motion.}:
+\[
+    \frac{E}{\hbar} = {\sigma} \frac{p}{\hbar} \implies
+    E = {\sigma} p
+    \quad .
+\]
+Unfortunately, this equality is physically inconsistent: for a free, \emph{massive} particle (such as an electron), the energy is in fact a quadratic function of momentum, $E \propto p^2$. The direct proportionality just derived only holds in the case of radiation: the energy of a photon is indeed given by $E = cp$, with $c$ the speed of light.
+
+A change of approach is therefore necessary: the classical-electromagnetic route can no longer provide a correct description of observable reality.
+
+\subsection{Schrödinger's ansatz}
+During a conference in Zurich, it was pointed out to Schrödinger that a wave equation was needed to rigorously describe the space-time evolution of the so-called \emph{matter waves} (the electrons under discussion), consistent with what de Broglie had postulated. As the historical anecdote goes, it was the physicist Peter Debye who, at the end of a seminar on phase waves given by Schrödinger himself in late 1925, objected that -- \emph{if one is dealing with waves, one needs to have a wave equation at hand} --.
+
+Taking up this challenge, Schrödinger did not "prove" his equation starting from first principles of classical mechanics; instead, he proceeded heuristically, formulating precisely an \textit{ansatz}. His insight was to take up and extend the deep formal analogy, already discovered by William Rowan Hamilton in the previous century, between mechanics and geometrical optics. Just as geometrical optics (based on the concept of the light ray) represents an approximate limit of wave optics, valid when the wavelength of light is negligible compared to the characteristic dimensions of the system ($\lambda \to 0$), Schrödinger hypothesised that classical mechanics was nothing but an approximate limit of a more general and fundamental \textbf{wave mechanics}. Within this conceptual framework, the Austrian physicist postulated the following relation:
+\begin{equation}
+    \nabla^2\psi = i\sigma\pdv{\psi}{t}  \quad.
+    \label{eq:ansatz_schrodi}
+\end{equation}
+To test its validity, however, we must check that the equation reproduces the dependence $E \propto p^2$. Computing the derivatives and substituting, we obtain:
+\[
+        (ik)^2\psi - i\sigma(-i\omega)\psi = -(k^2 + \sigma\omega)\psi = 0 \implies k^2 = -\sigma \omega \quad. 
+\]
+We can thus derive the relation between energy and momentum:
+\[
+    \frac{p^2}{\hbar^2} = - \sigma \frac{E}{\hbar} \implies E = -\frac{p^2}{\sigma \hbar}
+\]
+and here, at last, is the sought-after quadratic dependence on momentum. It only remains to choose $\sigma$ so as to reproduce the usual expression for the energy of a free particle, $E = p^2/2m$.
+\[
+    E = \frac{p^2}{2m} = -\frac{p^2}{\sigma \hbar} \implies \sigma = -\frac{2m}{\hbar}
+\quad.
+\]
+Substituting the $\sigma$ just found into \eqref{eq:ansatz_schrodi}, we watch Schrödinger's hypothesis take an increasingly concrete shape:
+\begin{equation}
+        -\frac{2mi}{\hbar} \pdv{\psi}{t} = \nabla^2\psi \implies
+        {i\hbar \pdv{\psi}{t} = -\frac{\hbar^2}{2m}\nabla^2\psi} \quad.  
+    \label{eq:schrodi_cin}
+\end{equation}
+
+\begin{approfondimento}[title={A bridge between the two worlds: special relativity}]
+It is worth noting how Einstein's relativistic relation for the total energy of a free particle,
+\[
+    E = \sqrt{p^2c^2 + m^2c^4} \quad,
+\]
+represents the true theoretical "bridge" between the two regimes analysed above. The d'Alembert equation and Schrödinger's ansatz describe, in fact, the two asymptotic limits of this fundamental law.
+
+In the case of light, made up of photons with $m = 0$, the relation reduces to the exact linear proportionality $E = cp$ discussed above, consistent with the dispersion relation that follows from the d'Alembert wave equation.
+
+Conversely, for massive particles moving at non-relativistic speeds ($p \ll mc$), the term under the square root can be expanded in a Taylor series:
+\[
+    E = \sqrt{p^2c^2 + m^2c^4} = mc^2\sqrt{1 + \frac{p^2}{m^2c^2}} \approx mc^2\left( 1 + \frac{p^2}{2m^2c^2} \right) = mc^2 + \frac{p^2}{2m} \quad.
+\]
+We note that, up to the additive constant $mc^2$ (proportional to the particle's rest energy), the expression coincides with the classical kinetic energy $E_c = p^2/2m$, the only quantity that satisfies Schrödinger's equation for a free particle.
+
+To describe the full relativistic energy quantum-mechanically, without resorting to approximations, one needs to formulate new equations, such as the Klein-Gordon and Dirac equations.
+\end{approfondimento}
+
+\section{A Change of Paradigm}
+Equation \eqref{eq:schrodi_cin} thus allows us to successfully describe those particles that exhibit behaviour consistent with a wave phenomenon. It is instructive, at this point, to try to understand whether the new quantities appearing in the equation are connected in some way to already familiar quantities from classical physics. Let us start with energy.
+
+\subsection{Total energy}
+Expanding the left-hand side of \eqref{eq:schrodi_cin}, we obtain:
+\begin{equation}
+        i\hbar \pdv{\psi}{t} = i\hbar (-i\omega)\psi = \hbar \omega \psi = E\psi \quad.
+        \label{eq:op_E}
+\end{equation}
+The combined effect of differentiating the wave function with respect to time and multiplying by the factor $i\hbar$ thus "produces" the total energy of the particle. Drawing on a deep analogy with linear algebra and the notion of an \emph{eigenvalue problem}, we may then interpret the action of the term $i\hbar \partial_t$ on the wave function as that of an \emph{operator} ($\implies$ a matrix, a linear map) which extracts from $\psi(\bm{r},t)$ ($\implies$ a vector) the energy of the particle ($\implies$ an eigenvalue).
+
+\subsection{Kinetic energy}
+Let us now analyse the right-hand side of \eqref{eq:schrodi_cin}:
+\begin{equation*}
+    -\frac{\hbar^2}{2m}\nabla^2 \psi = -\frac{\hbar^2}{2m} (i\bm{k}) \cdot (i\bm{k}) \psi = -\frac{\hbar^2}{2m} (-k^2) \psi = \frac{k^2\hbar^2}{2m} \psi \overset{(3)}{=} \frac{p^2}{2m} \psi \quad,
+\end{equation*}
+where in $(3)$ we used the de Broglie relation $p = \hbar k$. It is immediate to see that the term multiplying the wave function is the total energy of the particle, which, for a free system (as in the derivation of Schrödinger's ansatz), coincides with the kinetic energy. Indeed, building on what we have just found:
+\[
+        i\hbar\pdv{\psi}{t} = E\psi = -\frac{\hbar^2}{2m}\nabla^2\psi = \frac{p^2}{2m}\psi = K\psi \implies
+        E = K \quad.
+\]
+
+A pattern begins to emerge at this point: we have identified two \emph{operators} which, applied to the wave function, generate its total energy and its kinetic energy respectively. Let us then define the \textbf{kinetic energy operator} $\hat{K}$:
+\begin{equation}
+    {\h{K} = -\frac{\hbar^2}{2m}\nabla^2} \quad,
+    \label{eq:operatore_K}
+\end{equation}
+characterised by the eigenvalue equation\footnote{As the treatment proceeds, it will become increasingly clear why these are indeed eigenvalue equations. Some capacity for abstraction is nonetheless required, since the various operators we have defined, and will go on to define, need not necessarily belong to the world of \emph{matrices}. A strong echo of linear algebra will, however, be especially evident when we discuss Dirac's approach to quantum mechanics.}:
+\[
+    \h{K}\psi = \frac{p^2}{2m} \psi \quad.
+\]
+Note that this equality holds \emph{only because} we are considering a particle described by a plane wave, to which a \emph{well-defined} momentum is associated. The equation loses its meaning for states characterised by a momentum that cannot be so defined.
+
+\subsection{The momentum operator}
+Although it does not appear directly in the equation, momentum is a fundamental quantity, and we therefore propose to investigate it in quantum-mechanical terms. The idea is to try to express the \textbf{momentum operator} $\hat{\bm{p}}$. We must, however, slightly change our approach compared to what we did for the kinetic energy operator, since $\hat{\bm{p}}$ \emph{must} be a \emph{vector} operator: its action on $\psi$ must in fact produce its classical counterpart, not a scalar (like $K$) but the momentum vector $\bm{p}$.
+
+From classical mechanics we know that $K = p^2/2m = \bm{p}\cdot\bm{p}/{2m}$. By analogy, in quantum mechanics we should have:
+\begin{equation*}
+    \h{K} = \frac{\hat{\bm{p}} \cdot \hat{\bm{p}}}{2m} \implies \hat{\bm{p}} \cdot \hat{\bm{p}} = -\hbar^2\nabla^2 \quad.
+\end{equation*}
+Recalling that the Laplacian is the dot product of the gradient with itself ($\nabla^2 = \nabla \cdot \nabla$), the relation above suggests that $\hat{\bm{p}}$ takes a vector form proportional to the gradient:
+\begin{equation*}
+    \hat{\bm{p}} = \beta \nabla \quad,
+\end{equation*}
+with $\beta$ a constant to be determined. Substituting this ansatz into the definition of the kinetic energy operator, we get:
+\begin{equation*}
+    (\beta\nabla) \cdot (\beta\nabla) = \beta^2\nabla^2 = -\hbar^2\nabla^2 \implies \beta^2 = -\hbar^2 \implies \beta = \pm i\hbar \quad.
+\end{equation*}
+We are faced with a mathematical ambiguity: choosing either the plus or the minus sign yields the correct kinetic energy operator. To resolve this doubt, we require that the operator $\hat{\bm{p}}$, acting on the generic wave function $\psi(\bm{r},t) = A e^{i(\bm{k}\cdot\bm{r} - \omega t)}$, "extract" the correct value of the momentum vector, consistent with the direction of propagation of the wave, namely $\bm{p} = +\hbar\bm{k}$. Let us test the two hypotheses, $\hat{\bm{p}} = \pm i\hbar\nabla$:
+\[
+\begin{cases}
+    (+) \quad \hat{\bm{p}} = i\hbar\nabla \implies (i\hbar\nabla) \psi = i\hbar (i\bm{k}) \psi = -\hbar\bm{k}\psi = -\bm{p}\psi \quad  \ensuremath{\times}\\
+    (-) \quad \hat{\bm{p}} = -i\hbar\nabla \implies (-i\hbar\nabla) \psi = -i\hbar (i\bm{k}) \psi = \hbar\bm{k}\psi = +\bm{p}\psi \quad \ensuremath{\checkmark} \quad .
+\end{cases}
+\]
+The ambiguity is thus resolved, and we unambiguously deduce the form of the momentum operator:
+\begin{equation}
+    {\hat{\bm{p}} = -i\hbar\nabla} \quad.
+    \label{eq:operatore_p}
+\end{equation}
+
+One further remark is needed before we can consider the analysis of $\hb{p}$ complete. We still need to clarify the meaning of the expression \emph{vector operator}. Bear in mind that its action on $\psi$ must produce $\bm{p}$, i.e.\ a triple of scalars $(p_1, p_2, p_3)$ in the generic three-dimensional space. In this sense, we will interpret $\hat{\bm{p}}$ as an operator "made up of three scalar components" (without being, strictly speaking, a vector itself), each acting along an independent direction of the space in which $\psi$ lives:
+\begin{equation}
+    \hat{\bm{p}} = 
+    \begin{pmatrix}
+        \hat{p}_1 \\
+        \hat{p}_2 \\
+        \hat{p}_3 \\
+    \end{pmatrix}
+    = 
+    \begin{pmatrix}
+        -i\hbar \partial_{x_1} \\
+        -i\hbar \partial_{x_2} \\
+        -i\hbar \partial_{x_3} \\
+    \end{pmatrix}
+    \quad.
+    \label{eq:op_p}
+\end{equation}   
+
+\section{Schrödinger's Equation}
+What we have done so far gives us the necessary foundation to formulate, in its most complete form, the elusive Schrödinger equation (S.E.). Note first of all that \eqref{eq:schrodi_cin} was derived under the assumption that the wave function $\psi$ describes a free system, i.e.\ one not immersed in any force field. If we now also allow for \emph{monogenic systems}\footnote{That is, systems to which Hamilton's principle of \emph{stationary action} applies, in which the forces can be expressed through suitable scalar potentials.}, we must account for a generic scalar field $V(\bm{r},t)$ describing the potential energy of interaction. The total mechanical energy is then
+\[
+    E = K + V = H \quad,
+\]
+with $H$ the \textbf{Hamiltonian} of the system. Pay close attention to what has just been said: the Hamiltonian of a system, as defined within analytical mechanics, coincides with the energy of the system \emph{only under specific conditions}. Specifically, the potential describing the interaction between the system and the outside world must be independent of velocity, and any constraint present must be \emph{scleronomic}, i.e.\ time-independent.
+
+To propose a suitable reformulation of \eqref{eq:ansatz_schrodi}, we must therefore define an operator that extracts the mechanical energy of the system, understood as the sum of kinetic and potential energy. In the initial ansatz we simply had $H = K$, from which:
+\[
+    \h{H} = \h{K} = -\frac{\hbar^2}{2m}\nabla^2 \quad.
+\]
+We generalise this, by induction, to the general case $H = K + V$, introducing to this end the \textbf{potential energy operator} $\h{V}$, such that $\h{V}\psi = V(\bm{r}, t)\psi$.
+We can now define, in full analogy with classical mechanics, the \textbf{Hamiltonian operator} $\h{H}$ as:
+\[
+    \h{H} = \h{K} + \h{V} = -\frac{\hbar^2}{2m}\nabla^2 + V(\bm{r},t) \quad.
+\]
+We are nearly there. Noting that both $\h{H}$ and $i\hbar \partial_t$ produce the total energy of the system when applied to the wave function, we obtain the \textbf{Schrödinger equation}:
+\[
+    {i\hbar \pdv{\psi(\bm{r},t)}{t} = \h{H}\psi(\bm{r},t)} \quad,
+\]
+equivalently expressible by writing out the operators explicitly:
+\[
+    i\hbar \pdv{\psi(\bm{r},t)}{t} = -\frac{\hbar^2}{2m}\nabla^2\psi(\bm{r},t) + V(\bm{r},t)\psi(\bm{r},t) \quad.
+\]
+
+\begin{concettochiave}{Schrödinger's equation}
+    \noindent
+    The time evolution of a generic particle of mass $m$, confined to a volume $\Omega$ and immersed in a scalar potential $V(\bm{r},t)$, is governed by \textbf{Schrödinger's equation}:
+    \begin{equation}
+        {i\hbar \pdv{\psi(\bm{r},t)}{t} = \h{H}\psi(\bm{r},t)} \quad,
+        \label{eq:schrodinger_completa}
+    \end{equation}
+    a linear partial differential equation that requires solutions at least $\mathcal{C}^2(\Omega)$ in space and $\mathcal{C}^1(\Omega)$ in time.
+\end{concettochiave}
+
+\subsubsection{The Hamiltonian as the total energy of the system}
+As mentioned earlier, the tenets of analytical mechanics guarantee that the equality between the Hamiltonian function ${H}$ and the total mechanical energy $E = K + V$ is not an identity \emph{a priori}, but is guaranteed only if the system is subject to {scleronomic} constraints and velocity-independent potentials. Only in that case, indeed, is the kinetic energy a homogeneous quadratic function of the generalised velocities, so that, by Euler's theorem on homogeneous functions, one obtains ${H} = E$. If the constraints were \emph{rheonomic} (time-varying), one would instead have ${H} \neq E$.
+
+It is therefore fair to ask: what guarantees, in Quantum Mechanics, the absence of rheonomic constraints, thereby justifying the assumption ${H} = {E}$ used to postulate Schrödinger's equation?
+
+The justification lies in the fundamental domain of validity of quantum theory. At the subatomic or microscopic level, the macroscopic constraints of classical mechanics (such as rails, hinges, or moving surfaces) simply \textbf{do not exist}. The elementary constituents of matter move freely through three-dimensional space $\mathbb{R}^3$, subject only to the fundamental interactions (electromagnetic, nuclear, and so on).
+In the absence of constraining surfaces, the generalised coordinates of the system trivially coincide with the Cartesian coordinates of the individual particles. The kinetic energy therefore \emph{always} and exclusively takes the form of a homogeneous quadratic form:
+\begin{equation*}
+    K = \sum_{i=1}^N \frac{\bm{p}_i^2}{2m_i} \quad.
+\end{equation*}
+Since any linear or zero-degree term in the momenta is structurally absent, the formal coincidence between the Hamiltonian and the mechanical energy (${H} = E$) is intrinsically and always guaranteed at the fundamental level.
+
+It remains, however, to clarify the case in which the potential depends explicitly on time, $V = V(\bm{r}, t)$ (for instance, an electron struck by an electromagnetic wave generated by an external laser). In this case:
+\begin{equation*}
+    \h{H}(t) = \h{K} + \h{V}(\bm{r}, t) \quad.
+\end{equation*}
+The operator $\h{H}(t)$ \emph{continues} to represent the observable "total energy of the system" at each instant. The fact that the Hamiltonian depends explicitly on time ($\partial_t \h{H} \neq 0$) simply means that \textbf{the energy of the quantum system is not conserved}, since the system is exchanging work with the classical external environment generating the field. Schrödinger's equation $i\hbar\partial_t \psi = \hat{H}(t)\psi$ remains formally valid as the generator of the dynamics, but the state of the system will necessarily undergo transitions between different energy levels, precisely because of the time-dependent external forcing.
+
+
+\subsection{The superposition principle}
+The \emph{linearity} of the S.E.\ allows us, at least in principle, to have \emph{infinitely} many solutions of the equation at our disposal. Let $\psi_1(\bm{r},t), \dots, \psi_n(\bm{r},t)$ be $n$ wave functions satisfying the S.E.,
+\[
+    \begin{aligned}
+        i\hbar \partial_t\psi_1(\bm{r},t) &= \h{H}\psi_1(\bm{r},t)\\
+        &\vdots  \\
+        i\hbar \partial_t\psi_n(\bm{r},t) &= \h{H}\psi_n(\bm{r},t)
+    \end{aligned}
+    \quad,
+\]
+then any \textbf{linear combination} $\Psi(\bm{r},t)$ of the $\psi_n(\bm{r},t)$,
+\begin{equation}
+    \Psi(\bm{r},t) = \sum_{j=1}^n c_j\psi_j(\bm{r},t) \quad,
+\end{equation}
+with $c_j \in \mathbb{C}$ constants called \emph{amplitudes}, remains a solution of the S.E. Indeed:
+\begin{equation*}
+\begin{aligned}
+    i\hbar\pdv{\Psi(\bm{r},t)}{t} &= i\hbar \sum_{j=1}^n c_j\psi_j(\bm{r},t) \overset{(4)}{=} \sum_{j=1}^n c_j \left(i\hbar \pdv{\psi_j(\bm{r},t)}{t} \right)\\ &= \sum_{j=1}^n c_j \h{H}\psi_j(\bm{r},t) = \h{H}\sum_{j=1}^n c_j\psi_j(\bm{r},t) \overset{(5)}{=} \h{H}\Psi(\bm{r},t) \quad.
+\end{aligned}
+\end{equation*}
+In $(4)$ and $(5)$ we used the linearity of the differential operators $\partial_t$ and $\h{H}$ (which is made up of a differential part, $\h{K}$, and a multiplicative part, $\h{V}$, and is therefore evidently linear with respect to addition).
+
+\section{The Copenhagen Interpretation}
+Classical mechanics, in all its Newtonian, Lagrangian, Hamiltonian and other guises, is a \textbf{deterministic} theory. Knowledge of a particle's position and momentum at each instant during its motion is \emph{sufficient} to determine any other piece of information about it, including its trajectory in space (or, where relevant, in phase space). We must now ask whether this quantum reformulation of physics retains such purely deterministic properties, or whether, here too, a change of approach is required.
+
+\subsection{Born's idea and the probability density}
+``\emph{What does the wave function actually represent?}'' This question lingered for a long time among the pioneers of quantum mechanics before an explanatory answer was found. If it is already counter-intuitive to accept that a material particle is described by a wave $\psi(\bm{r},t)$, understanding the direct physical meaning of that amplitude appears even more arduous. It was \textbf{Max Born} who grasped the decisive turn, introducing the \textbf{probabilistic interpretation} that allows one to extract observable physical information from $\psi$.
+
+To understand Born's reasoning, it is particularly illuminating to consider a thought experiment based on the classic \emph{Young double-slit experience} for electromagnetic radiation.
+
+\subsubsection{The double-slit experience}
+Consider a source emitting radiation towards a wall fitted with two slits. On the detection screen placed downstream, the light intensity $I(P)$ recorded at a generic point $P$ is known to be proportional to the squared modulus of the electric field:
+\begin{equation*}
+    I(P) \propto |\bm{E}(P)|^2
+\end{equation*}
+If we wish to reinterpret the phenomenon in quantum (i.e.\ corpuscular) terms, the intensity $I(P)$ measures the fraction of photons that reach $P$ out of the total number emitted by the source, in keeping with Planck's interpretation of black-body radiation and Einstein's interpretation of the photoelectric effect. Consequently, the ratio between the local intensity and the total intensity directly defines the \textbf{probability that a single photon arrives at point $P$}.
+
+Extending this intuition to matter waves, Born hypothesised that the wave function $\psi$ plays, for particles, a role entirely analogous to that played by the electric field for photons. Consequently, the squared modulus of the wave function does not describe a mass or a charge "smeared out" in space, but rather a \textit{probability density}.
+
+\subsubsection{Definition and properties of the probability density}
+We define the \textbf{probability density} $\rho(\bm{r},t)$ as the probability per unit volume of finding a particle described by the wave function $\psi(\bm{r},t)$ within the infinitesimal volume element $\dd^3{\bm{r}}$ at time $t$. In formulas:
+\begin{equation}
+    \rho(\bm{r}, t) = |\psi(\bm{r}, t)|^2 = \psi(\bm{r}, t)^*\psi(\bm{r}, t) = \dv{\mathcal{P}}{^3\bm{r}} \quad,
+    \label{eq:prob_dens}
+\end{equation}
+with $\psi^*$ the complex conjugate of $\psi$ and $\mathcal{P}$ the probability. Consequently, if the particle is confined to a volume $\Omega$, the probability of finding it within $\Omega$ must be unitary:
+\begin{equation}
+        \mathcal{P}(\Omega) = \int_\Omega |\psi(\bm{r}, t)|^2 \dd^3{\bm{r}} = 1
+        \label{eq:unit_psi}
+\end{equation}
+and, for any $\Omega^{'} \subseteq \Omega$, we must have:
+\[
+    \mathcal{P}\big(\Omega^{'}\big) = \int_{\Omega^{'}} |\psi(\bm{r}, t)|^2 \dd^3{\bm{r}} \leq 1 \quad.
+\]
+What we have just postulated hides more than a few pitfalls. It makes sense to expect that confining a particle to a given volume (imagine a box) is \emph{definitive}: the particle cannot escape its container. But how can one build a probabilistic theory in which the total probability must be constant and unitary, while its density is time-dependent? In other words: ``\emph{Why, if the probability density $\rho(\bm{r},t)$ depends explicitly on time, is the associated total probability a constant?}''
+
+\subsection{Time evolution of the probability density and the continuity equation}
+Let us start from one of the few certainties we have so far, equation \eqref{eq:prob_dens}. Given a particle described by the wave function $\psi(\bm{r},t)$, studying how the total probability associated with it evolves in time amounts to evaluating:
+\begin{equation}
+    \dv{\mathcal{P}}{t} = \dv{}{t} \int_\Omega \rho(\bm{r}, t) \dd^3{\bm{r}} \overset{(6)}{=} \int_\Omega \pdv{\rho(\bm{r}, t)}{t} \dd^3{\bm{r}} \quad,
+    \label{eq:studio_dens_prob}
+\end{equation}
+where in $(6)$ we used the Leibniz rule to move the derivative operator under the integral sign\footnote{Note that the integration in question \emph{saturates} any spatial dependence of the integrand (in this case the probability density $\rho$). The function that survives integration must depend on time alone, which justifies the use of the total-derivative sign. When we commute the operators -- an operation that is possible only because they act on independent variables -- we must keep in mind that the integrand may depend on time both explicitly and implicitly. To sidestep this subtlety, we replace $\text{d}_t$ with $\partial_t$.}. We must therefore characterise the integrand to grasp the properties of $\text{d}_t \mathcal{P}$.
+
+Invoking the definition of the probability density, and armed with patience, we begin the derivation:
+\[
+    \begin{aligned}
+        \pdv{\rho(\bm{r}, t)}{t} &= \pdv{|\psi(\bm{r}, t)|^2}{t} = \pdv{}{t}\, (\psi(\bm{r}, t)^*\psi(\bm{r}, t)) \\
+        &= \psi(\bm{r}, t)^*\pdv{\psi(\bm{r}, t)}{t} + \psi(\bm{r}, t)\pdv{\psi(\bm{r}, t)^*}{t} \quad.
+    \end{aligned}
+\]
+Schrödinger's equation lets us rewrite the terms containing the time derivatives of the wave functions in terms of the kinetic and potential energy operators. In the first case we have:
+\[
+    \pdv{\psi(\bm{r}, t)}{t} = \frac{1}{i\hbar} \left( -\frac{\hbar^2}{2m}\nabla^2 \psi(\bm{r}, t) + V(\bm{r}, t)\psi(\bm{r}, t) \right)
+\]
+and, taking the complex conjugate of both sides, we obtain the second useful quantity:
+\[
+    \pdv{\psi(\bm{r}, t)^*}{t} = -\frac{1}{i\hbar} \left( -\frac{\hbar^2}{2m}\nabla^2 \psi(\bm{r}, t)^* + V(\bm{r}, t)\psi(\bm{r}, t)^* \right) \quad.
+\]
+Substituting, we obtain:
+\[
+    \begin{aligned}
+        \pdv{\rho(\bm{r}, t)}{t} = \frac{\psi(\bm{r}, t)^*}{i\hbar}\bigg( &-\frac{\hbar^2}{2m}\nabla^2 \psi(\bm{r}, t) + V(\bm{r}, t)\psi(\bm{r}, t) \bigg) -\\ &- \frac{\psi(\bm{r}, t)}{i\hbar}\left( -\frac{\hbar^2}{2m}\nabla^2 \psi(\bm{r}, t)^* + V(\bm{r}, t)\psi(\bm{r}, t)^* \right) \quad.
+    \end{aligned}
+\]  
+The terms containing the potential cancel out, and after the appropriate algebraic simplifications, we get:
+\begin{equation}
+        \pdv{\rho(\bm{r}, t)}{t} = -\frac{\hbar}{2mi}\left(\psi(\bm{r}, t)^*\nabla^2\psi(\bm{r}, t) - \psi(\bm{r}, t)\nabla^2\psi(\bm{r}, t)^*\right) \quad.
+        \label{eq:step_eq_continuità}
+\end{equation}
+From now on we will omit the arguments of the functions involved, to lighten the notation.
+We can rewrite the term in brackets in a more convenient form. To get a sense of the best way to proceed, let us try to understand \emph{what we are actually computing}.
+
+Imagine that the particle whose motion we are trying to track is a charge $q$ moving inside a conductor. Maxwell's equations, which govern its behaviour, make no claim to describe the \emph{trajectory} of the individual charge; instead, they give us useful information about the incremental ratio between charge and volume, namely the charge density
+\[
+\rho_{(q)} = \frac{q}{\tau} \,, \quad q = nu
+\]
+where $\tau$ denotes the volume of the conductor, $u = \SI{1}{\coulomb}$ the elementary unit charge, and $n$ the number of elementary charges making up $q$\footnote{To make the point clearer, consider the following example: let $q = \SI{18.3}{\coulomb}$. We can then think of $q$ as an aggregate of $n = 18.3$ elementary charges $u$ -- purely as a formal device to illustrate the incremental ratio, since physical charge is of course quantised in integer multiples of $u$.}. ``\emph{But what does this density represent?}'' We write:
+\[
+    \rho_{(q)} = \frac{n}{\tau} \, u\quad,
+\] 
+where the term $n/\tau$ is nothing but the probability of finding an elementary charge per unit volume -- much like the quantum probability density. We thus have at our disposal a very strong analogy between our $\rho(\bm{r},t)$ and the classical charge density, whose time evolution is governed by the \emph{continuity equation}:
+\[
+    \pdv{\rho_{(q)}}{t} + \nabla \cdot \bm{J}_{(q)} = 0 \implies \pdv{\rho_{(q)}}{t} = -\nabla \cdot \bm{J}_{(q)} \quad.
+\] 
+We can then try to bring \eqref{eq:step_eq_continuità} as close as possible to its classical counterpart: to this end, we attempt to factor out the divergence operator, so as to obtain $\partial_t \rho = \nabla \cdot (\text{something})$. This is by no means an obvious operation, since we are dealing with a differential operator. Let us begin by formalising the intuition:
+\[
+    \psi^*\nabla^2\psi - \psi\nabla^2\psi^* \overset{?}{=} \nabla \cdot \big( \psi^*\nabla\psi - \psi\nabla\psi^* \big) \quad.
+\]
+Let us compute:
+\[
+\begin{aligned}
+    \nabla \cdot \big( \psi^*\nabla\psi - \psi\nabla\psi^* \big) &= \nabla\psi\cdot\nabla\psi^* + \psi^*\nabla^2\psi - \nabla\psi^* \cdotp\nabla\psi - \psi\nabla^2\psi^* \\ &= \psi^*\nabla^2\psi - \psi\nabla^2\psi^* \quad.
+\end{aligned}
+\]
+Having verified that this factorisation is mathematically sound, we substitute and obtain the final form of the \textbf{continuity equation} in the quantum case:
+\[
+    \pdv{\rho}{t} + \nabla \cdot \left[\frac{\hbar}{2mi}\big( \psi^*\nabla\psi - \psi\nabla\psi^* \big) \right] = 0 \quad,
+\]
+where the term in square brackets, in full analogy with the electromagnetic case, is called the \textit{probability current density}:
+\[
+    \bm{J} = \frac{\hbar}{2mi}\big( \psi^*\nabla\psi - \psi\nabla\psi^* \big) \quad.
+\]
+The continuity equation thus takes its well-known compact form:
+\[
+    \pdv{\rho(\bm{r}, t)}{t} + \nabla \cdot \bm{J}(\bm{r},t) = 0 \quad.
+\]
+
+\begin{concettochiave}{The continuity equation and the probability current density}
+    \noindent
+    In full analogy with the electromagnetic case, the quantum probability density evolves in time in accordance with the \textbf{continuity equation}:
+    \begin{equation}
+    \pdv{\rho(\bm{r}, t)}{t} + \nabla \cdot \bm{J}(\bm{r},t) = 0 \quad.
+    \label{eq:continuità}
+\end{equation}
+where $\bm{J}(\bm{r},t)$ is the \emph{probability current density}, defined as:
+\begin{equation}
+    \bm{J} = \frac{\hbar}{2mi}\big( \psi^*\nabla\psi - \psi\nabla\psi^* \big) \quad.
+\end{equation}
+\end{concettochiave}
+
+\subsubsection{Integrating the continuity equation}
+Let us go back to the original question: how does the total probability evolve in time? If we integrate over the generic domain $\Omega$ to which the particle described by $\psi$ is confined, we recover the time derivative of the total probability:
+\[
+    \int_\Omega \pdv{\rho}{t} \, \dd^3{\bm{r}} = \dv{\mathcal{P}}{t} = -\int_\Omega \nabla \cdot \bm{J} \, \dd^3{\bm{r}} \quad.
+\]
+Using Gauss's divergence theorem, we can rewrite the right-hand side and obtain \eqref{eq:continuità} in integral form:
+\[
+    \dv{\mathcal{P}}{t} = -\oint_{\partial \Omega} \bm{J} \cdot \dd{\bm{S}} \quad,
+\]
+which has a beautiful physical interpretation: the rate of change of the total probability $\mathcal{P}$ of finding the particle inside the volume $\Omega$ equals minus the flux of the probability current density $\bm{J}$ through the closed surface $\partial \Omega$ bounding that volume\footnote{Recall the analogy discussed earlier: the classical counterpart of the equation is $\dv{q}{t} = -\oint_{\partial \Omega} \bm{J}_q \cdot \dd{\bm{S}}$. By convention, a positive (outward) flux indicates charge \emph{leaving} the volume, while a negative (inward) flux corresponds to an increase in the amount of charge within the volume. The quantum translation is then immediate.}. In other words, quantum probability is \emph{neither created nor destroyed}, but flows continuously from one region of space to another.
+
+It is then easy to see that, for $\mathcal{P}$ to remain constant (and unitary) in time -- and hence for the Copenhagen interpretation to be mathematically consistent -- the flux of the current density must vanish on the boundary of $\Omega$. This condition takes the form:
+\[
+    \oint_{\partial \Omega} \bm{J} \cdot \dd{\bm{S}} = \frac{\hbar}{2mi} \oint_{\partial \Omega} \big(\psi^*\nabla\psi - \psi\nabla\psi^*\big) \cdot \dd{\bm{S}} = 0 \quad.  
+\]
+To understand under what conditions this requirement is satisfied, we must discuss some further properties of the wave function.
+
+\subsection{The decay of the wave function at infinity}
+We can determine, at least qualitatively, what happens to a generic $\psi(\bm{r},t)$ far from the origin, i.e.\ in the limit $|\bm{r}| = r \to \infty$.
+
+A first, fundamental assumption we will make is that, whenever the domain of definition of a particle coincides with the whole of three-dimensional space ($\Omega \equiv \mathbb{R}^3$), the wave function must be: $(1)$ \emph{rapidly decaying at infinity}; $(2)$ \emph{sufficiently regular}. Condition $(1)$ is necessary to rule out pathological cases marked by divergent probabilities, while condition $(2)$, although not a mere mathematical nicety, is somewhat redundant but greatly simplifies the calculations.
+
+We must now determine how quickly $\psi(\bm{r},t)$ has to converge to $0$ near infinity, so that the flux of the associated probability current density is likewise infinitesimal in the limit $r \to \infty$. The functional form we seek for the wave function, at large distances from the origin, is of the type:
+\begin{equation}
+        \psi(\bm{r},t) \simeq \frac{f(r,t)}{r^\gamma} 
+        \label{eq:psi_r_grande}
+\end{equation} 
+with $f:\mathbb{R} \to \mathbb{C}$ such that $|f(r)| < \infty$. Note that the argument of $\psi$ is the vector $\bm{r}$, while the argument of $f$ is simply the distance $r = |\bm{r}|$. The treatment therefore focuses on determining $\gamma$ so that Born's hypothesis is well posed.
+
+\subsubsection{Computing the flux}
+We first obtain $\bm{J}$ from its definition:
+\[
+\begin{aligned}
+        \bm{J}(\bm{r},t) &= \frac{\hbar}{2mi}\bigg[\underbrace{\frac{f(r,t)^*}{r^\gamma} \left( \frac{\nabla f(r,t)}{r^\gamma} - \frac{\gamma f(r,t)}{r^{\gamma+1}}\bm{u}_r \right)}_a - \, a^* \bigg] \\ &=  \frac{\hbar}{2mi}\left[\left( \frac{\nabla f(r,t)}{r^{2\gamma}} f(r,t)^* - \frac{\gamma|f(r,t)|^2}{r^{2\gamma+1}}\bm{u}_r \right) - a^*\right] \\
+        &= \frac{\hbar}{2mi}\biggl[\frac{1}{r^{2\gamma}}\biggl( {f(r,t)^*}\nabla f(r,t) -  \underbrace{\frac{\gamma|f(r,t)|^2}{r}\bm{u}_r}_{\text{real}}\biggr) - a^*\biggr] \quad.
+\end{aligned}
+\]
+Since $a^*$ is the complex conjugate of the first term, the difference kills the purely real part. We are left with an elegant dependence for the current density:
+\[
+    \bm{J}(\bm{r},t) \propto \frac{1}{r^{2\gamma}}\left({f(r,t)^*}\nabla f(r,t) - {f(r,t)}\nabla f(r,t)^*  \right) \quad.
+\]
+Turning to the flux, we know that the generic surface $\Sigma$ grows as $r^2$. In spherical coordinates, the infinitesimal surface element is $\dd{\bm{S}} = \bm{u}_r \, r^2 \dd{\Omega}$, with $\dd{\Omega}$ the infinitesimal solid-angle element. We thus write the flux integral as:
+\begin{equation}
+    \oint_{\Sigma = \partial \Omega} \bm{J} \cdot \dd{\bm{S}} = \oint_{4\pi} (\bm{J} \cdot \bm{u}_r) \, r^2 \dd{\Omega} \overset{(7)}{\propto} \frac{r^2}{r^{2\gamma}} \oint_{4\pi} f(\Omega) \dd{\Omega} = \frac{C}{r^{2\gamma - 2}} \quad,
+\end{equation}
+where $C$ is a real constant that collects the result of integrating over the angular variables alone. In $(7)$ we used the fact that the gradient of $f$ is proportional to the unit vector $\bm{u}_r$, and noted that the integration runs \emph{only} over the solid angle $4\pi$, with no bearing whatsoever on the radial part.
+Having thus analytically separated the radial dependence, we may now rigorously take the limit $r \to \infty$ of the whole expression:
+\[
+    \lim_{r \to \infty} \oint_{\partial \Omega} \bm{J} \cdot \dd{\bm{S}} \propto \lim_{r \to \infty} \frac{1}{r^{2\gamma-2}} \quad,
+\]
+which vanishes only if the exponent in the denominator is strictly positive:
+\begin{equation}
+        2\gamma - 2 > 0 \implies \gamma > 1 \quad.
+\end{equation}
+
+\subsubsection{Final remarks}
+We have thus found that, for the total probability of finding a particle within the volume to which it is confined to remain constant in time, the wave function must decay strictly faster than $r^{-1}$ as $r \to \infty$. Consistently, under this condition we have:
+\[
+    \dv{\mathcal{P}}{t} = 0 \implies \mathcal{P} = \text{const.}
+\] 
+
+\subsection{Other fundamental properties of the wave function}
+What we have discussed so far has laid the necessary groundwork for taking the treatment further and examining two additional characterisations of the wave function: its being an element of the \textit{space of square-integrable functions} $\mathcal{L}^2(\Omega \subseteq \mathbb{R}^3)$, and the \textit{normalisation condition}.
+
+\subsubsection{The space of square-integrable functions $\bm{\mathcal{L}^2}$}
+Let us now look with fresh eyes at the condition of unitarity of the total probability prescribed by the Copenhagen interpretation. The fact that the integral of the squared modulus of $\psi(\bm{r},t)$ is constantly equal to 1 over the particle's domain of definition $\Omega$ certainly implies that:
+\[
+    1 = \int_\Omega |\psi(\bm{r})|^2 \dd^3{\bm{r}} < +\infty \quad.
+\]
+Consequently, for a generic wave function to represent a \emph{physical system}, its squared modulus must be integrable, i.e.\ non-divergent, over the domain of definition: in a word, $\psi(\bm{r},t)$ must be \textbf{square-integrable} on its domain of definition\footnote{Note that the notion of square-integrability can be extended to the whole of three-dimensional space $\mathbb{R}^3$, or to a subset $\Omega \in \mathbb{R}^3$ thereof; in the latter case, one should properly speak of functions that are \emph{locally} square-integrable, $\psi \in \mathcal{L}^2_{loc}$. For simplicity, we will omit the qualifier "loc", and it will always be understood that we mean ``\emph{square-integrable on the domain of definition $\Omega$}''.}.
+
+The set of square-integrable functions forms a \emph{vector space}, denoted by the symbol $\mathcal{L}^2(\Omega)$\footnote{We anticipate that $\mathcal{L}^2(\Omega \subseteq \mathbb{R}^3)$ is in fact a \emph{Hilbert space}. This feature is of fundamental importance for the mathematical consistency of quantum mechanics, and will be discussed in greater depth further on.}. Recall that, to prove this rigorously, one would need to verify the celebrated \emph{seven properties} that characterise a generic vector space. For simplicity, we show below that $\mathcal{L}^2$ is at the very least a \emph{vector subspace}: this will allow us to freely use the notion of linear combination (and hence the superposition principle) when analysing the S.E.\ of a system.
+\begin{proprietà}[Existence of the neutral element]
+    The set of square-integrable functions $\mathcal{L}^2(\Omega)$ admits the \emph{neutral element} $\psi = 0$.
+\end{proprietà}
+\begin{proof}
+    The proof is trivial once one notes that $\psi(\bm{r},t) = 0$ is evidently square-integrable on any subset of $\mathbb{R}^3$ (and hence on $\mathbb{R}^3$ itself).
+\end{proof}
+\begin{proprietà}[Closure under addition]
+    The set of square-integrable functions $\mathcal{L}^2(\Omega)$ is \emph{closed} under linear combination.
+\end{proprietà}
+\begin{proof}
+    We must show that a generic linear combination of square-integrable functions is itself square-integrable. To this end, consider $n$ generic square-integrable functions $\psi_i \in \mathcal{L}^2(\Omega)$ and as many arbitrary complex constants $c_i \in \mathbb{C}$. By hypothesis:
+    \[
+        \int_{\Omega} \dd^3{\bm{r}} \, |\psi_i(\bm{r},t)|^2 < +\infty \quad,
+    \]
+    and we may accordingly introduce, purely as shorthand for this proof, the quantity $\norm{\phi} \equiv \left(\int_\Omega \dd^3{\bm{r}}\,|\phi(\bm{r},t)|^2\right)^{1/2}$ for any $\phi \in \mathcal{L}^2(\Omega)$ -- the formal definition of norm and scalar product on $\mathcal{L}^2$ will be given in full in Section~\ref{sec:prodotto_scalare}.
+
+    Define $\Psi$ as the linear combination of the $\psi_i$:
+    \[
+        \Psi(\bm{r},t) = \sum_{i=1}^n c_i \psi_i(\bm{r},t) \quad.
+    \]
+    Since the domain of each $\psi_i$ is $\Omega$ by hypothesis, we have $\text{dom}(\Psi) = \Omega$. We first establish the two-term case. For any $\phi, \chi \in \mathcal{L}^2(\Omega)$, the Cauchy-Schwarz inequality for integrals gives
+    \[
+        \left|\int_\Omega \dd^3{\bm{r}}\,\phi^*\chi\right| \le \norm{\phi}\,\norm{\chi} \quad,
+    \]
+    so that, expanding the square of the norm of the sum,
+    \[
+        \begin{aligned}
+            \norm{\phi+\chi}^2 &= \int_\Omega \dd^3{\bm{r}}\,|\phi+\chi|^2 = \norm{\phi}^2 + 2\,\text{Re}\int_\Omega \dd^3{\bm{r}}\,\phi^*\chi + \norm{\chi}^2 \\
+            &\le \norm{\phi}^2 + 2\norm{\phi}\norm{\chi} + \norm{\chi}^2 = \big(\norm{\phi}+\norm{\chi}\big)^2 \quad,
+        \end{aligned}
+    \]
+    which is precisely the \emph{Minkowski inequality} for $\mathcal{L}^2$: $\norm{\phi+\chi} \le \norm{\phi} + \norm{\chi}$. Applying this inequality $n-1$ times, by induction, to the partial sums of $\sum_{i=1}^n c_i\psi_i$ -- and using the fact that $\norm{c_i\psi_i} = |c_i|\,\norm{\psi_i}$, which follows immediately from the definition of the norm -- we obtain
+    \[
+        \norm{\Psi} = \norm{\sum_{i=1}^n c_i\psi_i} \le \sum_{i=1}^n |c_i|\,\norm{\psi_i} \quad,
+    \]
+    a finite sum of finite terms, since each $\norm{\psi_i} < +\infty$ by hypothesis and each $|c_i| < +\infty$. Hence $\norm{\Psi} < +\infty$, i.e.
+    \[
+        \int_\Omega \dd^3{\bm{r}}\,|\Psi(\bm{r},t)|^2 < +\infty \quad,
+    \]
+    which proves that $\Psi \in \mathcal{L}^2(\Omega)$.
+\end{proof}
+
+\begin{proprietà}[Closure under scalar multiplication]
+    The set of square-integrable functions $\mathcal{L}^2(\Omega)$ is \emph{closed} under multiplication by a scalar.
+\end{proprietà}
+\begin{proof}
+    Multiplying by a scalar cannot alter the non-divergence of a function's integral.
+\end{proof}
+
+The implications of this discussion are manifold\footnote{Note that, in order to lighten the notation, the domain of definition will often be omitted, leaving the symbol $\mathcal{L}^2$ to denote the generic space of square-integrable functions.}; in particular, we immediately obtain a further guarantee that taking, as a solution of Schrödinger's equation, a linear combination of several wave functions that are themselves solutions of the S.E.\ is legitimate not only from the standpoint of the differential equation, but also on purely algebraic grounds.
+
+\subsubsection{The normalisation condition}
+We have so far discussed which wave functions make physical sense, i.e.\ which ones provide a rigorous mathematical foundation for Born's probabilistic interpretation. We must now further require that the total probability of finding a particle within its domain of definition be not merely non-divergent, but \textbf{unitary}.
+
+Consider a particle confined, for simplicity, to the whole of three-dimensional space $\Omega \equiv \mathbb{R}^3$. We then require that the integral of the squared modulus of the associated wave function be \emph{normalised}, i.e.\ that it evaluate to exactly $1$:
+\begin{equation}
+    \int_{\mathbb{R}^3}  \dd^3{\bm{r}} \, |\psi(\bm{r},t)|^2 = 1 \quad.
+    \label{eq:normalizzazione_ps}
+\end{equation}
+To check that this requirement can be met, we exploit the asymptotic behaviour $\psi \sim f(r)/r^\gamma$ analysed above and, in order to avoid mathematical pathologies at the origin arising from the use of an expression valid only at large distances, we split the domain of integration into a sphere of arbitrarily large radius $R$ and the asymptotic region from $R$ to $+\infty$. Inside the sphere $r \le R$, we assume $\psi$ to be continuous and bounded, giving a certainly finite integral which we call $I_0$. Switching to spherical coordinates for the asymptotic term, we obtain:
+\begin{equation}
+\begin{aligned}
+    \int_{\mathbb{R}^3} |\psi|^2 \dd^3{\bm{r}} &= \int_{r \le R} |\psi|^2 \dd^3{\bm{r}} + \int_R^\infty \int_0^\pi \int_0^{2\pi} \frac{|f(r)|^2}{r^{2\gamma}} r^2 \sin \theta \dd{r} \dd{\theta} \dd{\phi} \\
+    &= I_0 + \int_R^\infty \frac{|f(r)|^2}{r^{2\gamma-2}} \dd{r} {\int_0^\pi \sin\theta \dd{\theta}} {\int_0^{2\pi} \dd{\phi}} \\
+    &= I_0 + 4\pi \int_R^\infty \frac{|f(r)|^2}{r^{2\gamma-2}} \dd{r} \quad.
+    \label{eq:int_mod_quad}
+\end{aligned}
+\end{equation}
+Recalling that the integral of the squared modulus of the wave function represents the total probability, which must necessarily be less than infinity, the last improper integral must necessarily converge to a finite value. Since $|f(r)|^2$ is asymptotically bounded by definition, the convergence criterion for improper integrals requires the exponent in the denominator to be strictly greater than $1$:
+\begin{equation}
+    2\gamma - 2 > 1 \implies \gamma > \frac{3}{2} \quad,
+\end{equation}
+a result fully consistent with the earlier condition $\gamma > 1$.
+
+
+\begin{concettochiave}{Normalisation of the wave function and time-independence of the total probability}
+    \noindent
+    For a generic wave function $\psi(\bm{r},t)$ defined on $\mathbb{R}^3$ to be associated with a total probability that is constant in time, and hence to be consistent with the Copenhagen interpretation, we need
+    \[
+        \psi = o\left(\frac{1}{r} \right)
+    \] 
+    i.e.\ $\psi$ must be \emph{little-o} of $1/r$ as $r \to \infty$.
+    The normalisation condition, on the other hand, obtained by requiring $\psi \in \mathcal{L}^2$, prescribes that
+    \[
+        \psi = {o}\left(\frac{1}{r^{\frac{3}{2}}} \right) \quad.
+    \]
+    It is thus clear that a generic wave function \textbf{must necessarily} be square-integrable, since this condition automatically guarantees that the total probability is independent of time.
+\end{concettochiave}
+
+\noindent
+At this point, assuming that \eqref{eq:int_mod_quad} evaluates to $\alpha \in \mathbb{R}^+$, in order to obtain the unitary-probability condition prescribed in \eqref{eq:normalizzazione_ps}, it suffices to exploit the linearity of Schrödinger's equation and redefine the wave function by multiplying it by the appropriate \emph{normalisation constant} $A = 1/\sqrt{\alpha}$:
+\[
+    \psi_{\text{norm}}(\bm{r}, t) = \frac{1}{\sqrt{\alpha}} \psi(\bm{r}, t) \implies \int_{\mathbb{R}^3} |\psi_{\text{norm}}|^2 \dd^3{\bm{r}} = \frac{1}{\alpha} \underbrace{\int_{\mathbb{R}^3} |\psi|^2 \dd^3{\bm{r}}}_{\alpha} = 1 \quad.
+\]
+
+From this point on, we will always assume that the wave functions under consideration have been suitably normalised, thereby guaranteeing the full validity of Born's postulate.
+
+\section{The Scalar Product of Wave Functions}
+\label{sec:prodotto_scalare}
+Having identified the "world" of wave functions as a vector space, we must now address a further question: how to define the notion of \textbf{scalar product} on $\mathcal{L}^2$.
+
+Given two square-integrable wave functions $\psi$ and $\phi$, we define their scalar product as:
+\begin{equation}
+    (\psi, \phi) \equiv \int_{\mathbb{R}^3} \dd^3{\bm{r}}\, \psi(\bm{r},t)^*\phi(\bm{r},t) \quad.
+    \label{eq:prod_scal}
+\end{equation}
+Taking the scalar product of a function with itself, we recover the notion of the squared norm:
+\[
+    \norm{\psi}^2 \equiv (\psi,\psi) = \int_{\mathbb{R}^3} \dd^3{\bm{r}}\, \psi(\bm{r},t)^*\psi(\bm{r},t) = \int_{\mathbb{R}^3}\dd^3{\bm{r}}\, |\psi(\bm{r},t)|^2 \quad.
+\]
+Note that the squared norm of a wave function is nothing but the total probability of finding the particle within its space of existence, and is therefore \emph{always unitary} for any generic physical state. It should be stressed, however, that the norm is in any case a positive-definite functional and, by definition, may take on any value in $\mathbb{R}^+$: the restriction to a unitary value only holds, precisely, for \emph{physical states} that have been normalised.
+
+\subsection{Properties of the scalar product of wave functions}
+Some analogies with the scalar product familiar from Euclidean spaces are evident; let us recall its standard definition.
+Given two vectors $\bm{a}, \bm{b} \in \mathbb{R}^n$, their scalar product is given by:
+\[
+    (\bm{a}, \bm{b}) \equiv \bm{a} \cdot \bm{b} = \sum_{i = 1}^n a_ib_i \quad,
+\]
+with $a_i$ and $b_i$ the $i$-th components of the vectors. The Euclidean scalar product is therefore a \emph{bilinear and symmetric} form.
+
+In the quantum case, on the other hand, these "convenient" features are lost in favour of two new peculiarities that will accompany us throughout our calculations. Equation \eqref{eq:prod_scal} defines an algebraic construct that is evidently not bilinear, but rather \textbf{sesquilinear}: linear in the second argument and antilinear (or conjugate-linear) in the first. Indeed:
+\[
+    (c_1\psi, c_2\phi) = \int_{\mathbb{R}^3} \dd^3{\bm{r}}\, c_1^*\psi(\bm{r},t)^*c_2\phi(\bm{r},t) = c_1^*c_2 \int_{\mathbb{R}^3} \dd^3{\bm{r}}\, \psi(\bm{r},t)^*\phi(\bm{r},t) = c_1^*c_2 (\psi, \phi) \quad.
+\]
+The complex scalar product is furthermore \emph{not symmetric} (since in general $\psi^*\phi \neq \psi\phi^*$), but \textbf{Hermitian-symmetric}, meaning that:
+\[
+    (\psi, \phi) = \int_{\mathbb{R}^3} \dd^3{\bm{r}}\, \psi(\bm{r},t)^*\phi(\bm{r},t) = \biggl( \int_{\mathbb{R}^3} \dd^3{\bm{r}}\, \phi(\bm{r},t)^*\psi(\bm{r},t) \biggr)^* = (\phi, \psi)^* \quad.
+\]
