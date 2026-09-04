@@ -1,8 +1,4 @@
-% ==========================================
-% MAIN.TEX - PREAMBOLO OTTIMIZZATO PER ECCELLENZA TIPOGRAFICA
-% ==========================================
 \documentclass[
-    % Rimosso a4paper per evitare conflitti con la geometria B5
     11pt,
     twoside,
     openright,
@@ -45,7 +41,7 @@
 
 % --- 4. MATEMATICA E FISICA ---
 \usepackage{amsmath} 
-\usepackage{amsthm}  % <--- AGGIUNTO: Fondamentale per thmtools
+\usepackage{amsthm}  % <--- Fondamentale per thmtools
 \usepackage{mathtools}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -189,24 +185,23 @@
     before upper={\tcbtitle\par\vspace{0.4em}}, 
     left=1em, right=1em, top=0.8em, bottom=0.8em, 
     parbox=false,
-    overlay unbroken and last={% Quadratino di fine box in basso a destra
+    overlay unbroken and last={
         \node[anchor=south east, outer sep=2pt, color=keygold!40] at (frame.south east) {\tiny$\blacksquare$};
     },                       
-    #1                        % Argomento opzionale per chiavi extra (es. nobreak)
+    #1                        
 }
 
 % Contatore Problemi integrato per capitolo
 \newcounter{probcount}[chapter]
 \renewcommand{\theprobcount}{\thechapter.\arabic{probcount}}
 
-% Box Testo Problema (Completamente automatizzato per l'indice)
+% Box Testo Problema 
 \newtcolorbox{problemabox}[1]{
     enhanced, breakable,
     colback=physicsgray, colframe=physicsblue,
     attach boxed title to top left={yshift=-2mm, xshift=5mm},
     boxed title style={colback=physicsblue},
     fonttitle=\bfseries\sffamily,
-    % Avanzamento automatico del contatore e inserimento in ToC
     code={\refstepcounter{probcount}\addcontentsline{toc}{subsection}{Prob. \theprobcount\ -- #1}},
     title={Problema \theprobcount \quad #1},
     sharp corners, boxrule=0.8pt,
@@ -224,7 +219,7 @@
         before skip=0pt, after skip=15pt
     ]
     {\small\sffamily\bfseries\color{physicsblue}SOLUZIONE:}\par\nopagebreak\vspace{2mm}
-}{%
+}{
     \end{tcolorbox}\par
 }
 
@@ -235,8 +230,6 @@
 \author{Carlo Alberto Riva}
 \date{Politecnico di Torino}
 
-\includeonly{capitoli/cap_2} 
-
 \begin{document}
 
 \frontmatter 
@@ -244,7 +237,6 @@
 \tableofcontents
 
 \mainmatter 
-
 
 % Inclusione capitoli
 \include{capitoli/cap_1}
